@@ -1,6 +1,7 @@
 import sys
 import requests
 from csv import *
+from lxml import html
 
 
 class Module3:
@@ -41,6 +42,13 @@ class Module3:
 
     @staticmethod
     def find_geography(filename):
+
+        resp = requests.get(filename)
+        body = resp.text
+
+        print(resp)
+        print(body)
+
         return filename
 
     '''
@@ -179,5 +187,10 @@ class Module3:
     def first_index_in_file(filepath, character):
 
         return -1 #char does not exist in file
+ 
+def main():
+    output = Module3()
+    output.find_geography('https://d2l.msu.edu/content/enforced/669263-FS18-MI-250-001-97K2BZ-EL-10-830/weather_1.htm?d2lSessionVal=Sfja0TzfI6Bd7dr4c6opToVZy&ou=669263&d2l_body_type=3')
 
-    
+if __name__ == "__main__":
+    main()
