@@ -1,3 +1,9 @@
+"""
+sulfaroa
+9/4/18
+Module 3 Problem Set
+"""
+
 import sys
 import requests
 from csv import *
