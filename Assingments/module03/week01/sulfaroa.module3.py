@@ -54,14 +54,16 @@ class Module3:
 
         response = requests.get(filename)
         html_soup = BeautifulSoup(response.text, 'html.parser')
-        location = html_soup.find_all('div', class_ = 'location')[0]
 
+        location_containers = html_soup.find_all('div', class_ = 'location center-text-xs margin-bottom')
+        first_thing = location_containers[0]
 
-        print(response)
-        print(location)
-        print(location.div)
+        location = first_thing.strong.text
+        zip_code = location[-5:]
 
-        return filename
+        output = zip_code+': '+ location[:-5]
+
+        return output
 
     '''
         38. Given a URL, use string functions to extract and return the path and filename components
@@ -91,7 +93,17 @@ class Module3:
 
     @staticmethod
     def find_meteorologist(filename):
-        return filename
+
+        response = requests.get(filename)
+        html_soup = BeautifulSoup(response.text, 'html.parser')
+        #location = html_soup.find_all('div', class_ = 'location')[0]
+
+        filtered_containers = html_soup.find_all('div', class_ = 'met-name-text')
+        first_thing = filtered_containers[0]
+
+        met_name = first_thing.text
+
+        return met_name
 
     '''
         33. HARD - Create a new CSV file which contains the name of each state and the corresponding population
@@ -172,7 +184,14 @@ class Module3:
 
     @staticmethod
     def find_current_temperature(filename):
-        return filename
+
+        response = requests.get(filename)
+        html_soup = BeautifulSoup(response.text, 'html.parser')
+        filtered_container = html_soup.find_all('div', class_ = '')[1]
+
+        temperature = filtered_container.text
+
+        return temperature[-3:-1]
 
     '''
         40. Given a URL, open the webpage and return only the title of the webpage.
@@ -186,7 +205,17 @@ class Module3:
 
     @staticmethod
     def extract_url_title(url):
-        return url
+
+        response = requests.get(url)
+        html_soup = BeautifulSoup(response.text, 'html.parser')
+        filtered_containers = html_soup.find_all('title')
+
+        title = filtered_containers[0].text
+        if title != "":
+            print(title)
+            return title
+        
+        return None
 
     '''
         35. Given a URL, open the webpage and save the HTML to a given file path.
@@ -197,7 +226,16 @@ class Module3:
 
     @staticmethod
     def save_url_to_file(url, savefile):
-        return url
+
+        response = requests.get(url)
+        html_soup = BeautifulSoup(response.text, 'html.parser')
+
+        print(html_soup)
+
+        with open(savefile, 'w') as filee:
+            filee.write(str(html_soup))
+
+        return None
 
     '''
         12. Using file and string functions, write your own function to open a file.
@@ -316,10 +354,14 @@ class Module3:
 
 def main():
     output = Module3()
-    #output.find_geography('https://weather.com/weather/today/l/East+Lansing+MI+48823:4:US')
+    #print(output.find_geography('http://localhost:9090/'))
+    #print(output.find_meteorologist('http://localhost:9090'))
+
+    #output.find_current_temperature('http://localhost:9090')
+    output.save_url_to_file('http://google.com', 'utl_to_file.html')
 
     #output.sort_states_ascending('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/sorted_states_ascending.csv')
-    print(output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1.txt', '/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1_out.txt', 'replaced'))
-
+    #print(output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1.txt', '/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1_out.txt', 'replaced'))
+    #print(output.total_population_for_m_states('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv'))
 if __name__ == "__main__":
     main()
