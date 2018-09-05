@@ -2,6 +2,7 @@ import sys
 import requests
 from csv import *
 from lxml import html
+from bs4 import BeautifulSoup
 
 
 class Module3:
@@ -42,12 +43,17 @@ class Module3:
 
     @staticmethod
     def find_geography(filename):
+        '''#location data is in the div containers
+            <div> class = location center-text-xs margin-bottom -> <strong> (location)'''
 
-        resp = requests.get(filename)
-        body = resp.text
+        response = requests.get(filename)
+        html_soup = BeautifulSoup(response.text, 'html.parser')
+        location = html_soup.find_all('div', class_ = 'location')[0]
 
-        print(resp)
-        print(body)
+
+        print(response)
+        print(location)
+        print(location.div)
 
         return filename
 
@@ -91,6 +97,38 @@ class Module3:
 
     @staticmethod
     def sort_states_ascending(openfile, savefile):
+        #open file to read in data
+        readfile = open(openfile, 'r')
+        readfile.readline()
+
+        output_list = []
+
+        #load to list sorted
+        for line in readfile:
+
+            line = line.strip('\n').strip()
+            line = line.split(',')
+
+            state = line[0]
+            population = line[1]
+            state_tup = (state, int(population))
+
+            output_list.append(state_tup)
+
+        readfile.close()
+
+        output_list.sort(key=lambda x: x[1])
+
+        #write to outfile
+        
+        outfile = open(savefile, 'w')
+
+        for element in output_list:
+            write_string = element[0]+','+str(element[1])+'\n'
+            outfile.writelines(write_string)
+
+        outfile.close()
+
         return None
 
     '''
@@ -187,10 +225,13 @@ class Module3:
     def first_index_in_file(filepath, character):
 
         return -1 #char does not exist in file
- 
+
 def main():
     output = Module3()
-    output.find_geography('https://d2l.msu.edu/content/enforced/669263-FS18-MI-250-001-97K2BZ-EL-10-830/weather_1.htm?d2lSessionVal=Sfja0TzfI6Bd7dr4c6opToVZy&ou=669263&d2l_body_type=3')
+    #output.find_geography('https://weather.com/weather/today/l/East+Lansing+MI+48823:4:US')
+
+    output.sort_states_ascending('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/sorted_states_ascending.csv')
+
 
 if __name__ == "__main__":
     main()
