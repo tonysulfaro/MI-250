@@ -203,7 +203,53 @@ class Module3:
 
     @staticmethod
     def modify_text_file(openfile, savefile, name):
-        return None
+        #assumes that REPLACE ME is actually in there
+        
+        #here is my method
+        '''
+        readfile = open(openfile, 'r')
+        output = []
+
+        for line in readfile:
+            
+            line = line.split()
+
+            print(line)
+            
+            output.extend(line)
+
+        print(output)
+        r_index = output.index('REPLACE')
+
+        if r_index != -1:
+            if output[r_index+1] == 'ME':
+                output.pop(r_index)
+                output.pop(r_index)
+                output.insert(r_index, name)
+
+        readfile.close()
+
+        #write string to file
+        outfile = open(savefile, 'w')
+
+        for element in output:
+            outfile.write(element+' ')
+        '''
+
+        #aaand then stackoverflow
+        #attribution: https://stackoverflow.com/a/17141572
+
+        # Read in the file
+        with open(openfile, 'r') as filee:
+            filedata = filee.read()
+
+        # Replace the target string
+        filedata = filedata.replace('REPLACE ME', name)
+
+        # Write the file out again
+        with open(savefile, 'w') as filee:
+            filee.write(filedata)
+
 
     '''
         27. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -267,7 +313,7 @@ def main():
     #output.find_geography('https://weather.com/weather/today/l/East+Lansing+MI+48823:4:US')
 
     #output.sort_states_ascending('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/sorted_states_ascending.csv')
-    print(output.first_index_in_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv', 'b'))
+    print(output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1.txt', '/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1_out.txt', 'replaced'))
 
 if __name__ == "__main__":
     main()
