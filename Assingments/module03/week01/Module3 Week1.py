@@ -213,6 +213,26 @@ class Module3:
 
     @staticmethod
     def total_population_for_m_states(filename):
+
+        population_total = 0
+        readfile = open(filename, 'r')
+        readfile.readline()
+
+        for line in readfile:
+            line = line.strip('\n').strip()
+            line = line.split(',')
+
+            region = line[0]
+            population = int(line[1])
+
+            region = region.lower()
+            if region[0] == 'm':
+                population_total += population
+
+        readfile.close()
+
+        if(population_total > 0):
+            return population_total
         return -1
 
     '''
@@ -224,14 +244,30 @@ class Module3:
     @staticmethod
     def first_index_in_file(filepath, character):
 
+        index = 0
+
+        readfile = open(filepath, 'r')
+
+        for line in readfile:
+            line = line.strip('\n').strip()
+
+            for char in line:
+                print(char)
+                index +=1
+
+                if char == character:
+                    return index
+
+        readfile.close()
+
         return -1 #char does not exist in file
 
 def main():
     output = Module3()
     #output.find_geography('https://weather.com/weather/today/l/East+Lansing+MI+48823:4:US')
 
-    output.sort_states_ascending('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/sorted_states_ascending.csv')
-
+    #output.sort_states_ascending('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/sorted_states_ascending.csv')
+    print(output.first_index_in_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv', 'b'))
 
 if __name__ == "__main__":
     main()
