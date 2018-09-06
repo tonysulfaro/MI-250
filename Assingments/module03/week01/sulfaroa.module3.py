@@ -1,14 +1,12 @@
 """
 sulfaroa
-9/4/18
+9/6/18
 Module 3 Problem Set
 """
 
 import sys
 import requests
 from csv import *
-from lxml import html
-from bs4 import BeautifulSoup
 
 
 class Module3:
@@ -49,21 +47,26 @@ class Module3:
 
     @staticmethod
     def find_geography(filename):
-        '''#location data is in the div containers
-            <div> class = location center-text-xs margin-bottom -> <strong> (location)'''
 
-        response = requests.get(filename)
-        html_soup = BeautifulSoup(response.text, 'html.parser')
+        fp = open(filename)
 
-        location_containers = html_soup.find_all('div', class_ = 'location center-text-xs margin-bottom')
-        first_thing = location_containers[0]
+        location_container = ""
+        for line in fp:
+            if 'class="location center-text-xs margin-bottom"' in line:
+                location_container = line
 
-        location = first_thing.strong.text
-        zip_code = location[-5:]
+        content_index_start = location_container.find('<strong>')
+        content_index_end = location_container.find('</strong>')
+        zip_code = location_container[content_index_end-5:content_index_end]
+        city = location_container[content_index_start+8:content_index_end-12]
 
-        output = zip_code+': '+ location[:-5]
+        print(zip_code)
+        print(city)
+        
+        location = zip_code+': '+ city
+        print(location)
 
-        return output
+        return location
 
     '''
         38. Given a URL, use string functions to extract and return the path and filename components
@@ -94,14 +97,16 @@ class Module3:
     @staticmethod
     def find_meteorologist(filename):
 
-        response = requests.get(filename)
-        html_soup = BeautifulSoup(response.text, 'html.parser')
-        #location = html_soup.find_all('div', class_ = 'location')[0]
+        fp = open(filename)
+        met_container = ''
 
-        filtered_containers = html_soup.find_all('div', class_ = 'met-name-text')
-        first_thing = filtered_containers[0]
+        for line in fp:
+            if 'class="met-name-text"' in line:
+                met_container = line
 
-        met_name = first_thing.text
+        content_index_start = met_container.find('>')
+        content_index_end = met_container.find('</div>')
+        met_name = met_container[content_index_start+1:content_index_end]
 
         return met_name
 
@@ -185,13 +190,19 @@ class Module3:
     @staticmethod
     def find_current_temperature(filename):
 
-        response = requests.get(filename)
-        html_soup = BeautifulSoup(response.text, 'html.parser')
-        filtered_container = html_soup.find_all('div', class_ = '')[1]
+        fp = open(filename)
+        temp_container = ''
 
-        temperature = filtered_container.text
+        for line in fp:
+            if 'temp: ' in line:
+                temp_container = line
 
-        return temperature[-3:-1]
+        content_index_start = temp_container.find(': ')
+        content_index_end = temp_container.find('</div>')
+
+        temperature = temp_container[content_index_start+2:content_index_end-5]
+
+        return temperature
 
     '''
         40. Given a URL, open the webpage and return only the title of the webpage.
@@ -207,14 +218,15 @@ class Module3:
     def extract_url_title(url):
 
         response = requests.get(url)
-        html_soup = BeautifulSoup(response.text, 'html.parser')
-        filtered_containers = html_soup.find_all('title')
+        #print(response.text)
 
-        title = filtered_containers[0].text
-        if title != "":
-            print(title)
-            return title
+        title_index = response.text.find('<title>')
+        title_end_index = response.text.find('</title>')
+
+        title = response.text[title_index+7:title_end_index]
         
+        if title:
+            return title
         return None
 
     '''
@@ -228,12 +240,9 @@ class Module3:
     def save_url_to_file(url, savefile):
 
         response = requests.get(url)
-        html_soup = BeautifulSoup(response.text, 'html.parser')
-
-        print(html_soup)
 
         with open(savefile, 'w') as filee:
-            filee.write(str(html_soup))
+            filee.write(response.text)
 
         return None
 
@@ -250,49 +259,19 @@ class Module3:
         #assumes that REPLACE ME is actually in there
         
         #here is my method
-        '''
         readfile = open(openfile, 'r')
-        output = []
+        file_data = readfile.read()
 
-        for line in readfile:
-            
-            line = line.split()
-
-            print(line)
-            
-            output.extend(line)
-
-        print(output)
-        r_index = output.index('REPLACE')
-
-        if r_index != -1:
-            if output[r_index+1] == 'ME':
-                output.pop(r_index)
-                output.pop(r_index)
-                output.insert(r_index, name)
+        file_data = file_data.replace('REPLACE ME', name)
 
         readfile.close()
 
         #write string to file
         outfile = open(savefile, 'w')
+        outfile.write(file_data)
+        outfile.close()
 
-        for element in output:
-            outfile.write(element+' ')
-        '''
-
-        #aaand then stackoverflow
-        #attribution: https://stackoverflow.com/a/17141572
-
-        # Read in the file
-        with open(openfile, 'r') as filee:
-            filedata = filee.read()
-
-        # Replace the target string
-        filedata = filedata.replace('REPLACE ME', name)
-
-        # Write the file out again
-        with open(savefile, 'w') as filee:
-            filee.write(filedata)
+        return None
 
 
     '''
@@ -352,16 +331,10 @@ class Module3:
 
         return -1 #char does not exist in file
 
+
 def main():
     output = Module3()
-    #print(output.find_geography('http://localhost:9090/'))
-    #print(output.find_meteorologist('http://localhost:9090'))
+    output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1.txt','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1_out.txt','replaced the text')
 
-    #output.find_current_temperature('http://localhost:9090')
-    output.save_url_to_file('http://google.com', 'utl_to_file.html')
-
-    #output.sort_states_ascending('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/sorted_states_ascending.csv')
-    #print(output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1.txt', '/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/lorem_1_out.txt', 'replaced'))
-    #print(output.total_population_for_m_states('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/data/census-state-populations.csv'))
 if __name__ == "__main__":
     main()
