@@ -55,16 +55,12 @@ class Module3:
             if 'class="location center-text-xs margin-bottom"' in line:
                 location_container = line
 
-        content_index_start = location_container.find('<strong>')
-        content_index_end = location_container.find('</strong>')
-        zip_code = location_container[content_index_end-5:content_index_end]
-        city = location_container[content_index_start+8:content_index_end-12]
-
-        print(zip_code)
-        print(city)
+        content_index_start = location_container.find('<strong>') # find inner container start
+        content_index_end = location_container.find('</strong>') # inner container end
+        zip_code = location_container[content_index_end-5:content_index_end] # get zip through slicing
+        city = location_container[content_index_start+8:content_index_end-12] # get location through more slicing
         
         location = zip_code+': '+ city
-        print(location)
 
         return location
 
@@ -76,7 +72,13 @@ class Module3:
 
     @staticmethod
     def extract_url_path(url):
-        return url
+
+        #im assuming you meant the path of the element on the website e.g https://i.imgur.com/OAA9oeb.mp4 becomes /OAA9oeb.mp4
+
+        path = url.find('://') #find stuff up to http
+        site = url[path+3:] #exclude https:// or any ://
+        path = site[site.find('/'):] #get the path out of the site by jumping to first '/'
+        return path
 
     '''
         17. Define a function which extracts the the name of the meteorologist out of an HTML file.
@@ -104,9 +106,9 @@ class Module3:
             if 'class="met-name-text"' in line:
                 met_container = line
 
-        content_index_start = met_container.find('>')
-        content_index_end = met_container.find('</div>')
-        met_name = met_container[content_index_start+1:content_index_end]
+        content_index_start = met_container.find('>') # find start of container
+        content_index_end = met_container.find('</div>') # find end of container
+        met_name = met_container[content_index_start+1:content_index_end] # slice name out
 
         return met_name
 
@@ -140,7 +142,7 @@ class Module3:
 
         readfile.close()
 
-        output_list.sort(key=lambda x: x[1])
+        output_list.sort(key=lambda x: x[1]) # sort by population in tuple
 
         #write to outfile
         
@@ -197,9 +199,11 @@ class Module3:
             if 'temp: ' in line:
                 temp_container = line
 
+        # find start of content and end of container
         content_index_start = temp_container.find(': ')
         content_index_end = temp_container.find('</div>')
 
+        # slice out temp and return it
         temperature = temp_container[content_index_start+2:content_index_end-5]
 
         return temperature
@@ -218,8 +222,8 @@ class Module3:
     def extract_url_title(url):
 
         response = requests.get(url)
-        #print(response.text)
 
+        # find start and end tags
         title_index = response.text.find('<title>')
         title_end_index = response.text.find('</title>')
 
@@ -287,13 +291,17 @@ class Module3:
         readfile = open(filename, 'r')
         readfile.readline()
 
+        # read through data file
         for line in readfile:
+
+            # slice out data
             line = line.strip('\n').strip()
             line = line.split(',')
 
             region = line[0]
             population = int(line[1])
 
+            # add up data for that state if it matches
             region = region.lower()
             if region[0] == 'm':
                 population_total += population
@@ -317,11 +325,11 @@ class Module3:
 
         readfile = open(filepath, 'r')
 
+        # read through file and see if char matches one provided
         for line in readfile:
             line = line.strip('\n').strip()
 
             for char in line:
-                print(char)
                 index +=1
 
                 if char == character:
@@ -334,7 +342,8 @@ class Module3:
 
 def main():
     output = Module3()
-    output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1.txt','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1_out.txt','replaced the text')
+    print(output.extract_url_path('https://i.imgur.com/OAA9oeb.mp4'))
+    #output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1.txt','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1_out.txt','replaced the text')
 
 if __name__ == "__main__":
     main()
