@@ -48,17 +48,15 @@ class Module3:
     @staticmethod
     def find_geography(filename):
 
-        fp = open(filename)
+        fp = requests.get(filename).text
 
-        location_container = ""
-        for line in fp:
-            if 'class="location center-text-xs margin-bottom"' in line:
-                location_container = line
-
-        content_index_start = location_container.find('<strong>') # find inner container start
-        content_index_end = location_container.find('</strong>') # inner container end
-        zip_code = location_container[content_index_end-5:content_index_end] # get zip through slicing
-        city = location_container[content_index_start+8:content_index_end-12] # get location through more slicing
+        start_tag = 'class="location center-text-xs margin-bottom"'
+        print(start_tag)
+        content_index_start = fp.find(start_tag) # find inner container start
+        content_index_end = fp.find('</strong>',content_index_start) # inner container end
+        print(fp[content_index_start:content_index_end])
+        zip_code = fp[content_index_end-5:content_index_end] # get zip through slicing
+        city = fp[content_index_start+len(start_tag)+len('<strong> '):content_index_end-12] # get location through more slicing
         
         location = zip_code+': '+ city
 
@@ -99,16 +97,12 @@ class Module3:
     @staticmethod
     def find_meteorologist(filename):
 
-        fp = open(filename)
-        met_container = ''
+        fp = requests.get(filename).text
+        start_tag = '<div class="met-name-text">'
 
-        for line in fp:
-            if 'class="met-name-text"' in line:
-                met_container = line
-
-        content_index_start = met_container.find('>') # find start of container
-        content_index_end = met_container.find('</div>') # find end of container
-        met_name = met_container[content_index_start+1:content_index_end] # slice name out
+        content_index_start = fp.find(start_tag) # find start of container
+        content_index_end = fp.find('</div>', content_index_start) # find end of container
+        met_name = fp[content_index_start+len(start_tag):content_index_end] # slice name out
 
         return met_name
 
@@ -192,19 +186,15 @@ class Module3:
     @staticmethod
     def find_current_temperature(filename):
 
-        fp = open(filename)
-        temp_container = ''
+        fp = requests.get(filename).text
 
-        for line in fp:
-            if 'temp: ' in line:
-                temp_container = line
-
+        start_tag = 'temp: '
         # find start of content and end of container
-        content_index_start = temp_container.find(': ')
-        content_index_end = temp_container.find('</div>')
+        content_index_start = fp.find(start_tag)
+        content_index_end = fp.find('</div>', content_index_start)
 
         # slice out temp and return it
-        temperature = temp_container[content_index_start+2:content_index_end-5]
+        temperature = fp[content_index_start+len(start_tag):content_index_end-5]
 
         return temperature
 
@@ -342,7 +332,8 @@ class Module3:
 
 def main():
     output = Module3()
-    print(output.extract_url_path('https://i.imgur.com/OAA9oeb.mp4'))
+    print(output.find_current_temperature('http://cognosis.cas.msu.edu/public/mi250/module3/attachments/weather_1.htm'))
+    #print(output.extract_url_path('https://i.imgur.com/OAA9oeb.mp4'))
     #output.modify_text_file('/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1.txt','/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week01/data/lorem_1_out.txt','replaced the text')
 
 if __name__ == "__main__":
