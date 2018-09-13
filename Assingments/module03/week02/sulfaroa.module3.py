@@ -112,7 +112,13 @@ class Module3:
 
     @staticmethod
     def file_comma_count(filepath):
-        return -1
+
+        fp = open(filepath, 'r')
+        data = fp.read()
+        count = data.count(',')
+        fp.close()
+
+        return count
 
     '''
         36. Given a URL, open the webpage and save the CSV to a given file path.
@@ -120,6 +126,13 @@ class Module3:
 
     @staticmethod
     def save_url_to_csv_file(url, savefile):
+
+        file = requests.get(url).text
+        print(file)
+        fp = open(savefile, 'w')
+        fp.write(file)
+        fp.close()
+
         return url
 
     '''
@@ -195,6 +208,12 @@ class Module3:
     '''
     @staticmethod
     def find_rain_chance_for_zip(zipcode):
+
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+        page = requests.get(url).text
+
+        print(page)
+
         return zipcode
 
     '''
@@ -208,17 +227,32 @@ class Module3:
     '''
     @staticmethod
     def find_lowest_temp_for_zip(zipcode):
+
+        url = 'https://www.ajc.com/weather/'+str(zipcode)+'/'
+        page = requests.get(url).text
+
+        print(page)
+
         return zipcode
 
+
 def main():
+
     test = Module3()
-    #print(test.csv_column_count('file.csv'))
 
-    #right_pad_result = test.right_pad("This should have X's on the right", 'X')
-    #assert right_pad_result == "This should have X's on the rightXXXXXXXXXXXXXXXXX")
+    # print(test.csv_column_count('data.csv'))
 
-    #left_pad_result = test.left_pad('this is some text','-')
-    #print(left_pad_result, len(left_pad_result))
+    # right_pad_result = test.right_pad("This should have X's on the right", 'X')
+    # assert right_pad_result == "This should have X's on the rightXXXXXXXXXXXXXXXXX")
+
+    # left_pad_result = test.left_pad('this is some text','-')
+    # print(left_pad_result, len(left_pad_result))
+
+    # test.find_lowest_temp_for_zip(48823)
+    # test.save_url_to_csv_file('http://cognosis.cas.msu.edu/public/mi250/module3/attachments/census-state-populations.csv','data.csv')
+
+    # print(test.file_comma_count('data.csv'))
+
 
 if __name__ == '__main__':
     main()
