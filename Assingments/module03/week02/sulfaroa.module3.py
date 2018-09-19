@@ -271,6 +271,9 @@ def main():
 
     test = Module3()
 
+    print(test.find_lowest_temp_for_zip(95814))
+    print(test.find_rain_chance_for_zip(95814))
+
     # print(test.csv_column_count('data.csv'))
 
     # right_pad_result = test.right_pad("This should have X's on the right", 'X')

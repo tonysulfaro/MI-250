@@ -306,7 +306,7 @@ cmg.data['jr_clientId'] = 'zffft5b3d7j2j422tpthvu8uymqqcje8';
 
 
 
-<script type="text/javascript">(window.NREUM||(NREUM={})).loader_config={xpid:"UA8DVFJACQoCVFhXAQI="};window.NREUM||(NREUM={}),__nr_require=function(t,e,n){function r(n){if(!e[n]){var o=e[n]={exports:{}};t[n][0].call(o.exports,function(e){var o=t[n][1][e];return r(o||e)},o,o.exports)}return e[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(t,e,n){function r(t){try{c.console&&console.log(t)}catch(e){}}var o,i=t("ee"),a=t(20),c={};try{o=localStorage.getItem("__nr_flags").split(","),console&&"function"==typeof console.log&&(c.console=!0,o.indexOf("dev")!==-1&&(c.dev=!0),o.indexOf("nr_dev")!==-1&&(c.nrDev=!0))}catch(s){}c.nrDev&&i.on("internal-error",function(t){r(t.stack)}),c.dev&&i.on("fn-err",function(t,e,n){r(n.stack)}),c.dev&&(r("NR AGENT IN DEVELOPMENT MODE"),r("flags: "+a(c,function(t,e){return t}).join(", ")))},{}],2:[function(t,e,n){function r(t,e,n,r,c){try{h?h-=1:o(c||new UncaughtException(t,e,n),!0)}catch(f){try{i("ierr",[f,s.now(),!0])}catch(d){}}return"function"==typeof u&&u.apply(this,a(arguments))}function UncaughtException(t,e,n){this.message=t||"Uncaught error with no additional information",this.sourceURL=e,this.line=n}function o(t,e){var n=e?null:s.now();i("err",[t,n])}var i=t("handle"),a=t(21),c=t("ee"),s=t("loader"),f=t("gos"),u=window.onerror,d=!1,p="nr@seenError",h=0;s.features.err=!0,t(1),window.onerror=r;try{throw new Error}catch(l){"stack"in l&&(t(13),t(12),"addEventListener"in window&&t(6),s.xhrWrappable&&t(14),d=!0)}c.on("fn-start",function(t,e,n){d&&(h+=1)}),c.on("fn-err",function(t,e,n){d&&!n[p]&&(f(n,p,function(){return!0}),this.thrown=!0,o(n))}),c.on("fn-end",function(){d&&!this.thrown&&h>0&&(h-=1)}),c.on("internal-error",function(t){i("ierr",[t,s.now(),!0])})},{}],3:[function(t,e,n){t("loader").features.ins=!0},{}],4:[function(t,e,n){function r(){M++,S=y.hash,this[u]=b.now()}function o(){M--,y.hash!==S&&i(0,!0);var t=b.now();this[l]=~~this[l]+t-this[u],this[d]=t}function i(t,e){E.emit("newURL",[""+y,e])}function a(t,e){t.on(e,function(){this[e]=b.now()})}var c="-start",s="-end",f="-body",u="fn"+c,d="fn"+s,p="cb"+c,h="cb"+s,l="jsTime",m="fetch",v="addEventListener",w=window,y=w.location,b=t("loader");if(w[v]&&b.xhrWrappable){var g=t(10),x=t(11),E=t(8),P=t(6),O=t(13),R=t(7),T=t(14),L=t(9),j=t("ee"),N=j.get("tracer");t(15),b.features.spa=!0;var S,M=0;j.on(u,r),j.on(p,r),j.on(d,o),j.on(h,o),j.buffer([u,d,"xhr-done","xhr-resolved"]),P.buffer([u]),O.buffer(["setTimeout"+s,"clearTimeout"+c,u]),T.buffer([u,"new-xhr","send-xhr"+c]),R.buffer([m+c,m+"-done",m+f+c,m+f+s]),E.buffer(["newURL"]),g.buffer([u]),x.buffer(["propagate",p,h,"executor-err","resolve"+c]),N.buffer([u,"no-"+u]),L.buffer(["new-jsonp","cb-start","jsonp-error","jsonp-end"]),a(T,"send-xhr"+c),a(j,"xhr-resolved"),a(j,"xhr-done"),a(R,m+c),a(R,m+"-done"),a(L,"new-jsonp"),a(L,"jsonp-end"),a(L,"cb-start"),E.on("pushState-end",i),E.on("replaceState-end",i),w[v]("hashchange",i,!0),w[v]("load",i,!0),w[v]("popstate",function(){i(0,M>1)},!0)}},{}],5:[function(t,e,n){function r(t){}if(window.performance&&window.performance.timing&&window.performance.getEntriesByType){var o=t("ee"),i=t("handle"),a=t(13),c=t(12),s="learResourceTimings",f="addEventListener",u="resourcetimingbufferfull",d="bstResource",p="resource",h="-start",l="-end",m="fn"+h,v="fn"+l,w="bstTimer",y="pushState",b=t("loader");b.features.stn=!0,t(8);var g=NREUM.o.EV;o.on(m,function(t,e){var n=t[0];n instanceof g&&(this.bstStart=b.now())}),o.on(v,function(t,e){var n=t[0];n instanceof g&&i("bst",[n,e,this.bstStart,b.now()])}),a.on(m,function(t,e,n){this.bstStart=b.now(),this.bstType=n}),a.on(v,function(t,e){i(w,[e,this.bstStart,b.now(),this.bstType])}),c.on(m,function(){this.bstStart=b.now()}),c.on(v,function(t,e){i(w,[e,this.bstStart,b.now(),"requestAnimationFrame"])}),o.on(y+h,function(t){this.time=b.now(),this.startPath=location.pathname+location.hash}),o.on(y+l,function(t){i("bstHist",[location.pathname+location.hash,this.startPath,this.time])}),f in window.performance&&(window.performance["c"+s]?window.performance[f](u,function(t){i(d,[window.performance.getEntriesByType(p)]),window.performance["c"+s]()},!1):window.performance[f]("webkit"+u,function(t){i(d,[window.performance.getEntriesByType(p)]),window.performance["webkitC"+s]()},!1)),document[f]("scroll",r,{passive:!0}),document[f]("keypress",r,!1),document[f]("click",r,!1)}},{}],6:[function(t,e,n){function r(t){for(var e=t;e&&!e.hasOwnProperty(u);)e=Object.getPrototypeOf(e);e&&o(e)}function o(t){c.inPlace(t,[u,d],"-",i)}function i(t,e){return t[1]}var a=t("ee").get("events"),c=t(23)(a,!0),s=t("gos"),f=XMLHttpRequest,u="addEventListener",d="removeEventListener";e.exports=a,"getPrototypeOf"in Object?(r(document),r(window),r(f.prototype)):f.prototype.hasOwnProperty(u)&&(o(window),o(f.prototype)),a.on(u+"-start",function(t,e){var n=t[1],r=s(n,"nr@wrapped",function(){function t(){if("function"==typeof n.handleEvent)return n.handleEvent.apply(n,arguments)}var e={object:t,"function":n}[typeof n];return e?c(e,"fn-",null,e.name||"anonymous"):n});this.wrapped=t[1]=r}),a.on(d+"-start",function(t){t[1]=this.wrapped||t[1]})},{}],7:[function(t,e,n){function r(t,e,n){var r=t[e];"function"==typeof r&&(t[e]=function(){var t=r.apply(this,arguments);return o.emit(n+"start",arguments,t),t.then(function(e){return o.emit(n+"end",[null,e],t),e},function(e){throw o.emit(n+"end",[e],t),e})})}var o=t("ee").get("fetch"),i=t(20);e.exports=o;var a=window,c="fetch-",s=c+"body-",f=["arrayBuffer","blob","json","text","formData"],u=a.Request,d=a.Response,p=a.fetch,h="prototype";u&&d&&p&&(i(f,function(t,e){r(u[h],e,s),r(d[h],e,s)}),r(a,"fetch",c),o.on(c+"end",function(t,e){var n=this;e?e.clone().arrayBuffer().then(function(t){n.rxSize=t.byteLength,o.emit(c+"done",[null,e],n)}):o.emit(c+"done",[t],n)}))},{}],8:[function(t,e,n){var r=t("ee").get("history"),o=t(23)(r);e.exports=r,o.inPlace(window.history,["pushState","replaceState"],"-")},{}],9:[function(t,e,n){function r(t){function e(){s.emit("jsonp-end",[],p),t.removeEventListener("load",e,!1),t.removeEventListener("error",n,!1)}function n(){s.emit("jsonp-error",[],p),s.emit("jsonp-end",[],p),t.removeEventListener("load",e,!1),t.removeEventListener("error",n,!1)}var r=t&&"string"==typeof t.nodeName&&"script"===t.nodeName.toLowerCase();if(r){var o="function"==typeof t.addEventListener;if(o){var a=i(t.src);if(a){var u=c(a),d="function"==typeof u.parent[u.key];if(d){var p={};f.inPlace(u.parent,[u.key],"cb-",p),t.addEventListener("load",e,!1),t.addEventListener("error",n,!1),s.emit("new-jsonp",[t.src],p)}}}}}function o(){return"addEventListener"in window}function i(t){var e=t.match(u);return e?e[1]:null}function a(t,e){var n=t.match(p),r=n[1],o=n[3];return o?a(o,e[r]):e[r]}function c(t){var e=t.match(d);return e&&e.length>=3?{key:e[2],parent:a(e[1],window)}:{key:t,parent:window}}var s=t("ee").get("jsonp"),f=t(23)(s);if(e.exports=s,o()){var u=/[?&](?:callback|cb)=([^&#]+)/,d=/(.*)\.([^.]+)/,p=/^(\w+)(\.|$)(.*)$/,h=["appendChild","insertBefore","replaceChild"];f.inPlace(HTMLElement.prototype,h,"dom-"),f.inPlace(HTMLHeadElement.prototype,h,"dom-"),f.inPlace(HTMLBodyElement.prototype,h,"dom-"),s.on("dom-start",function(t){r(t[0])})}},{}],10:[function(t,e,n){var r=t("ee").get("mutation"),o=t(23)(r),i=NREUM.o.MO;e.exports=r,i&&(window.MutationObserver=function(t){return this instanceof i?new i(o(t,"fn-")):i.apply(this,arguments)},MutationObserver.prototype=i.prototype)},{}],11:[function(t,e,n){function r(t){var e=a.context(),n=c(t,"executor-",e),r=new f(n);return a.context(r).getCtx=function(){return e},a.emit("new-promise",[r,e],e),r}function o(t,e){return e}var i=t(23),a=t("ee").get("promise"),c=i(a),s=t(20),f=NREUM.o.PR;e.exports=a,f&&(window.Promise=r,["all","race"].forEach(function(t){var e=f[t];f[t]=function(n){function r(t){return function(){a.emit("propagate",[null,!o],i),o=o||!t}}var o=!1;s(n,function(e,n){Promise.resolve(n).then(r("all"===t),r(!1))});var i=e.apply(f,arguments),c=f.resolve(i);return c}}),["resolve","reject"].forEach(function(t){var e=f[t];f[t]=function(t){var n=e.apply(f,arguments);return t!==n&&a.emit("propagate",[t,!0],n),n}}),f.prototype["catch"]=function(t){return this.then(null,t)},f.prototype=Object.create(f.prototype,{constructor:{value:r}}),s(Object.getOwnPropertyNames(f),function(t,e){try{r[e]=f[e]}catch(n){}}),a.on("executor-start",function(t){t[0]=c(t[0],"resolve-",this),t[1]=c(t[1],"resolve-",this)}),a.on("executor-err",function(t,e,n){t[1](n)}),c.inPlace(f.prototype,["then"],"then-",o),a.on("then-start",function(t,e){this.promise=e,t[0]=c(t[0],"cb-",this),t[1]=c(t[1],"cb-",this)}),a.on("then-end",function(t,e,n){this.nextPromise=n;var r=this.promise;a.emit("propagate",[r,!0],n)}),a.on("cb-end",function(t,e,n){a.emit("propagate",[n,!0],this.nextPromise)}),a.on("propagate",function(t,e,n){this.getCtx&&!e||(this.getCtx=function(){if(t instanceof Promise)var e=a.context(t);return e&&e.getCtx?e.getCtx():this})}),r.toString=function(){return""+f})},{}],12:[function(t,e,n){var r=t("ee").get("raf"),o=t(23)(r),i="equestAnimationFrame";e.exports=r,o.inPlace(window,["r"+i,"mozR"+i,"webkitR"+i,"msR"+i],"raf-"),r.on("raf-start",function(t){t[0]=o(t[0],"fn-")})},{}],13:[function(t,e,n){function r(t,e,n){t[0]=a(t[0],"fn-",null,n)}function o(t,e,n){this.method=n,this.timerDuration=isNaN(t[1])?0:+t[1],t[0]=a(t[0],"fn-",this,n)}var i=t("ee").get("timer"),a=t(23)(i),c="setTimeout",s="setInterval",f="clearTimeout",u="-start",d="-";e.exports=i,a.inPlace(window,[c,"setImmediate"],c+d),a.inPlace(window,[s],s+d),a.inPlace(window,[f,"clearImmediate"],f+d),i.on(s+u,r),i.on(c+u,o)},{}],14:[function(t,e,n){function r(t,e){d.inPlace(e,["onreadystatechange"],"fn-",c)}function o(){var t=this,e=u.context(t);t.readyState>3&&!e.resolved&&(e.resolved=!0,u.emit("xhr-resolved",[],t)),d.inPlace(t,y,"fn-",c)}function i(t){b.push(t),l&&(x?x.then(a):v?v(a):(E=-E,P.data=E))}function a(){for(var t=0;t<b.length;t++)r([],b[t]);b.length&&(b=[])}function c(t,e){return e}function s(t,e){for(var n in t)e[n]=t[n];return e}t(6);var f=t("ee"),u=f.get("xhr"),d=t(23)(u),p=NREUM.o,h=p.XHR,l=p.MO,m=p.PR,v=p.SI,w="readystatechange",y=["onload","onerror","onabort","onloadstart","onloadend","onprogress","ontimeout"],b=[];e.exports=u;var g=window.XMLHttpRequest=function(t){var e=new h(t);try{u.emit("new-xhr",[e],e),e.addEventListener(w,o,!1)}catch(n){try{u.emit("internal-error",[n])}catch(r){}}return e};if(s(h,g),g.prototype=h.prototype,d.inPlace(g.prototype,["open","send"],"-xhr-",c),u.on("send-xhr-start",function(t,e){r(t,e),i(e)}),u.on("open-xhr-start",r),l){var x=m&&m.resolve();if(!v&&!m){var E=1,P=document.createTextNode(E);new l(a).observe(P,{characterData:!0})}}else f.on("fn-end",function(t){t[0]&&t[0].type===w||a()})},{}],15:[function(t,e,n){function r(t){var e=this.params,n=this.metrics;if(!this.ended){this.ended=!0;for(var r=0;r<d;r++)t.removeEventListener(u[r],this.listener,!1);if(!e.aborted){if(n.duration=a.now()-this.startTime,4===t.readyState){e.status=t.status;var i=o(t,this.lastSize);if(i&&(n.rxSize=i),this.sameOrigin){var s=t.getResponseHeader("X-NewRelic-App-Data");s&&(e.cat=s.split(", ").pop())}}else e.status=0;n.cbTime=this.cbTime,f.emit("xhr-done",[t],t),c("xhr",[e,n,this.startTime])}}}function o(t,e){var n=t.responseType;if("json"===n&&null!==e)return e;var r="arraybuffer"===n||"blob"===n||"json"===n?t.response:t.responseText;return l(r)}function i(t,e){var n=s(e),r=t.params;r.host=n.hostname+":"+n.port,r.pathname=n.pathname,t.sameOrigin=n.sameOrigin}var a=t("loader");if(a.xhrWrappable){var c=t("handle"),s=t(16),f=t("ee"),u=["load","error","abort","timeout"],d=u.length,p=t("id"),h=t(19),l=t(18),m=window.XMLHttpRequest;a.features.xhr=!0,t(14),f.on("new-xhr",function(t){var e=this;e.totalCbs=0,e.called=0,e.cbTime=0,e.end=r,e.ended=!1,e.xhrGuids={},e.lastSize=null,h&&(h>34||h<10)||window.opera||t.addEventListener("progress",function(t){e.lastSize=t.loaded},!1)}),f.on("open-xhr-start",function(t){this.params={method:t[0]},i(this,t[1]),this.metrics={}}),f.on("open-xhr-end",function(t,e){"loader_config"in NREUM&&"xpid"in NREUM.loader_config&&this.sameOrigin&&e.setRequestHeader("X-NewRelic-ID",NREUM.loader_config.xpid)}),f.on("send-xhr-start",function(t,e){var n=this.metrics,r=t[0],o=this;if(n&&r){var i=l(r);i&&(n.txSize=i)}this.startTime=a.now(),this.listener=function(t){try{"abort"===t.type&&(o.params.aborted=!0),("load"!==t.type||o.called===o.totalCbs&&(o.onloadCalled||"function"!=typeof e.onload))&&o.end(e)}catch(n){try{f.emit("internal-error",[n])}catch(r){}}};for(var c=0;c<d;c++)e.addEventListener(u[c],this.listener,!1)}),f.on("xhr-cb-time",function(t,e,n){this.cbTime+=t,e?this.onloadCalled=!0:this.called+=1,this.called!==this.totalCbs||!this.onloadCalled&&"function"==typeof n.onload||this.end(n)}),f.on("xhr-load-added",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&!this.xhrGuids[n]&&(this.xhrGuids[n]=!0,this.totalCbs+=1)}),f.on("xhr-load-removed",function(t,e){var n=""+p(t)+!!e;this.xhrGuids&&this.xhrGuids[n]&&(delete this.xhrGuids[n],this.totalCbs-=1)}),f.on("addEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-added",[t[1],t[2]],e)}),f.on("removeEventListener-end",function(t,e){e instanceof m&&"load"===t[0]&&f.emit("xhr-load-removed",[t[1],t[2]],e)}),f.on("fn-start",function(t,e,n){e instanceof m&&("onload"===n&&(this.onload=!0),("load"===(t[0]&&t[0].type)||this.onload)&&(this.xhrCbStart=a.now()))}),f.on("fn-end",function(t,e){this.xhrCbStart&&f.emit("xhr-cb-time",[a.now()-this.xhrCbStart,this.onload,e],e)})}},{}],16:[function(t,e,n){e.exports=function(t){var e=document.createElement("a"),n=window.location,r={};e.href=t,r.port=e.port;var o=e.href.split("://");!r.port&&o[1]&&(r.port=o[1].split("/")[0].split("@").pop().split(":")[1]),r.port&&"0"!==r.port||(r.port="https"===o[0]?"443":"80"),r.hostname=e.hostname||n.hostname,r.pathname=e.pathname,r.protocol=o[0],"/"!==r.pathname.charAt(0)&&(r.pathname="/"+r.pathname);var i=!e.protocol||":"===e.protocol||e.protocol===n.protocol,a=e.hostname===document.domain&&e.port===n.port;return r.sameOrigin=i&&(!e.hostname||a),r}},{}],17:[function(t,e,n){function r(){}function o(t,e,n){return function(){return i(t,[f.now()].concat(c(arguments)),e?null:this,n),e?void 0:this}}var i=t("handle"),a=t(20),c=t(21),s=t("ee").get("tracer"),f=t("loader"),u=NREUM;"undefined"==typeof window.newrelic&&(newrelic=u);var d=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],p="api-",h=p+"ixn-";a(d,function(t,e){u[e]=o(p+e,!0,"api")}),u.addPageAction=o(p+"addPageAction",!0),u.setCurrentRouteName=o(p+"routeName",!0),e.exports=newrelic,u.interaction=function(){return(new r).get()};var l=r.prototype={createTracer:function(t,e){var n={},r=this,o="function"==typeof e;return i(h+"tracer",[f.now(),t,n],r),function(){if(s.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return e.apply(this,arguments)}catch(t){throw s.emit("fn-err",[arguments,this,t],n),t}finally{s.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(t,e){l[e]=o(h+e)}),newrelic.noticeError=function(t){"string"==typeof t&&(t=new Error(t)),i("err",[t,f.now()])}},{}],18:[function(t,e,n){e.exports=function(t){if("string"==typeof t&&t.length)return t.length;if("object"==typeof t){if("undefined"!=typeof ArrayBuffer&&t instanceof ArrayBuffer&&t.byteLength)return t.byteLength;if("undefined"!=typeof Blob&&t instanceof Blob&&t.size)return t.size;if(!("undefined"!=typeof FormData&&t instanceof FormData))try{return JSON.stringify(t).length}catch(e){return}}}},{}],19:[function(t,e,n){var r=0,o=navigator.userAgent.match(/Firefox[\/\s](\d+\.\d+)/);o&&(r=+o[1]),e.exports=r},{}],20:[function(t,e,n){function r(t,e){var n=[],r="",i=0;for(r in t)o.call(t,r)&&(n[i]=e(r,t[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],21:[function(t,e,n){function r(t,e,n){e||(e=0),"undefined"==typeof n&&(n=t?t.length:0);for(var r=-1,o=n-e||0,i=Array(o<0?0:o);++r<o;)i[r]=t[e+r];return i}e.exports=r},{}],22:[function(t,e,n){e.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],23:[function(t,e,n){function r(t){return!(t&&t instanceof Function&&t.apply&&!t[a])}var o=t("ee"),i=t(21),a="nr@original",c=Object.prototype.hasOwnProperty,s=!1;e.exports=function(t,e){function n(t,e,n,o){function nrWrapper(){var r,a,c,s;try{a=this,r=i(arguments),c="function"==typeof n?n(r,a):n||{}}catch(f){p([f,"",[r,a,o],c])}u(e+"start",[r,a,o],c);try{return s=t.apply(a,r)}catch(d){throw u(e+"err",[r,a,d],c),d}finally{u(e+"end",[r,a,s],c)}}return r(t)?t:(e||(e=""),nrWrapper[a]=t,d(t,nrWrapper),nrWrapper)}function f(t,e,o,i){o||(o="");var a,c,s,f="-"===o.charAt(0);for(s=0;s<e.length;s++)c=e[s],a=t[c],r(a)||(t[c]=n(a,f?c+o:o,i,c))}function u(n,r,o){if(!s||e){var i=s;s=!0;try{t.emit(n,r,o,e)}catch(a){p([a,n,r,o])}s=i}}function d(t,e){if(Object.defineProperty&&Object.keys)try{var n=Object.keys(t);return n.forEach(function(n){Object.defineProperty(e,n,{get:function(){return t[n]},set:function(e){return t[n]=e,e}})}),e}catch(r){p([r])}for(var o in t)c.call(t,o)&&(e[o]=t[o]);return e}function p(e){try{t.emit("internal-error",e)}catch(n){}}return t||(t=o),n.inPlace=f,n.flag=a,n}},{}],ee:[function(t,e,n){function r(){}function o(t){function e(t){return t&&t instanceof r?t:t?s(t,c,i):i()}function n(n,r,o,i){if(!p.aborted||i){t&&t(n,r,o);for(var a=e(o),c=l(n),s=c.length,f=0;f<s;f++)c[f].apply(a,r);var d=u[y[n]];return d&&d.push([b,n,r,a]),a}}function h(t,e){w[t]=l(t).concat(e)}function l(t){return w[t]||[]}function m(t){return d[t]=d[t]||o(n)}function v(t,e){f(t,function(t,n){e=e||"feature",y[n]=e,e in u||(u[e]=[])})}var w={},y={},b={on:h,emit:n,get:m,listeners:l,context:e,buffer:v,abort:a,aborted:!1};return b}function i(){return new r}function a(){(u.api||u.feature)&&(p.aborted=!0,u=p.backlog={})}var c="nr@context",s=t("gos"),f=t(20),u={},d={},p=e.exports=o();p.backlog=u},{}],gos:[function(t,e,n){function r(t,e,n){if(o.call(t,e))return t[e];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(t,e,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return t[e]=r,r}var o=Object.prototype.hasOwnProperty;e.exports=r},{}],handle:[function(t,e,n){function r(t,e,n,r){o.buffer([t],r),o.emit(t,e,n)}var o=t("ee").get("handle");e.exports=r,r.ee=o},{}],id:[function(t,e,n){function r(t){var e=typeof t;return!t||"object"!==e&&"function"!==e?-1:t===window?0:a(t,i,function(){return o++})}var o=1,i="nr@id",a=t("gos");e.exports=r},{}],loader:[function(t,e,n){function r(){if(!x++){var t=g.info=NREUM.info,e=p.getElementsByTagName("script")[0];if(setTimeout(u.abort,3e4),!(t&&t.licenseKey&&t.applicationID&&e))return u.abort();f(y,function(e,n){t[e]||(t[e]=n)}),s("mark",["onload",a()+g.offset],null,"api");var n=p.createElement("script");n.src="https://"+t.agent,e.parentNode.insertBefore(n,e)}}function o(){"complete"===p.readyState&&i()}function i(){s("mark",["domContent",a()+g.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(c=Math.max((new Date).getTime(),c))-g.offset}var c=(new Date).getTime(),s=t("handle"),f=t(20),u=t("ee"),d=window,p=d.document,h="addEventListener",l="attachEvent",m=d.XMLHttpRequest,v=m&&m.prototype;NREUM.o={ST:setTimeout,SI:d.setImmediate,CT:clearTimeout,XHR:m,REQ:d.Request,EV:d.Event,PR:d.Promise,MO:d.MutationObserver};var w=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-spa-1071.min.js"},b=m&&v&&v[h]&&!/CriOS/.test(navigator.userAgent),g=e.exports={offset:c,now:a,origin:w,features:{},xhrWrappable:b};t(17),p[h]?(p[h]("DOMContentLoaded",i,!1),d[h]("load",r,!1)):(p[l]("onreadystatechange",o),d[l]("onload",r)),s("mark",["firstbyte",c],null,"api");var x=0,E=t(22)},{}]},{},["loader",2,15,5,3,4]);</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
 
  
 <script>localStorage.setItem("sdsat_debug", true);</script>
@@ -831,11 +831,11 @@ DDO.socialShare = {
 <link href="/r/PortalConfig/np-free/assets/ajc/theme-43ebe20cc2.css" rel="stylesheet"  />
 	<script type="text/javascript" src="//s.ntv.io/serve/load.js" async></script>
 
-<meta name="eomportal-instanceid" content="230204"/>
-<meta name="eomportal-id" content="2818596"/>
+<meta name="eomportal-instanceid" content="231206"/>
+<meta name="eomportal-id" content="735192"/>
 <meta name="eomportal-loid" content="2.0.126064195"/>
 <meta name="eomportal-uuid" content="8ed1d96c-747f-11e6-a0cc-a98756abaeee"/>
-<meta name="eomportal-lastUpdate" content="Fri Sep 14 15:44:58 EDT 2018"/>
+<meta name="eomportal-lastUpdate" content="Wed Sep 19 10:15:56 EDT 2018"/>
 <link rel="shortcut icon" href="/r/PortalConfig/np-free/assets/ajc/images/favicon.ico"/>
 <link rel="icon" href="/r/PortalConfig/np-free/assets/ajc/images/favicon.ico" type="image/x-icon"/>
 <script type="text/javascript" src="https://launch.newsinc.com/js/embed.js"></script>
@@ -1054,11 +1054,11 @@ DDO.socialShare = {
 </script>
 <script style="display:none">
     (function () {
-        cmg.adconf.targeting.sky = 'Scattered Clouds' || 'ERROR';
+        cmg.adconf.targeting.sky = 'Few Clouds' || 'ERROR';
         cmg.adconf.targeting.weather = '';
 
         
-                var floor = Math.floor(93 / 5) * 5;
+                var floor = Math.floor(78 / 5) * 5;
                 cmg.adconf.targeting.temp_range = floor + ' to ' + (floor + 4);
             
     }());
@@ -1124,7 +1124,7 @@ DDO.socialShare = {
 	
 	<body class="allow-hover conditional-header" data-section="/">
 	
-		<!-- WP: PortalWebObjectWrapper [+   6552925#] /PortalConfig/np-free/jsp/weather.jsp [JspProxyImpl:Web, 2.0.126064195]-->
+		<!-- WP: PortalWebObjectWrapper [+   1801025#] /PortalConfig/np-free/jsp/weather.jsp [JspProxyImpl:Web, 2.0.126064195]-->
 
 <div class="no-margin-ad container">
 	<div class="row row-full-width">
@@ -1271,7 +1271,7 @@ DDO.socialShare = {
 						   	   		<a href="/weather/">
 	<div class="weather-traffic-section weather-section" data-template="#weather-template">
 		<div class="met-image">
-			<img src="https://media-beta.wsbtv.com/photo/2016/01/14/WSB_Glenn_Burns_1452784419344_198186_ver1.0.png" />		
+			<img src="https://media-beta.wsbtv.com/photo/2016/01/14/WSB_Brad_Nitz_1452784472007_223138_ver1.0.png" />		
 		</div>
 	
 		<div class="met-name">
@@ -1280,21 +1280,21 @@ DDO.socialShare = {
 			</div>
 			<div class="met-title-text-1">FORECAST BY</div>
 			<div class="met-title-text-2">METEOROLOGIST</div>
-			<div class="met-name-text">Glenn Burns</div>
+			<div class="met-name-text">Brad Nitz</div>
 		</div>
 		
 		<div class="day-container">
 		<div class="day">
-						<div class="time">NOW</div> <span class="temp">93&deg;</span>
+						<div class="time">NOW</div> <span class="temp">78&deg;</span>
 						<div class="weather weather-12"></div>
 					</div>
 				<div class="day">
-						<div class="time">5PM</div> <span class="temp">92&deg;</span>
+						<div class="time">12PM</div> <span class="temp">86&deg;</span>
 									<div class="weather weather-1"></div>
 									</div>
 				<div class="day">
-						<div class="time">8PM</div> <span class="temp">86&deg;</span>
-						<div class="weather weather-21"></div>
+						<div class="time">3PM</div> <span class="temp">91&deg;</span>
+						<div class="weather weather-1"></div>
 					</div>
 				</div>
 		
@@ -1305,18 +1305,18 @@ DDO.socialShare = {
 							<div class="affiliate-mobile-hide top-nav-link top-nav-weather">
 	<a href="/weather/" data-metrics-id="weather bug icon">
 		<span class="temperature">
-			93&deg;</span>
-		<span class="weather weather-12" data-alerts="2">
+			78&deg;</span>
+		<span class="weather weather-12" data-alerts="0">
 		    </span>
 		<div class="forecast">
 			<p>
-    		    <b>High:</b> 92&deg; | <b>Low:</b> 75&deg;</p>
+    		    <b>High:</b> 77&deg; | <b>Low:</b> 74&deg;</p>
     		<p>
     		    <b>Chance of rain:</b>
     		    0%
     		    </p>
     		<p>
-		        <b>Wind:</b> N at 13mph</p>
+		        <b>Wind:</b> ENE at 5mph</p>
 		</div>
 	</a>
 </div>
@@ -2263,9 +2263,9 @@ DDO.socialShare = {
 
 </div>
     		<!--  TESTING -->
-<!-- paramZipCode = 48823  -->
+<!-- paramZipCode = 95814  -->
 <!-- cookieZipCode =    -->
-<!-- finalZipCode = 48823  -->
+<!-- finalZipCode = 95814  -->
 
 
 <!--  TESTING -->
@@ -2273,203 +2273,195 @@ DDO.socialShare = {
 <input type="hidden" value="" id="cookieZipCode"/><div id="weatherData" style="display:none">
     
         <div class="pollen">
-            net.sf.ezmorph.bean.MorphDynaBean@ba48ec8[
-  {3=net.sf.ezmorph.bean.MorphDynaBean@6099f270[
-  {weed_pollen_index=0, tree_pollen_index=0, date_utc=9/17/2018 11:00:00 AM, tree_pollen_description=None, reporting_city=St. Clair Shores, reporting_state=MI, current=false, date=9/17/2018 7:00:00 AM, report_time_utc=9/14/2018 2:01:08 AM, grass_pollen_description=None, grass_pollen_index=0, weed_pollen_description=None}
-], 2=net.sf.ezmorph.bean.MorphDynaBean@1afbc89c[
-  {weed_pollen_index=0, tree_pollen_index=0, date_utc=9/16/2018 11:00:00 AM, tree_pollen_description=None, reporting_city=St. Clair Shores, reporting_state=MI, current=false, date=9/16/2018 7:00:00 AM, report_time_utc=9/14/2018 2:01:08 AM, grass_pollen_description=None, grass_pollen_index=0, weed_pollen_description=None}
-], 1=net.sf.ezmorph.bean.MorphDynaBean@82f879b[
-  {weed_pollen_index=0, tree_pollen_index=0, date_utc=9/15/2018 11:00:00 AM, tree_pollen_description=None, reporting_city=St. Clair Shores, reporting_state=MI, current=false, date=9/15/2018 7:00:00 AM, report_time_utc=9/14/2018 2:01:08 AM, grass_pollen_description=None, grass_pollen_index=0, weed_pollen_description=None}
-], observation=net.sf.ezmorph.bean.MorphDynaBean@686fd54f[
-  {weed_pollen_index=No Data, mold_count_index=No Data, tree_pollen_index=No Data, reporting_city=St. Clair Shores, report_time=9/13/2018 4:37:22 PM, reporting_state=MI, pollen_count=0, active_tree_species=[], grass_pollen_index=No Data}
-], 0=net.sf.ezmorph.bean.MorphDynaBean@75627b18[
-  {weed_pollen_index=0, tree_pollen_index=0, date_utc=9/14/2018 11:00:00 AM, tree_pollen_description=None, reporting_city=St. Clair Shores, reporting_state=MI, current=true, date=9/14/2018 7:00:00 AM, report_time_utc=9/14/2018 2:01:08 AM, grass_pollen_description=None, grass_pollen_index=0, weed_pollen_description=None}
-], update_time_utc=9/14/2018 12:32:38 PM}
+            net.sf.ezmorph.bean.MorphDynaBean@16d784ff[
+  {3=net.sf.ezmorph.bean.MorphDynaBean@e222d56[
+  {weed_pollen_index=3, tree_pollen_index=0, date_utc=9/21/2018 2:00:00 PM, tree_pollen_description=None, reporting_city=Pleasanton, reporting_state=CA, current=false, date=9/21/2018 7:00:00 AM, report_time_utc=9/18/2018 2:01:04 AM, grass_pollen_index=0, grass_pollen_description=None, weed_pollen_description=High}
+], 2=net.sf.ezmorph.bean.MorphDynaBean@192028e0[
+  {weed_pollen_index=3, tree_pollen_index=0, date_utc=9/20/2018 2:00:00 PM, tree_pollen_description=None, reporting_city=Pleasanton, reporting_state=CA, current=false, date=9/20/2018 7:00:00 AM, report_time_utc=9/18/2018 2:01:04 AM, grass_pollen_index=0, grass_pollen_description=None, weed_pollen_description=High}
+], 1=net.sf.ezmorph.bean.MorphDynaBean@4ad7633f[
+  {weed_pollen_index=3, tree_pollen_index=0, date_utc=9/19/2018 2:00:00 PM, tree_pollen_description=None, reporting_city=Pleasanton, reporting_state=CA, current=true, date=9/19/2018 7:00:00 AM, report_time_utc=9/18/2018 2:01:04 AM, grass_pollen_index=0, grass_pollen_description=None, weed_pollen_description=High}
+], observation=net.sf.ezmorph.bean.MorphDynaBean@281887a7[
+  {mold_count_index=Low, weed_pollen_index=High, tree_pollen_index=High, reporting_city=Pleasanton, report_time=9/18/2018 4:33:19 PM, reporting_state=CA, pollen_count=0, active_tree_species=[Elm, Pine, Oak], grass_pollen_index=None}
+], 0=net.sf.ezmorph.bean.MorphDynaBean@1e24a2ca[
+  {weed_pollen_index=3, tree_pollen_index=0, date_utc=9/18/2018 2:00:00 PM, tree_pollen_description=None, reporting_city=Pleasanton, reporting_state=CA, current=false, date=9/18/2018 7:00:00 AM, report_time_utc=9/18/2018 2:01:04 AM, grass_pollen_index=0, grass_pollen_description=None, weed_pollen_description=High}
+], update_time_utc=9/19/2018 3:59:33 AM}
 ]
         </div>
     
         <div class="current_conditions">
-            net.sf.ezmorph.bean.MorphDynaBean@471a17ae[
-  {Gust=, 24HourMax=78, CityId=USMI0248, 24HourMin=54, TempC=26, visibility=10, FeelsLikeC=27, WndDirCardinal=, SnowDepth=, IconCode=12, HeatIndexF=80, HeatIndexC=27, Sky=Few Clouds, report_time_utc=9/14/2018 6:53:00 PM, WindChillC=26, WindDirection=, TempF=79, WindChillF=79, Pressure=30.16, 6HourMax=79, Weather=, ThreeHrPrecip=0, 6HourPrecip=0, 24HourPrecip=, 6HourMin=63, ReportText=KLAN 141853Z VRB03KT 10SM FEW038 26/16 A3016 RMK AO2 SLP208     T02610161 , Ceiling=Unl, WndSpdMph=3, update_time_utc=9/14/2018 7:05:04 PM, humidity=54, FeelsLikeF=80, dew_point=61, StationIcao=KLAN}
+            net.sf.ezmorph.bean.MorphDynaBean@51b83292[
+  {Gust=, 24HourMax=82, CityId=USCA0967, 24HourMin=53, TempC=12, visibility=9, FeelsLikeC=12, WndDirCardinal=, SnowDepth=, IconCode=1, HeatIndexF=53, Sky=Clear, report_time_utc=9/19/2018 1:53:00 PM, HeatIndexC=12, WindChillC=12, WindDirection=, TempF=53, WindChillF=53, Pressure=29.87, 6HourMax=61, Weather=, ThreeHrPrecip=0, 6HourPrecip=0, 24HourPrecip=, 6HourMin=54, ReportText=KSAC 191353Z 00000KT 9SM CLR 12/11 A2987 RMK AO2 SLP115     T01170106 , Ceiling=Unl, WndSpdMph=0, update_time_utc=9/19/2018 2:03:51 PM, humidity=93, FeelsLikeF=53, dew_point=51, StationIcao=KSAC}
 ]
         </div>
     
         <div class="air_quality">
-            net.sf.ezmorph.bean.MorphDynaBean@208c4fa[
-  {3=[net.sf.ezmorph.bean.MorphDynaBean@dbbfa21[
-  {health_concern=Good, forecast=true, primary=true, aqi=, date=09/17/2018, pollutant=OZONE}
-], net.sf.ezmorph.bean.MorphDynaBean@30229392[
-  {health_concern=Good, forecast=true, primary=false, aqi=, date=09/17/2018, pollutant=PM2.5}
-]], 2=[net.sf.ezmorph.bean.MorphDynaBean@2e066eee[
-  {health_concern=Good, forecast=true, primary=true, aqi=, date=09/16/2018, pollutant=OZONE}
-], net.sf.ezmorph.bean.MorphDynaBean@285ce2dd[
-  {health_concern=Good, forecast=true, primary=false, aqi=, date=09/16/2018, pollutant=PM2.5}
-]], 1=[net.sf.ezmorph.bean.MorphDynaBean@6a322fde[
-  {health_concern=Good, forecast=true, primary=true, aqi=, date=09/15/2018, pollutant=OZONE}
-], net.sf.ezmorph.bean.MorphDynaBean@49a35ec8[
-  {health_concern=Good, forecast=true, primary=false, aqi=, date=09/15/2018, pollutant=PM2.5}
-]], 0=[net.sf.ezmorph.bean.MorphDynaBean@4a3c23d[
-  {health_concern=Good, forecast=false, primary=true, aqi=42, date=09/14/2018, pollutant=OZONE}
-], net.sf.ezmorph.bean.MorphDynaBean@1b25352c[
-  {health_concern=Good, forecast=false, primary=false, aqi=35, date=09/14/2018, pollutant=PM2.5}
-], net.sf.ezmorph.bean.MorphDynaBean@27c5e9a0[
-  {health_concern=Good, forecast=true, primary=true, aqi=, date=09/14/2018, pollutant=OZONE}
-], net.sf.ezmorph.bean.MorphDynaBean@326d1bc6[
-  {health_concern=Good, forecast=true, primary=false, aqi=, date=09/14/2018, pollutant=PM2.5}
-]], -1=[net.sf.ezmorph.bean.MorphDynaBean@193a7e07[
-  {health_concern=Good, forecast=false, primary=true, aqi=42, date=09/13/2018, pollutant=PM2.5}
-], net.sf.ezmorph.bean.MorphDynaBean@4f280a81[
-  {health_concern=Good, forecast=false, primary=false, aqi=33, date=09/13/2018, pollutant=OZONE}
-]], update_time_utc=9/14/2018 7:32:12 PM}
+            net.sf.ezmorph.bean.MorphDynaBean@6a864c00[
+  {3=[net.sf.ezmorph.bean.MorphDynaBean@7d08fa8b[
+  {health_concern=Moderate, forecast=true, primary=true, aqi=64, date=09/22/2018, pollutant=OZONE}
+]], 2=[net.sf.ezmorph.bean.MorphDynaBean@1054ca7a[
+  {health_concern=Moderate, forecast=true, primary=true, aqi=67, date=09/21/2018, pollutant=OZONE}
+]], 1=[net.sf.ezmorph.bean.MorphDynaBean@33fb7ba2[
+  {health_concern=Moderate, forecast=true, primary=true, aqi=74, date=09/20/2018, pollutant=OZONE}
+]], 0=[net.sf.ezmorph.bean.MorphDynaBean@11db20f1[
+  {health_concern=Good, forecast=false, primary=true, aqi=17, date=09/19/2018, pollutant=PM2.5}
+], net.sf.ezmorph.bean.MorphDynaBean@184997de[
+  {health_concern=Moderate, forecast=true, primary=true, aqi=64, date=09/19/2018, pollutant=OZONE}
+]], -1=[net.sf.ezmorph.bean.MorphDynaBean@71ae04d9[
+  {health_concern=Good, forecast=false, primary=true, aqi=44, date=09/18/2018, pollutant=OZONE}
+], net.sf.ezmorph.bean.MorphDynaBean@49827f13[
+  {health_concern=Good, forecast=false, primary=false, aqi=27, date=09/18/2018, pollutant=PM2.5}
+]], 4=[net.sf.ezmorph.bean.MorphDynaBean@146a40a0[
+  {health_concern=Moderate, forecast=true, primary=true, aqi=54, date=09/23/2018, pollutant=OZONE}
+]], update_time_utc=9/19/2018 2:11:57 PM}
 ]
         </div>
     
         <div class="hourly">
-            net.sf.ezmorph.bean.MorphDynaBean@4dc9c3c0[
-  {35=net.sf.ezmorph.bean.MorphDynaBean@79529a25[
-  {ValidDateUtc=9/16/2018 5:00:00 AM, CityId=USMI0248, hour_num=35, TempC=20, DewPtF=66, WndDirCardinal=ENE, WindDirectionDegrees=70, IconCode=30, HeatIndexF=70, date=9/16/2018 1:00:00 AM, HeatIndexC=21, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 1:00:00 AM, RelHumidity=94, WindChillC=20, TempF=68, WindChillF=68, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=4, VisibilityKM=6, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=3, PrecipChance=10, CloudCoverage=25, SkyMedium=Mostly Clear, FeelsLikeF=70, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 36=net.sf.ezmorph.bean.MorphDynaBean@1e06315d[
-  {ValidDateUtc=9/16/2018 6:00:00 AM, CityId=USMI0248, hour_num=36, TempC=19, DewPtF=66, WndDirCardinal=ENE, WindDirectionDegrees=79, IconCode=21, HeatIndexF=69, date=9/16/2018 2:00:00 AM, HeatIndexC=21, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=Clear, ValidDateLocal=9/16/2018 2:00:00 AM, RelHumidity=96, WindChillC=19, TempF=67, WindChillF=67, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=3, VisibilityKM=5, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=3, PrecipChance=10, CloudCoverage=18, SkyMedium=Clear, FeelsLikeF=69, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 33=net.sf.ezmorph.bean.MorphDynaBean@2892e011[
-  {ValidDateUtc=9/16/2018 3:00:00 AM, CityId=USMI0248, hour_num=33, TempC=21, DewPtF=67, WndDirCardinal=NE, WindDirectionDegrees=56, IconCode=30, HeatIndexF=72, date=9/15/2018 11:00:00 PM, HeatIndexC=22, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=M Clear, ValidDateLocal=9/15/2018 11:00:00 PM, RelHumidity=91, WindChillC=21, TempF=70, WindChillF=70, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=5, VisibilityKM=8, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=4, PrecipChance=10, CloudCoverage=29, SkyMedium=Mostly Clear, FeelsLikeF=72, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 34=net.sf.ezmorph.bean.MorphDynaBean@42b490e6[
-  {ValidDateUtc=9/16/2018 4:00:00 AM, CityId=USMI0248, hour_num=34, TempC=21, DewPtF=67, WndDirCardinal=ENE, WindDirectionDegrees=59, IconCode=30, HeatIndexF=71, date=9/16/2018 12:00:00 AM, HeatIndexC=22, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 12:00:00 AM, RelHumidity=92, WindChillC=21, TempF=69, WindChillF=69, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=4, VisibilityKM=6, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=3, PrecipChance=10, CloudCoverage=27, SkyMedium=Mostly Clear, FeelsLikeF=71, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 39=net.sf.ezmorph.bean.MorphDynaBean@5c950e40[
-  {ValidDateUtc=9/16/2018 9:00:00 AM, CityId=USMI0248, hour_num=39, TempC=19, DewPtF=65, WndDirCardinal=E, WindDirectionDegrees=80, IconCode=30, HeatIndexF=67, date=9/16/2018 5:00:00 AM, HeatIndexC=19, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 5:00:00 AM, RelHumidity=97, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=3, VisibilityKM=4, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=3, PrecipChance=10, CloudCoverage=22, SkyMedium=Mostly Clear, FeelsLikeF=67, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=18, GolfIndex=0, UvWarn=0}
-], 37=net.sf.ezmorph.bean.MorphDynaBean@3ddabb3c[
-  {ValidDateUtc=9/16/2018 7:00:00 AM, CityId=USMI0248, hour_num=37, TempC=19, DewPtF=66, WndDirCardinal=E, WindDirectionDegrees=83, IconCode=30, HeatIndexF=68, date=9/16/2018 3:00:00 AM, HeatIndexC=20, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 3:00:00 AM, RelHumidity=99, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=3, VisibilityKM=5, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=3, PrecipChance=10, CloudCoverage=20, SkyMedium=Mostly Clear, FeelsLikeF=68, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 38=net.sf.ezmorph.bean.MorphDynaBean@633a7fdd[
-  {ValidDateUtc=9/16/2018 8:00:00 AM, CityId=USMI0248, hour_num=38, TempC=19, DewPtF=66, WndDirCardinal=E, WindDirectionDegrees=86, IconCode=30, HeatIndexF=68, date=9/16/2018 4:00:00 AM, HeatIndexC=20, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 4:00:00 AM, RelHumidity=98, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=3, VisibilityKM=4, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=2, PrecipChance=10, CloudCoverage=20, SkyMedium=Mostly Clear, FeelsLikeF=68, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 43=net.sf.ezmorph.bean.MorphDynaBean@15a0b910[
-  {ValidDateUtc=9/16/2018 1:00:00 PM, CityId=USMI0248, hour_num=43, TempC=20, DewPtF=66, WndDirCardinal=E, WindDirectionDegrees=98, IconCode=1, HeatIndexF=70, date=9/16/2018 9:00:00 AM, HeatIndexC=21, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=Sunny, ValidDateLocal=9/16/2018 9:00:00 AM, RelHumidity=93, WindChillC=20, TempF=68, WindChillF=68, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=6, VisibilityKM=10, SkyLong=Sunny, UvIdx=1, SkyCode=85, WndSpdMph=3, PrecipChance=10, CloudCoverage=13, SkyMedium=Sunny, FeelsLikeF=70, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=19, GolfIndex=10, UvWarn=0}
-], 42=net.sf.ezmorph.bean.MorphDynaBean@6ad5d487[
-  {ValidDateUtc=9/16/2018 12:00:00 PM, CityId=USMI0248, hour_num=42, TempC=18, DewPtF=64, WndDirCardinal=E, WindDirectionDegrees=93, IconCode=10, HeatIndexF=65, date=9/16/2018 8:00:00 AM, HeatIndexC=18, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Sunny, ValidDateLocal=9/16/2018 8:00:00 AM, RelHumidity=96, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=3, VisibilityKM=5, SkyLong=Mostly Sunny, UvIdx=0, SkyCode=65, WndSpdMph=2, PrecipChance=10, CloudCoverage=23, SkyMedium=Mostly Sunny, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3400, GolfCategory=Very Good, DewPointC=18, GolfIndex=9, UvWarn=0}
-], 41=net.sf.ezmorph.bean.MorphDynaBean@7c7421dc[
-  {ValidDateUtc=9/16/2018 11:00:00 AM, CityId=USMI0248, hour_num=41, TempC=18, DewPtF=64, WndDirCardinal=E, WindDirectionDegrees=79, IconCode=30, HeatIndexF=65, date=9/16/2018 7:00:00 AM, HeatIndexC=18, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 7:00:00 AM, RelHumidity=95, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=2, VisibilityKM=4, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=2, PrecipChance=10, CloudCoverage=23, SkyMedium=Mostly Clear, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=18, GolfIndex=0, UvWarn=0}
-], 40=net.sf.ezmorph.bean.MorphDynaBean@2c5b3259[
-  {ValidDateUtc=9/16/2018 10:00:00 AM, CityId=USMI0248, hour_num=40, TempC=18, DewPtF=64, WndDirCardinal=ENE, WindDirectionDegrees=75, IconCode=30, HeatIndexF=65, date=9/16/2018 6:00:00 AM, HeatIndexC=18, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Clear, ValidDateLocal=9/16/2018 6:00:00 AM, RelHumidity=97, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=3, VisibilityKM=4, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=2, PrecipChance=10, CloudCoverage=23, SkyMedium=Mostly Clear, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=18, GolfIndex=0, UvWarn=0}
-], 22=net.sf.ezmorph.bean.MorphDynaBean@174687cf[
-  {ValidDateUtc=9/15/2018 4:00:00 PM, CityId=USMI0248, hour_num=22, TempC=24, DewPtF=65, WndDirCardinal=ENE, WindDirectionDegrees=59, IconCode=2, HeatIndexF=76, date=9/15/2018 12:00:00 PM, HeatIndexC=24, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Cloudy, ValidDateLocal=9/15/2018 12:00:00 PM, RelHumidity=71, WindChillC=24, TempF=75, WindChillF=75, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=9, VisibilityKM=14, SkyLong=Cloudy, UvIdx=3, SkyCode=67, WndSpdMph=5, PrecipChance=20, CloudCoverage=83, SkyMedium=Cloudy, FeelsLikeF=76, UvDescr=Moderate, SkyCodeExtended=2600, GolfCategory=Excellent, DewPointC=18, GolfIndex=10, UvWarn=0}
-], 23=net.sf.ezmorph.bean.MorphDynaBean@177e32f9[
-  {ValidDateUtc=9/15/2018 5:00:00 PM, CityId=USMI0248, hour_num=23, TempC=25, DewPtF=66, WndDirCardinal=NE, WindDirectionDegrees=47, IconCode=11, HeatIndexF=80, date=9/15/2018 1:00:00 PM, HeatIndexC=27, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=M Cloudy, ValidDateLocal=9/15/2018 1:00:00 PM, RelHumidity=67, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Mostly Cloudy, UvIdx=4, SkyCode=69, WndSpdMph=5, PrecipChance=20, CloudCoverage=78, SkyMedium=Mostly Cloudy, FeelsLikeF=80, UvDescr=Moderate, SkyCodeExtended=2800, GolfCategory=Very Good, DewPointC=19, GolfIndex=9, UvWarn=0}
-], 24=net.sf.ezmorph.bean.MorphDynaBean@5e44857b[
-  {ValidDateUtc=9/15/2018 6:00:00 PM, CityId=USMI0248, hour_num=24, TempC=26, DewPtF=65, WndDirCardinal=NE, WindDirectionDegrees=45, IconCode=11, HeatIndexF=82, date=9/15/2018 2:00:00 PM, HeatIndexC=28, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=M Cloudy, ValidDateLocal=9/15/2018 2:00:00 PM, RelHumidity=63, WindChillC=26, TempF=79, WindChillF=79, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Mostly Cloudy, UvIdx=5, SkyCode=69, WndSpdMph=5, PrecipChance=0, CloudCoverage=68, SkyMedium=Mostly Cloudy, FeelsLikeF=82, UvDescr=Moderate, SkyCodeExtended=2800, GolfCategory=Very Good, DewPointC=18, GolfIndex=9, UvWarn=0}
-], 25=net.sf.ezmorph.bean.MorphDynaBean@64977e96[
-  {ValidDateUtc=9/15/2018 7:00:00 PM, CityId=USMI0248, hour_num=25, TempC=27, DewPtF=65, WndDirCardinal=NE, WindDirectionDegrees=47, IconCode=12, HeatIndexF=83, date=9/15/2018 3:00:00 PM, HeatIndexC=28, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 3:00:00 PM, RelHumidity=60, WindChillC=27, TempF=80, WindChillF=80, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Partly Cloudy, UvIdx=5, SkyCode=66, WndSpdMph=5, PrecipChance=10, CloudCoverage=50, SkyMedium=Partly Cloudy, FeelsLikeF=83, UvDescr=Moderate, SkyCodeExtended=3000, GolfCategory=Very Good, DewPointC=18, GolfIndex=9, UvWarn=0}
-], 26=net.sf.ezmorph.bean.MorphDynaBean@15f7dd72[
-  {ValidDateUtc=9/15/2018 8:00:00 PM, CityId=USMI0248, hour_num=26, TempC=27, DewPtF=65, WndDirCardinal=NE, WindDirectionDegrees=51, IconCode=12, HeatIndexF=84, date=9/15/2018 4:00:00 PM, HeatIndexC=29, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 4:00:00 PM, RelHumidity=59, WindChillC=27, TempF=81, WindChillF=81, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Partly Cloudy, UvIdx=4, SkyCode=66, WndSpdMph=5, PrecipChance=0, CloudCoverage=46, SkyMedium=Partly Cloudy, FeelsLikeF=84, UvDescr=Moderate, SkyCodeExtended=3000, GolfCategory=Very Good, DewPointC=18, GolfIndex=9, UvWarn=0}
-], 27=net.sf.ezmorph.bean.MorphDynaBean@43eb72a2[
-  {ValidDateUtc=9/15/2018 9:00:00 PM, CityId=USMI0248, hour_num=27, TempC=27, DewPtF=65, WndDirCardinal=NE, WindDirectionDegrees=51, IconCode=12, HeatIndexF=84, date=9/15/2018 5:00:00 PM, HeatIndexC=29, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 5:00:00 PM, RelHumidity=59, WindChillC=27, TempF=81, WindChillF=81, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Partly Cloudy, UvIdx=2, SkyCode=66, WndSpdMph=5, PrecipChance=10, CloudCoverage=42, SkyMedium=Partly Cloudy, FeelsLikeF=84, UvDescr=Low, SkyCodeExtended=3000, GolfCategory=Very Good, DewPointC=18, GolfIndex=9, UvWarn=0}
-], update_time_utc=9/14/2018 6:20:06 PM, 28=net.sf.ezmorph.bean.MorphDynaBean@16b30c84[
-  {ValidDateUtc=9/15/2018 10:00:00 PM, CityId=USMI0248, hour_num=28, TempC=27, DewPtF=66, WndDirCardinal=NE, WindDirectionDegrees=51, IconCode=12, HeatIndexF=83, date=9/15/2018 6:00:00 PM, HeatIndexC=28, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 6:00:00 PM, RelHumidity=62, WindChillC=27, TempF=80, WindChillF=80, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Partly Cloudy, UvIdx=1, SkyCode=66, WndSpdMph=5, PrecipChance=10, CloudCoverage=37, SkyMedium=Partly Cloudy, FeelsLikeF=83, UvDescr=Low, SkyCodeExtended=3000, GolfCategory=Very Good, DewPointC=19, GolfIndex=9, UvWarn=0}
-], 29=net.sf.ezmorph.bean.MorphDynaBean@44fab9c0[
-  {ValidDateUtc=9/15/2018 11:00:00 PM, CityId=USMI0248, hour_num=29, TempC=26, DewPtF=66, WndDirCardinal=NE, WindDirectionDegrees=44, IconCode=12, HeatIndexF=81, date=9/15/2018 7:00:00 PM, HeatIndexC=27, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 7:00:00 PM, RelHumidity=67, WindChillC=26, TempF=78, WindChillF=78, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=66, WndSpdMph=5, PrecipChance=10, CloudCoverage=41, SkyMedium=Partly Cloudy, FeelsLikeF=81, UvDescr=Low, SkyCodeExtended=3000, GolfCategory=Very Good, DewPointC=19, GolfIndex=9, UvWarn=0}
-], 3=net.sf.ezmorph.bean.MorphDynaBean@28b90fa1[
-  {ValidDateUtc=9/14/2018 9:00:00 PM, CityId=USMI0248, hour_num=3, TempC=25, DewPtF=63, WndDirCardinal=N, WindDirectionDegrees=356, IconCode=1, HeatIndexF=77, date=9/14/2018 5:00:00 PM, HeatIndexC=25, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Sunny, ValidDateLocal=9/14/2018 5:00:00 PM, RelHumidity=61, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=2, SkyCode=85, WndSpdMph=4, PrecipChance=0, CloudCoverage=17, SkyMedium=Sunny, FeelsLikeF=77, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=17, GolfIndex=9, UvWarn=0}
-], 2=net.sf.ezmorph.bean.MorphDynaBean@db127ea[
-  {ValidDateUtc=9/14/2018 8:00:00 PM, CityId=USMI0248, hour_num=2, TempC=25, DewPtF=63, WndDirCardinal=N, WindDirectionDegrees=352, IconCode=1, HeatIndexF=77, date=9/14/2018 4:00:00 PM, HeatIndexC=25, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Sunny, ValidDateLocal=9/14/2018 4:00:00 PM, RelHumidity=61, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=4, SkyCode=85, WndSpdMph=3, PrecipChance=0, CloudCoverage=19, SkyMedium=Sunny, FeelsLikeF=77, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=17, GolfIndex=10, UvWarn=0}
-], 1=net.sf.ezmorph.bean.MorphDynaBean@69b37aab[
-  {ValidDateUtc=9/14/2018 7:00:00 PM, CityId=USMI0248, hour_num=1, TempC=24, DewPtF=63, WndDirCardinal=NNW, WindDirectionDegrees=346, IconCode=10, HeatIndexF=76, date=9/14/2018 3:00:00 PM, HeatIndexC=24, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=M Sunny, ValidDateLocal=9/14/2018 3:00:00 PM, RelHumidity=65, WindChillC=24, TempF=76, WindChillF=76, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Mostly Sunny, UvIdx=5, SkyCode=65, WndSpdMph=3, PrecipChance=0, CloudCoverage=29, SkyMedium=Mostly Sunny, FeelsLikeF=76, UvDescr=Moderate, SkyCodeExtended=3400, GolfCategory=Excellent, DewPointC=17, GolfIndex=10, UvWarn=0}
-], 0=net.sf.ezmorph.bean.MorphDynaBean@63aa6c4[
-  {ValidDateUtc=9/14/2018 6:00:00 PM, CityId=USMI0248, hour_num=0, TempC=23, DewPtF=64, WndDirCardinal=N, WindDirectionDegrees=349, IconCode=12, HeatIndexF=74, date=9/14/2018 2:00:00 PM, HeatIndexC=23, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=P Cloudy, ValidDateLocal=9/14/2018 2:00:00 PM, RelHumidity=70, WindChillC=23, TempF=74, WindChillF=74, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Partly Cloudy, UvIdx=6, SkyCode=66, WndSpdMph=3, PrecipChance=0, CloudCoverage=35, SkyMedium=Partly Cloudy, FeelsLikeF=74, UvDescr=High, SkyCodeExtended=3000, GolfCategory=Excellent, DewPointC=18, GolfIndex=10, UvWarn=0}
-], 7=net.sf.ezmorph.bean.MorphDynaBean@749a910d[
-  {ValidDateUtc=9/15/2018 1:00:00 AM, CityId=USMI0248, hour_num=7, TempC=21, DewPtF=63, WndDirCardinal=NE, WindDirectionDegrees=35, IconCode=21, HeatIndexF=71, date=9/14/2018 9:00:00 PM, HeatIndexC=22, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/14/2018 9:00:00 PM, RelHumidity=79, WindChillC=21, TempF=70, WindChillF=70, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=9, VisibilityKM=14, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=10, CloudCoverage=2, SkyMedium=Clear, FeelsLikeF=71, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], 30=net.sf.ezmorph.bean.MorphDynaBean@6a93f97a[
-  {ValidDateUtc=9/16/2018 12:00:00 AM, CityId=USMI0248, hour_num=30, TempC=24, DewPtF=66, WndDirCardinal=NE, WindDirectionDegrees=49, IconCode=32, HeatIndexF=77, date=9/15/2018 8:00:00 PM, HeatIndexC=25, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 8:00:00 PM, RelHumidity=74, WindChillC=24, TempF=75, WindChillF=75, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=8, VisibilityKM=13, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=5, PrecipChance=10, CloudCoverage=36, SkyMedium=Partly Cloudy, FeelsLikeF=77, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 6=net.sf.ezmorph.bean.MorphDynaBean@18dfef40[
-  {ValidDateUtc=9/15/2018 12:00:00 AM, CityId=USMI0248, hour_num=6, TempC=23, DewPtF=63, WndDirCardinal=NNE, WindDirectionDegrees=28, IconCode=21, HeatIndexF=73, date=9/14/2018 8:00:00 PM, HeatIndexC=23, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/14/2018 8:00:00 PM, RelHumidity=70, WindChillC=23, TempF=73, WindChillF=73, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=3, PrecipChance=0, CloudCoverage=8, SkyMedium=Clear, FeelsLikeF=73, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], 32=net.sf.ezmorph.bean.MorphDynaBean@29ca5b00[
-  {ValidDateUtc=9/16/2018 2:00:00 AM, CityId=USMI0248, hour_num=32, TempC=22, DewPtF=67, WndDirCardinal=NE, WindDirectionDegrees=51, IconCode=32, HeatIndexF=73, date=9/15/2018 10:00:00 PM, HeatIndexC=23, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 10:00:00 PM, RelHumidity=87, WindChillC=22, TempF=71, WindChillF=71, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=6, VisibilityKM=10, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=4, PrecipChance=20, CloudCoverage=30, SkyMedium=Partly Cloudy, FeelsLikeF=73, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 5=net.sf.ezmorph.bean.MorphDynaBean@241c726f[
-  {ValidDateUtc=9/14/2018 11:00:00 PM, CityId=USMI0248, hour_num=5, TempC=25, DewPtF=63, WndDirCardinal=NNE, WindDirectionDegrees=12, IconCode=1, HeatIndexF=77, date=9/14/2018 7:00:00 PM, HeatIndexC=25, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Sunny, ValidDateLocal=9/14/2018 7:00:00 PM, RelHumidity=62, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=3, PrecipChance=0, CloudCoverage=7, SkyMedium=Sunny, FeelsLikeF=77, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=17, GolfIndex=10, UvWarn=0}
-], 4=net.sf.ezmorph.bean.MorphDynaBean@479ce7ee[
-  {ValidDateUtc=9/14/2018 10:00:00 PM, CityId=USMI0248, hour_num=4, TempC=26, DewPtF=62, WndDirCardinal=N, WindDirectionDegrees=359, IconCode=1, HeatIndexF=81, date=9/14/2018 6:00:00 PM, HeatIndexC=27, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Sunny, ValidDateLocal=9/14/2018 6:00:00 PM, RelHumidity=57, WindChillC=26, TempF=79, WindChillF=79, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=1, SkyCode=85, WndSpdMph=3, PrecipChance=0, CloudCoverage=11, SkyMedium=Sunny, FeelsLikeF=81, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=17, GolfIndex=9, UvWarn=0}
-], 31=net.sf.ezmorph.bean.MorphDynaBean@e3edefd[
-  {ValidDateUtc=9/16/2018 1:00:00 AM, CityId=USMI0248, hour_num=31, TempC=23, DewPtF=67, WndDirCardinal=NE, WindDirectionDegrees=47, IconCode=32, HeatIndexF=74, date=9/15/2018 9:00:00 PM, HeatIndexC=23, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 9:00:00 PM, RelHumidity=83, WindChillC=23, TempF=73, WindChillF=73, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=7, VisibilityKM=11, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=5, PrecipChance=10, CloudCoverage=34, SkyMedium=Partly Cloudy, FeelsLikeF=74, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=19, GolfIndex=0, UvWarn=0}
-], 9=net.sf.ezmorph.bean.MorphDynaBean@41a1bb59[
-  {ValidDateUtc=9/15/2018 3:00:00 AM, CityId=USMI0248, hour_num=9, TempC=19, DewPtF=63, WndDirCardinal=NE, WindDirectionDegrees=41, IconCode=21, HeatIndexF=68, date=9/14/2018 11:00:00 PM, HeatIndexC=20, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/14/2018 11:00:00 PM, RelHumidity=86, WindChillC=19, TempF=67, WindChillF=67, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=7, VisibilityKM=11, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=10, CloudCoverage=1, SkyMedium=Clear, FeelsLikeF=68, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], 8=net.sf.ezmorph.bean.MorphDynaBean@6112f1b8[
-  {ValidDateUtc=9/15/2018 2:00:00 AM, CityId=USMI0248, hour_num=8, TempC=20, DewPtF=63, WndDirCardinal=NE, WindDirectionDegrees=50, IconCode=21, HeatIndexF=69, date=9/14/2018 10:00:00 PM, HeatIndexC=21, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/14/2018 10:00:00 PM, RelHumidity=84, WindChillC=20, TempF=68, WindChillF=68, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=8, VisibilityKM=13, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=10, CloudCoverage=4, SkyMedium=Clear, FeelsLikeF=69, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], segments=[net.sf.ezmorph.bean.MorphDynaBean@22bb98d2[
-  {statement=Sunny, SkyShort=Sunny, PrecipChance=0, SkyMedium=Sunny, TempF=77, WndDirCardinal=NNE, IconCode=1, period=Evening, date=9/14/2018 7:00:00 PM, WndSpdMph=3, SnowChance=0}
-], net.sf.ezmorph.bean.MorphDynaBean@1758066e[
-  {statement=Partly Cloudy, SkyShort=P Cloudy, PrecipChance=10, SkyMedium=Partly Cloudy, TempF=63, WndDirCardinal=NNE, IconCode=32, period=Morning, date=9/15/2018 7:00:00 AM, WndSpdMph=1, SnowChance=0}
-], net.sf.ezmorph.bean.MorphDynaBean@140e2bbb[
-  {statement=Mostly Cloudy, SkyShort=M Cloudy, PrecipChance=20, SkyMedium=Mostly Cloudy, TempF=77, WndDirCardinal=NE, IconCode=11, period=Afternoon, date=9/15/2018 1:00:00 PM, WndSpdMph=5, SnowChance=0}
-]], 19=net.sf.ezmorph.bean.MorphDynaBean@2e590c46[
-  {ValidDateUtc=9/15/2018 1:00:00 PM, CityId=USMI0248, hour_num=19, TempC=19, DewPtF=64, WndDirCardinal=NE, WindDirectionDegrees=38, IconCode=2, HeatIndexF=67, date=9/15/2018 9:00:00 AM, HeatIndexC=19, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Cloudy, ValidDateLocal=9/15/2018 9:00:00 AM, RelHumidity=93, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=4, VisibilityKM=6, SkyLong=Cloudy, UvIdx=0, SkyCode=67, WndSpdMph=3, PrecipChance=10, CloudCoverage=91, SkyMedium=Cloudy, FeelsLikeF=67, UvDescr=Low, SkyCodeExtended=2600, GolfCategory=Very Good, DewPointC=18, GolfIndex=9, UvWarn=0}
-], 17=net.sf.ezmorph.bean.MorphDynaBean@5834df6f[
-  {ValidDateUtc=9/15/2018 11:00:00 AM, CityId=USMI0248, hour_num=17, TempC=17, DewPtF=62, WndDirCardinal=NNE, WindDirectionDegrees=22, IconCode=32, HeatIndexF=63, date=9/15/2018 7:00:00 AM, HeatIndexC=17, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 7:00:00 AM, RelHumidity=95, WindChillC=17, TempF=63, WindChillF=63, WindSpeedKm=2, SnowChance=0, WindSpeedKn=1, VisibilityMiles=2, VisibilityKM=3, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=1, PrecipChance=10, CloudCoverage=55, SkyMedium=Partly Cloudy, FeelsLikeF=63, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], 18=net.sf.ezmorph.bean.MorphDynaBean@77391da6[
-  {ValidDateUtc=9/15/2018 12:00:00 PM, CityId=USMI0248, hour_num=18, TempC=17, DewPtF=62, WndDirCardinal=NE, WindDirectionDegrees=34, IconCode=11, HeatIndexF=63, date=9/15/2018 8:00:00 AM, HeatIndexC=17, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=M Cloudy, ValidDateLocal=9/15/2018 8:00:00 AM, RelHumidity=96, WindChillC=17, TempF=63, WindChillF=63, WindSpeedKm=2, SnowChance=0, WindSpeedKn=1, VisibilityMiles=2, VisibilityKM=4, SkyLong=Mostly Cloudy, UvIdx=0, SkyCode=69, WndSpdMph=1, PrecipChance=20, CloudCoverage=64, SkyMedium=Mostly Cloudy, FeelsLikeF=63, UvDescr=Low, SkyCodeExtended=2800, GolfCategory=Very Good, DewPointC=17, GolfIndex=9, UvWarn=0}
-], 15=net.sf.ezmorph.bean.MorphDynaBean@46c9ba70[
-  {ValidDateUtc=9/15/2018 9:00:00 AM, CityId=USMI0248, hour_num=15, TempC=17, DewPtF=61, WndDirCardinal=NNE, WindDirectionDegrees=22, IconCode=32, HeatIndexF=62, date=9/15/2018 5:00:00 AM, HeatIndexC=17, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 5:00:00 AM, RelHumidity=95, WindChillC=17, TempF=62, WindChillF=62, WindSpeedKm=2, SnowChance=0, WindSpeedKn=1, VisibilityMiles=2, VisibilityKM=4, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=1, PrecipChance=10, CloudCoverage=37, SkyMedium=Partly Cloudy, FeelsLikeF=62, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=16, GolfIndex=0, UvWarn=0}
-], 16=net.sf.ezmorph.bean.MorphDynaBean@65ef335e[
-  {ValidDateUtc=9/15/2018 10:00:00 AM, CityId=USMI0248, hour_num=16, TempC=17, DewPtF=61, WndDirCardinal=NNE, WindDirectionDegrees=24, IconCode=32, HeatIndexF=63, date=9/15/2018 6:00:00 AM, HeatIndexC=17, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 6:00:00 AM, RelHumidity=95, WindChillC=17, TempF=63, WindChillF=63, WindSpeedKm=2, SnowChance=0, WindSpeedKn=1, VisibilityMiles=2, VisibilityKM=3, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=1, PrecipChance=10, CloudCoverage=45, SkyMedium=Partly Cloudy, FeelsLikeF=63, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=16, GolfIndex=0, UvWarn=0}
-], 13=net.sf.ezmorph.bean.MorphDynaBean@3b15949a[
-  {ValidDateUtc=9/15/2018 7:00:00 AM, CityId=USMI0248, hour_num=13, TempC=17, DewPtF=61, WndDirCardinal=NE, WindDirectionDegrees=48, IconCode=30, HeatIndexF=62, date=9/15/2018 3:00:00 AM, HeatIndexC=17, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=M Clear, ValidDateLocal=9/15/2018 3:00:00 AM, RelHumidity=96, WindChillC=17, TempF=62, WindChillF=62, WindSpeedKm=0, SnowChance=0, WindSpeedKn=0, VisibilityMiles=3, VisibilityKM=5, SkyLong=Mostly Clear, UvIdx=0, SkyCode=102, WndSpdMph=0, PrecipChance=10, CloudCoverage=25, SkyMedium=Mostly Clear, FeelsLikeF=62, UvDescr=Low, SkyCodeExtended=3300, GolfCategory=Very Poor, DewPointC=16, GolfIndex=0, UvWarn=0}
-], 14=net.sf.ezmorph.bean.MorphDynaBean@5cf28c4[
-  {ValidDateUtc=9/15/2018 8:00:00 AM, CityId=USMI0248, hour_num=14, TempC=17, DewPtF=61, WndDirCardinal=NE, WindDirectionDegrees=35, IconCode=32, HeatIndexF=62, date=9/15/2018 4:00:00 AM, HeatIndexC=17, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=P Cloudy, ValidDateLocal=9/15/2018 4:00:00 AM, RelHumidity=96, WindChillC=17, TempF=62, WindChillF=62, WindSpeedKm=0, SnowChance=0, WindSpeedKn=0, VisibilityMiles=3, VisibilityKM=5, SkyLong=Partly Cloudy, UvIdx=0, SkyCode=98, WndSpdMph=0, PrecipChance=10, CloudCoverage=32, SkyMedium=Partly Cloudy, FeelsLikeF=62, UvDescr=Low, SkyCodeExtended=2900, GolfCategory=Very Poor, DewPointC=16, GolfIndex=0, UvWarn=0}
-], report_time_utc=9/14/2018 1:46:11 PM, 11=net.sf.ezmorph.bean.MorphDynaBean@637d5ed6[
-  {ValidDateUtc=9/15/2018 5:00:00 AM, CityId=USMI0248, hour_num=11, TempC=18, DewPtF=63, WndDirCardinal=NE, WindDirectionDegrees=48, IconCode=21, HeatIndexF=65, date=9/15/2018 1:00:00 AM, HeatIndexC=18, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Clear, ValidDateLocal=9/15/2018 1:00:00 AM, RelHumidity=93, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=5, VisibilityKM=8, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=10, CloudCoverage=6, SkyMedium=Clear, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], 12=net.sf.ezmorph.bean.MorphDynaBean@447cf2bb[
-  {ValidDateUtc=9/15/2018 6:00:00 AM, CityId=USMI0248, hour_num=12, TempC=18, DewPtF=62, WndDirCardinal=NE, WindDirectionDegrees=42, IconCode=21, HeatIndexF=64, date=9/15/2018 2:00:00 AM, HeatIndexC=18, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Clear, ValidDateLocal=9/15/2018 2:00:00 AM, RelHumidity=94, WindChillC=18, TempF=64, WindChillF=64, WindSpeedKm=2, SnowChance=0, WindSpeedKn=1, VisibilityMiles=4, VisibilityKM=6, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=1, PrecipChance=10, CloudCoverage=13, SkyMedium=Clear, FeelsLikeF=64, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
-], 21=net.sf.ezmorph.bean.MorphDynaBean@6723f61d[
-  {ValidDateUtc=9/15/2018 3:00:00 PM, CityId=USMI0248, hour_num=21, TempC=23, DewPtF=65, WndDirCardinal=NE, WindDirectionDegrees=55, IconCode=2, HeatIndexF=74, date=9/15/2018 11:00:00 AM, HeatIndexC=23, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Cloudy, ValidDateLocal=9/15/2018 11:00:00 AM, RelHumidity=78, WindChillC=23, TempF=73, WindChillF=73, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=8, VisibilityKM=13, SkyLong=Cloudy, UvIdx=2, SkyCode=67, WndSpdMph=4, PrecipChance=20, CloudCoverage=82, SkyMedium=Cloudy, FeelsLikeF=74, UvDescr=Low, SkyCodeExtended=2600, GolfCategory=Excellent, DewPointC=18, GolfIndex=10, UvWarn=0}
-], 20=net.sf.ezmorph.bean.MorphDynaBean@69f31ed1[
-  {ValidDateUtc=9/15/2018 2:00:00 PM, CityId=USMI0248, hour_num=20, TempC=21, DewPtF=65, WndDirCardinal=NE, WindDirectionDegrees=47, IconCode=2, HeatIndexF=70, date=9/15/2018 10:00:00 AM, HeatIndexC=21, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Cloudy, ValidDateLocal=9/15/2018 10:00:00 AM, RelHumidity=86, WindChillC=21, TempF=69, WindChillF=69, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=6, VisibilityKM=10, SkyLong=Cloudy, UvIdx=1, SkyCode=67, WndSpdMph=4, PrecipChance=10, CloudCoverage=85, SkyMedium=Cloudy, FeelsLikeF=70, UvDescr=Low, SkyCodeExtended=2600, GolfCategory=Excellent, DewPointC=18, GolfIndex=10, UvWarn=0}
-], 45=net.sf.ezmorph.bean.MorphDynaBean@586c61ae[
-  {ValidDateUtc=9/16/2018 3:00:00 PM, CityId=USMI0248, hour_num=45, TempC=23, DewPtF=68, WndDirCardinal=ESE, WindDirectionDegrees=118, IconCode=1, HeatIndexF=76, date=9/16/2018 11:00:00 AM, HeatIndexC=24, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=Sunny, ValidDateLocal=9/16/2018 11:00:00 AM, RelHumidity=81, WindChillC=23, TempF=74, WindChillF=74, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=9, VisibilityKM=14, SkyLong=Sunny, UvIdx=3, SkyCode=85, WndSpdMph=5, PrecipChance=10, CloudCoverage=11, SkyMedium=Sunny, FeelsLikeF=76, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=20, GolfIndex=10, UvWarn=0}
-], 44=net.sf.ezmorph.bean.MorphDynaBean@338113dc[
-  {ValidDateUtc=9/16/2018 2:00:00 PM, CityId=USMI0248, hour_num=44, TempC=22, DewPtF=67, WndDirCardinal=ESE, WindDirectionDegrees=110, IconCode=1, HeatIndexF=73, date=9/16/2018 10:00:00 AM, HeatIndexC=23, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=Sunny, ValidDateLocal=9/16/2018 10:00:00 AM, RelHumidity=88, WindChillC=22, TempF=71, WindChillF=71, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=8, VisibilityKM=13, SkyLong=Sunny, UvIdx=2, SkyCode=85, WndSpdMph=4, PrecipChance=10, CloudCoverage=13, SkyMedium=Sunny, FeelsLikeF=73, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=19, GolfIndex=10, UvWarn=0}
-], 47=net.sf.ezmorph.bean.MorphDynaBean@5f3eeaee[
-  {ValidDateUtc=9/16/2018 5:00:00 PM, CityId=USMI0248, hour_num=47, TempC=27, DewPtF=68, WndDirCardinal=SE, WindDirectionDegrees=127, IconCode=10, HeatIndexF=84, date=9/16/2018 1:00:00 PM, HeatIndexC=29, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=M Sunny, ValidDateLocal=9/16/2018 1:00:00 PM, RelHumidity=67, WindChillC=27, TempF=80, WindChillF=80, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Mostly Sunny, UvIdx=6, SkyCode=65, WndSpdMph=6, PrecipChance=0, CloudCoverage=29, SkyMedium=Mostly Sunny, FeelsLikeF=84, UvDescr=High, SkyCodeExtended=3400, GolfCategory=Very Good, DewPointC=20, GolfIndex=9, UvWarn=0}
-], 46=net.sf.ezmorph.bean.MorphDynaBean@1bb1e01c[
-  {ValidDateUtc=9/16/2018 4:00:00 PM, CityId=USMI0248, hour_num=46, TempC=25, DewPtF=68, WndDirCardinal=SE, WindDirectionDegrees=129, IconCode=1, HeatIndexF=81, date=9/16/2018 12:00:00 PM, HeatIndexC=27, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Sunday, SkyShort=Sunny, ValidDateLocal=9/16/2018 12:00:00 PM, RelHumidity=72, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=5, SkyCode=85, WndSpdMph=6, PrecipChance=0, CloudCoverage=17, SkyMedium=Sunny, FeelsLikeF=81, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=20, GolfIndex=9, UvWarn=0}
-], 10=net.sf.ezmorph.bean.MorphDynaBean@3af05c78[
-  {ValidDateUtc=9/15/2018 4:00:00 AM, CityId=USMI0248, hour_num=10, TempC=19, DewPtF=63, WndDirCardinal=NE, WindDirectionDegrees=50, IconCode=21, HeatIndexF=67, date=9/15/2018 12:00:00 AM, HeatIndexC=19, report_time_utc=9/14/2018 1:46:11 PM, DayOfWeek=Saturday, SkyShort=Clear, ValidDateLocal=9/15/2018 12:00:00 AM, RelHumidity=91, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=2, SnowChance=0, WindSpeedKn=1, VisibilityMiles=6, VisibilityKM=10, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=1, PrecipChance=10, CloudCoverage=4, SkyMedium=Clear, FeelsLikeF=67, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=17, GolfIndex=0, UvWarn=0}
+            net.sf.ezmorph.bean.MorphDynaBean@74c9d934[
+  {35=net.sf.ezmorph.bean.MorphDynaBean@51a3c935[
+  {ValidDateUtc=9/21/2018 12:00:00 AM, CityId=USCA0967, hour_num=35, TempC=33, DewPtF=34, WndDirCardinal=NNW, WindDirectionDegrees=339, IconCode=1, HeatIndexF=92, date=9/20/2018 5:00:00 PM, HeatIndexC=33, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 5:00:00 PM, RelHumidity=13, WindChillC=33, TempF=92, WindChillF=92, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=1, SkyCode=85, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=92, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=1, GolfIndex=8, UvWarn=0}
+], 36=net.sf.ezmorph.bean.MorphDynaBean@2ee8fe45[
+  {ValidDateUtc=9/21/2018 1:00:00 AM, CityId=USCA0967, hour_num=36, TempC=32, DewPtF=36, WndDirCardinal=NNW, WindDirectionDegrees=333, IconCode=1, HeatIndexF=90, date=9/20/2018 6:00:00 PM, HeatIndexC=32, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 6:00:00 PM, RelHumidity=15, WindChillC=32, TempF=90, WindChillF=90, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=90, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=2, GolfIndex=8, UvWarn=0}
+], 33=net.sf.ezmorph.bean.MorphDynaBean@428d7c12[
+  {ValidDateUtc=9/20/2018 10:00:00 PM, CityId=USCA0967, hour_num=33, TempC=32, DewPtF=37, WndDirCardinal=NNW, WindDirectionDegrees=330, IconCode=1, HeatIndexF=90, date=9/20/2018 3:00:00 PM, HeatIndexC=32, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 3:00:00 PM, RelHumidity=15, WindChillC=32, TempF=90, WindChillF=90, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=5, SkyCode=85, WndSpdMph=5, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=90, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=3, GolfIndex=8, UvWarn=0}
+], 34=net.sf.ezmorph.bean.MorphDynaBean@56cca3e0[
+  {ValidDateUtc=9/20/2018 11:00:00 PM, CityId=USCA0967, hour_num=34, TempC=33, DewPtF=36, WndDirCardinal=NNW, WindDirectionDegrees=333, IconCode=1, HeatIndexF=91, date=9/20/2018 4:00:00 PM, HeatIndexC=33, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 4:00:00 PM, RelHumidity=14, WindChillC=33, TempF=91, WindChillF=91, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=3, SkyCode=85, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=91, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=2, GolfIndex=8, UvWarn=0}
+], 39=net.sf.ezmorph.bean.MorphDynaBean@151af3a5[
+  {ValidDateUtc=9/21/2018 4:00:00 AM, CityId=USCA0967, hour_num=39, TempC=23, DewPtF=42, WndDirCardinal=SSW, WindDirectionDegrees=211, IconCode=21, HeatIndexF=74, date=9/20/2018 9:00:00 PM, HeatIndexC=23, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 9:00:00 PM, RelHumidity=32, WindChillC=23, TempF=74, WindChillF=74, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=74, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=6, GolfIndex=0, UvWarn=0}
+], 37=net.sf.ezmorph.bean.MorphDynaBean@1c71e076[
+  {ValidDateUtc=9/21/2018 2:00:00 AM, CityId=USCA0967, hour_num=37, TempC=29, DewPtF=39, WndDirCardinal=W, WindDirectionDegrees=270, IconCode=1, HeatIndexF=85, date=9/20/2018 7:00:00 PM, HeatIndexC=29, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 7:00:00 PM, RelHumidity=20, WindChillC=29, TempF=85, WindChillF=85, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=85, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=9, UvWarn=0}
+], 38=net.sf.ezmorph.bean.MorphDynaBean@78477190[
+  {ValidDateUtc=9/21/2018 3:00:00 AM, CityId=USCA0967, hour_num=38, TempC=26, DewPtF=41, WndDirCardinal=SSW, WindDirectionDegrees=212, IconCode=21, HeatIndexF=79, date=9/20/2018 8:00:00 PM, HeatIndexC=26, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 8:00:00 PM, RelHumidity=26, WindChillC=26, TempF=79, WindChillF=79, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=79, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=5, GolfIndex=0, UvWarn=0}
+], 43=net.sf.ezmorph.bean.MorphDynaBean@1a70e2a1[
+  {ValidDateUtc=9/21/2018 8:00:00 AM, CityId=USCA0967, hour_num=43, TempC=17, DewPtF=45, WndDirCardinal=SE, WindDirectionDegrees=129, IconCode=21, HeatIndexF=63, date=9/21/2018 1:00:00 AM, HeatIndexC=17, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/21/2018 1:00:00 AM, RelHumidity=53, WindChillC=17, TempF=63, WindChillF=63, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=63, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 42=net.sf.ezmorph.bean.MorphDynaBean@692ec596[
+  {ValidDateUtc=9/21/2018 7:00:00 AM, CityId=USCA0967, hour_num=42, TempC=18, DewPtF=45, WndDirCardinal=S, WindDirectionDegrees=189, IconCode=21, HeatIndexF=65, date=9/21/2018 12:00:00 AM, HeatIndexC=18, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/21/2018 12:00:00 AM, RelHumidity=48, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=3, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 41=net.sf.ezmorph.bean.MorphDynaBean@7dae30cc[
+  {ValidDateUtc=9/21/2018 6:00:00 AM, CityId=USCA0967, hour_num=41, TempC=19, DewPtF=44, WndDirCardinal=SW, WindDirectionDegrees=216, IconCode=21, HeatIndexF=67, date=9/20/2018 11:00:00 PM, HeatIndexC=19, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 11:00:00 PM, RelHumidity=43, WindChillC=19, TempF=67, WindChillF=67, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=3, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=67, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 40=net.sf.ezmorph.bean.MorphDynaBean@3705e18a[
+  {ValidDateUtc=9/21/2018 5:00:00 AM, CityId=USCA0967, hour_num=40, TempC=21, DewPtF=43, WndDirCardinal=SSW, WindDirectionDegrees=207, IconCode=21, HeatIndexF=70, date=9/20/2018 10:00:00 PM, HeatIndexC=21, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 10:00:00 PM, RelHumidity=37, WindChillC=21, TempF=70, WindChillF=70, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=70, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=6, GolfIndex=0, UvWarn=0}
+], 22=net.sf.ezmorph.bean.MorphDynaBean@631a473e[
+  {ValidDateUtc=9/20/2018 11:00:00 AM, CityId=USCA0967, hour_num=22, TempC=17, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=343, IconCode=21, HeatIndexF=62, date=9/20/2018 4:00:00 AM, HeatIndexC=17, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 4:00:00 AM, RelHumidity=43, WindChillC=17, TempF=62, WindChillF=62, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=62, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=4, GolfIndex=0, UvWarn=0}
+], 23=net.sf.ezmorph.bean.MorphDynaBean@523b6a46[
+  {ValidDateUtc=9/20/2018 12:00:00 PM, CityId=USCA0967, hour_num=23, TempC=16, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=347, IconCode=21, HeatIndexF=61, date=9/20/2018 5:00:00 AM, HeatIndexC=16, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 5:00:00 AM, RelHumidity=44, WindChillC=16, TempF=61, WindChillF=61, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=61, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=4, GolfIndex=0, UvWarn=0}
+], 24=net.sf.ezmorph.bean.MorphDynaBean@3abe43d7[
+  {ValidDateUtc=9/20/2018 1:00:00 PM, CityId=USCA0967, hour_num=24, TempC=16, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=347, IconCode=21, HeatIndexF=60, date=9/20/2018 6:00:00 AM, HeatIndexC=16, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 6:00:00 AM, RelHumidity=45, WindChillC=16, TempF=60, WindChillF=60, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=60, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=4, GolfIndex=0, UvWarn=0}
+], 25=net.sf.ezmorph.bean.MorphDynaBean@2157f662[
+  {ValidDateUtc=9/20/2018 2:00:00 PM, CityId=USCA0967, hour_num=25, TempC=15, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=345, IconCode=1, HeatIndexF=59, date=9/20/2018 7:00:00 AM, HeatIndexC=15, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 7:00:00 AM, RelHumidity=47, WindChillC=15, TempF=59, WindChillF=59, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=5, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=59, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=8, UvWarn=0}
+], 26=net.sf.ezmorph.bean.MorphDynaBean@15f0ad08[
+  {ValidDateUtc=9/20/2018 3:00:00 PM, CityId=USCA0967, hour_num=26, TempC=17, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=341, IconCode=1, HeatIndexF=62, date=9/20/2018 8:00:00 AM, HeatIndexC=17, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 8:00:00 AM, RelHumidity=43, WindChillC=16, TempF=62, WindChillF=61, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=62, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=8, UvWarn=0}
+], 27=net.sf.ezmorph.bean.MorphDynaBean@6beff378[
+  {ValidDateUtc=9/20/2018 4:00:00 PM, CityId=USCA0967, hour_num=27, TempC=19, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=332, IconCode=1, HeatIndexF=66, date=9/20/2018 9:00:00 AM, HeatIndexC=19, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 9:00:00 AM, RelHumidity=37, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=1, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=66, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=9, UvWarn=0}
+], update_time_utc=9/19/2018 1:18:35 PM, 28=net.sf.ezmorph.bean.MorphDynaBean@565982a4[
+  {ValidDateUtc=9/20/2018 5:00:00 PM, CityId=USCA0967, hour_num=28, TempC=22, DewPtF=39, WndDirCardinal=NNW, WindDirectionDegrees=339, IconCode=1, HeatIndexF=72, date=9/20/2018 10:00:00 AM, HeatIndexC=22, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 10:00:00 AM, RelHumidity=31, WindChillC=22, TempF=72, WindChillF=72, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=3, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=72, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=4, GolfIndex=10, UvWarn=0}
+], 29=net.sf.ezmorph.bean.MorphDynaBean@e900946[
+  {ValidDateUtc=9/20/2018 6:00:00 PM, CityId=USCA0967, hour_num=29, TempC=25, DewPtF=40, WndDirCardinal=NNW, WindDirectionDegrees=336, IconCode=1, HeatIndexF=77, date=9/20/2018 11:00:00 AM, HeatIndexC=25, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 11:00:00 AM, RelHumidity=26, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=5, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=77, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=9, UvWarn=0}
+], 3=net.sf.ezmorph.bean.MorphDynaBean@20d0aefa[
+  {ValidDateUtc=9/19/2018 4:00:00 PM, CityId=USCA0967, hour_num=3, TempC=15, DewPtF=52, WndDirCardinal=WSW, WindDirectionDegrees=258, IconCode=1, HeatIndexF=59, date=9/19/2018 9:00:00 AM, HeatIndexC=15, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 9:00:00 AM, RelHumidity=76, WindChillC=15, TempF=59, WindChillF=59, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=1, SkyCode=85, WndSpdMph=2, PrecipChance=0, CloudCoverage=1, SkyMedium=Sunny, FeelsLikeF=59, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=11, GolfIndex=8, UvWarn=0}
+], 2=net.sf.ezmorph.bean.MorphDynaBean@609f7061[
+  {ValidDateUtc=9/19/2018 3:00:00 PM, CityId=USCA0967, hour_num=2, TempC=13, DewPtF=51, WndDirCardinal=SW, WindDirectionDegrees=222, IconCode=1, HeatIndexF=56, date=9/19/2018 8:00:00 AM, HeatIndexC=13, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 8:00:00 AM, RelHumidity=85, WindChillC=13, TempF=56, WindChillF=56, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=9, VisibilityKM=14, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=2, PrecipChance=0, CloudCoverage=3, SkyMedium=Sunny, FeelsLikeF=56, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Good, DewPointC=11, GolfIndex=7, UvWarn=0}
+], 1=net.sf.ezmorph.bean.MorphDynaBean@616af3af[
+  {ValidDateUtc=9/19/2018 2:00:00 PM, CityId=USCA0967, hour_num=1, TempC=12, DewPtF=51, WndDirCardinal=S, WindDirectionDegrees=187, IconCode=1, HeatIndexF=54, date=9/19/2018 7:00:00 AM, HeatIndexC=12, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 7:00:00 AM, RelHumidity=90, WindChillC=12, TempF=54, WindChillF=54, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=7, VisibilityKM=11, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=3, PrecipChance=0, CloudCoverage=3, SkyMedium=Sunny, FeelsLikeF=54, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Good, DewPointC=11, GolfIndex=7, UvWarn=0}
+], 0=net.sf.ezmorph.bean.MorphDynaBean@c9f7261[
+  {ValidDateUtc=9/19/2018 1:00:00 PM, CityId=USCA0967, hour_num=0, TempC=12, DewPtF=51, WndDirCardinal=S, WindDirectionDegrees=176, IconCode=21, HeatIndexF=54, date=9/19/2018 6:00:00 AM, HeatIndexC=12, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Clear, ValidDateLocal=9/19/2018 6:00:00 AM, RelHumidity=88, WindChillC=12, TempF=54, WindChillF=54, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=7, VisibilityKM=11, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=2, SkyMedium=Clear, FeelsLikeF=54, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=11, GolfIndex=0, UvWarn=0}
+], 7=net.sf.ezmorph.bean.MorphDynaBean@7f4a2d98[
+  {ValidDateUtc=9/19/2018 8:00:00 PM, CityId=USCA0967, hour_num=7, TempC=27, DewPtF=49, WndDirCardinal=NW, WindDirectionDegrees=314, IconCode=1, HeatIndexF=80, date=9/19/2018 1:00:00 PM, HeatIndexC=27, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 1:00:00 PM, RelHumidity=34, WindChillC=27, TempF=80, WindChillF=80, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=7, SkyCode=85, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=80, UvDescr=High, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=9, GolfIndex=9, UvWarn=0}
+], 30=net.sf.ezmorph.bean.MorphDynaBean@5ef79771[
+  {ValidDateUtc=9/20/2018 7:00:00 PM, CityId=USCA0967, hour_num=30, TempC=28, DewPtF=39, WndDirCardinal=NW, WindDirectionDegrees=320, IconCode=1, HeatIndexF=82, date=9/20/2018 12:00:00 PM, HeatIndexC=28, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 12:00:00 PM, RelHumidity=22, WindChillC=28, TempF=82, WindChillF=82, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=6, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=82, UvDescr=High, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=9, UvWarn=0}
+], 6=net.sf.ezmorph.bean.MorphDynaBean@50f7ac6c[
+  {ValidDateUtc=9/19/2018 7:00:00 PM, CityId=USCA0967, hour_num=6, TempC=24, DewPtF=51, WndDirCardinal=WNW, WindDirectionDegrees=303, IconCode=1, HeatIndexF=76, date=9/19/2018 12:00:00 PM, HeatIndexC=24, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 12:00:00 PM, RelHumidity=42, WindChillC=24, TempF=76, WindChillF=76, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=6, SkyCode=85, WndSpdMph=5, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=76, UvDescr=High, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=11, GolfIndex=10, UvWarn=0}
+], 32=net.sf.ezmorph.bean.MorphDynaBean@34590ffb[
+  {ValidDateUtc=9/20/2018 9:00:00 PM, CityId=USCA0967, hour_num=32, TempC=31, DewPtF=38, WndDirCardinal=NW, WindDirectionDegrees=322, IconCode=1, HeatIndexF=88, date=9/20/2018 2:00:00 PM, HeatIndexC=31, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 2:00:00 PM, RelHumidity=17, WindChillC=31, TempF=88, WindChillF=88, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=6, SkyCode=85, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=88, UvDescr=High, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=3, GolfIndex=8, UvWarn=0}
+], 5=net.sf.ezmorph.bean.MorphDynaBean@43284296[
+  {ValidDateUtc=9/19/2018 6:00:00 PM, CityId=USCA0967, hour_num=5, TempC=21, DewPtF=52, WndDirCardinal=WNW, WindDirectionDegrees=289, IconCode=1, HeatIndexF=70, date=9/19/2018 11:00:00 AM, HeatIndexC=21, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 11:00:00 AM, RelHumidity=53, WindChillC=21, TempF=70, WindChillF=70, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=5, SkyCode=85, WndSpdMph=3, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=70, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Excellent, DewPointC=11, GolfIndex=10, UvWarn=0}
+], 4=net.sf.ezmorph.bean.MorphDynaBean@82ba84c[
+  {ValidDateUtc=9/19/2018 5:00:00 PM, CityId=USCA0967, hour_num=4, TempC=18, DewPtF=51, WndDirCardinal=W, WindDirectionDegrees=276, IconCode=1, HeatIndexF=64, date=9/19/2018 10:00:00 AM, HeatIndexC=18, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 10:00:00 AM, RelHumidity=64, WindChillC=18, TempF=64, WindChillF=64, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=3, SkyCode=85, WndSpdMph=2, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=64, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=11, GolfIndex=9, UvWarn=0}
+], 31=net.sf.ezmorph.bean.MorphDynaBean@6a3619c4[
+  {ValidDateUtc=9/20/2018 8:00:00 PM, CityId=USCA0967, hour_num=31, TempC=29, DewPtF=39, WndDirCardinal=NW, WindDirectionDegrees=324, IconCode=1, HeatIndexF=85, date=9/20/2018 1:00:00 PM, HeatIndexC=29, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Sunny, ValidDateLocal=9/20/2018 1:00:00 PM, RelHumidity=19, WindChillC=29, TempF=85, WindChillF=85, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=7, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=85, UvDescr=High, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=4, GolfIndex=9, UvWarn=0}
+], 9=net.sf.ezmorph.bean.MorphDynaBean@5d5c956[
+  {ValidDateUtc=9/19/2018 10:00:00 PM, CityId=USCA0967, hour_num=9, TempC=30, DewPtF=45, WndDirCardinal=NW, WindDirectionDegrees=326, IconCode=1, HeatIndexF=86, date=9/19/2018 3:00:00 PM, HeatIndexC=30, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 3:00:00 PM, RelHumidity=25, WindChillC=30, TempF=86, WindChillF=86, WindSpeedKm=13, SnowChance=0, WindSpeedKn=7, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=5, SkyCode=85, WndSpdMph=8, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=86, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=7, GolfIndex=8, UvWarn=0}
+], 8=net.sf.ezmorph.bean.MorphDynaBean@16953018[
+  {ValidDateUtc=9/19/2018 9:00:00 PM, CityId=USCA0967, hour_num=8, TempC=29, DewPtF=47, WndDirCardinal=NW, WindDirectionDegrees=319, IconCode=1, HeatIndexF=84, date=9/19/2018 2:00:00 PM, HeatIndexC=29, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 2:00:00 PM, RelHumidity=28, WindChillC=29, TempF=84, WindChillF=84, WindSpeedKm=13, SnowChance=0, WindSpeedKn=7, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=6, SkyCode=85, WndSpdMph=8, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=84, UvDescr=High, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=8, GolfIndex=9, UvWarn=0}
+], segments=[net.sf.ezmorph.bean.MorphDynaBean@1c88833d[
+  {statement=Sunny, SkyShort=Sunny, PrecipChance=0, SkyMedium=Sunny, TempF=54, WndDirCardinal=S, IconCode=1, period=Morning, date=9/19/2018 7:00:00 AM, WndSpdMph=3, SnowChance=0}
+], net.sf.ezmorph.bean.MorphDynaBean@4660286d[
+  {statement=Sunny, SkyShort=Sunny, PrecipChance=0, SkyMedium=Sunny, TempF=80, WndDirCardinal=NW, IconCode=1, period=Afternoon, date=9/19/2018 1:00:00 PM, WndSpdMph=6, SnowChance=0}
+], net.sf.ezmorph.bean.MorphDynaBean@52fe3033[
+  {statement=Sunny, SkyShort=Sunny, PrecipChance=0, SkyMedium=Sunny, TempF=82, WndDirCardinal=NW, IconCode=1, period=Evening, date=9/19/2018 7:00:00 PM, WndSpdMph=5, SnowChance=0}
+]], 19=net.sf.ezmorph.bean.MorphDynaBean@7503dadc[
+  {ValidDateUtc=9/20/2018 8:00:00 AM, CityId=USCA0967, hour_num=19, TempC=18, DewPtF=42, WndDirCardinal=NNW, WindDirectionDegrees=338, IconCode=21, HeatIndexF=65, date=9/20/2018 1:00:00 AM, HeatIndexC=18, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 1:00:00 AM, RelHumidity=44, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=6, GolfIndex=0, UvWarn=0}
+], 17=net.sf.ezmorph.bean.MorphDynaBean@5015dd88[
+  {ValidDateUtc=9/20/2018 6:00:00 AM, CityId=USCA0967, hour_num=17, TempC=19, DewPtF=45, WndDirCardinal=WNW, WindDirectionDegrees=299, IconCode=21, HeatIndexF=66, date=9/19/2018 11:00:00 PM, HeatIndexC=19, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Clear, ValidDateLocal=9/19/2018 11:00:00 PM, RelHumidity=45, WindChillC=19, TempF=66, WindChillF=66, WindSpeedKm=5, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=3, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=66, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 18=net.sf.ezmorph.bean.MorphDynaBean@4b8334cb[
+  {ValidDateUtc=9/20/2018 7:00:00 AM, CityId=USCA0967, hour_num=18, TempC=18, DewPtF=44, WndDirCardinal=NW, WindDirectionDegrees=321, IconCode=21, HeatIndexF=65, date=9/20/2018 12:00:00 AM, HeatIndexC=18, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 12:00:00 AM, RelHumidity=46, WindChillC=18, TempF=65, WindChillF=65, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=65, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 15=net.sf.ezmorph.bean.MorphDynaBean@2c1b79d6[
+  {ValidDateUtc=9/20/2018 4:00:00 AM, CityId=USCA0967, hour_num=15, TempC=22, DewPtF=44, WndDirCardinal=W, WindDirectionDegrees=280, IconCode=21, HeatIndexF=72, date=9/19/2018 9:00:00 PM, HeatIndexC=22, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Clear, ValidDateLocal=9/19/2018 9:00:00 PM, RelHumidity=37, WindChillC=22, TempF=72, WindChillF=72, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=72, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 16=net.sf.ezmorph.bean.MorphDynaBean@3fdbe739[
+  {ValidDateUtc=9/20/2018 5:00:00 AM, CityId=USCA0967, hour_num=16, TempC=21, DewPtF=45, WndDirCardinal=WNW, WindDirectionDegrees=284, IconCode=21, HeatIndexF=69, date=9/19/2018 10:00:00 PM, HeatIndexC=21, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Clear, ValidDateLocal=9/19/2018 10:00:00 PM, RelHumidity=42, WindChillC=21, TempF=69, WindChillF=69, WindSpeedKm=6, SnowChance=0, WindSpeedKn=3, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=4, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=69, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], 13=net.sf.ezmorph.bean.MorphDynaBean@7e296fef[
+  {ValidDateUtc=9/20/2018 2:00:00 AM, CityId=USCA0967, hour_num=13, TempC=28, DewPtF=42, WndDirCardinal=NW, WindDirectionDegrees=325, IconCode=1, HeatIndexF=82, date=9/19/2018 7:00:00 PM, HeatIndexC=28, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 7:00:00 PM, RelHumidity=25, WindChillC=28, TempF=82, WindChillF=82, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=5, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=82, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=6, GolfIndex=9, UvWarn=0}
+], 14=net.sf.ezmorph.bean.MorphDynaBean@5273f49e[
+  {ValidDateUtc=9/20/2018 3:00:00 AM, CityId=USCA0967, hour_num=14, TempC=25, DewPtF=44, WndDirCardinal=WNW, WindDirectionDegrees=288, IconCode=21, HeatIndexF=77, date=9/19/2018 8:00:00 PM, HeatIndexC=25, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Clear, ValidDateLocal=9/19/2018 8:00:00 PM, RelHumidity=31, WindChillC=25, TempF=77, WindChillF=77, WindSpeedKm=8, SnowChance=0, WindSpeedKn=4, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=5, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=77, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=7, GolfIndex=0, UvWarn=0}
+], report_time_utc=9/19/2018 8:45:58 AM, 11=net.sf.ezmorph.bean.MorphDynaBean@3ac0db5c[
+  {ValidDateUtc=9/20/2018 12:00:00 AM, CityId=USCA0967, hour_num=11, TempC=31, DewPtF=42, WndDirCardinal=NNW, WindDirectionDegrees=332, IconCode=1, HeatIndexF=87, date=9/19/2018 5:00:00 PM, HeatIndexC=31, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 5:00:00 PM, RelHumidity=21, WindChillC=31, TempF=87, WindChillF=87, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=1, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=87, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=6, GolfIndex=8, UvWarn=0}
+], 12=net.sf.ezmorph.bean.MorphDynaBean@4b819326[
+  {ValidDateUtc=9/20/2018 1:00:00 AM, CityId=USCA0967, hour_num=12, TempC=30, DewPtF=41, WndDirCardinal=NNW, WindDirectionDegrees=335, IconCode=1, HeatIndexF=86, date=9/19/2018 6:00:00 PM, HeatIndexC=30, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 6:00:00 PM, RelHumidity=21, WindChillC=30, TempF=86, WindChillF=86, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=0, SkyCode=85, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=86, UvDescr=Low, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=5, GolfIndex=8, UvWarn=0}
+], 21=net.sf.ezmorph.bean.MorphDynaBean@27e3ca84[
+  {ValidDateUtc=9/20/2018 10:00:00 AM, CityId=USCA0967, hour_num=21, TempC=17, DewPtF=40, WndDirCardinal=NNW, WindDirectionDegrees=337, IconCode=21, HeatIndexF=63, date=9/20/2018 3:00:00 AM, HeatIndexC=17, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 3:00:00 AM, RelHumidity=42, WindChillC=17, TempF=63, WindChillF=63, WindSpeedKm=10, SnowChance=0, WindSpeedKn=5, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=6, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=63, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=4, GolfIndex=0, UvWarn=0}
+], 20=net.sf.ezmorph.bean.MorphDynaBean@5c04b491[
+  {ValidDateUtc=9/20/2018 9:00:00 AM, CityId=USCA0967, hour_num=20, TempC=18, DewPtF=41, WndDirCardinal=NNW, WindDirectionDegrees=333, IconCode=21, HeatIndexF=64, date=9/20/2018 2:00:00 AM, HeatIndexC=18, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Thursday, SkyShort=Clear, ValidDateLocal=9/20/2018 2:00:00 AM, RelHumidity=43, WindChillC=18, TempF=64, WindChillF=64, WindSpeedKm=11, SnowChance=0, WindSpeedKn=6, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=7, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=64, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=5, GolfIndex=0, UvWarn=0}
+], 45=net.sf.ezmorph.bean.MorphDynaBean@38eacac9[
+  {ValidDateUtc=9/21/2018 10:00:00 AM, CityId=USCA0967, hour_num=45, TempC=16, DewPtF=46, WndDirCardinal=ESE, WindDirectionDegrees=113, IconCode=21, HeatIndexF=60, date=9/21/2018 3:00:00 AM, HeatIndexC=16, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/21/2018 3:00:00 AM, RelHumidity=59, WindChillC=16, TempF=60, WindChillF=60, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=60, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=8, GolfIndex=0, UvWarn=0}
+], 44=net.sf.ezmorph.bean.MorphDynaBean@3ea76f50[
+  {ValidDateUtc=9/21/2018 9:00:00 AM, CityId=USCA0967, hour_num=44, TempC=17, DewPtF=46, WndDirCardinal=ESE, WindDirectionDegrees=108, IconCode=21, HeatIndexF=62, date=9/21/2018 2:00:00 AM, HeatIndexC=17, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/21/2018 2:00:00 AM, RelHumidity=56, WindChillC=17, TempF=62, WindChillF=62, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=62, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=8, GolfIndex=0, UvWarn=0}
+], 47=net.sf.ezmorph.bean.MorphDynaBean@627d0d52[
+  {ValidDateUtc=9/21/2018 12:00:00 PM, CityId=USCA0967, hour_num=47, TempC=15, DewPtF=46, WndDirCardinal=ESE, WindDirectionDegrees=121, IconCode=21, HeatIndexF=59, date=9/21/2018 5:00:00 AM, HeatIndexC=15, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/21/2018 5:00:00 AM, RelHumidity=62, WindChillC=15, TempF=59, WindChillF=59, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=59, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=8, GolfIndex=0, UvWarn=0}
+], 46=net.sf.ezmorph.bean.MorphDynaBean@7ff5b501[
+  {ValidDateUtc=9/21/2018 11:00:00 AM, CityId=USCA0967, hour_num=46, TempC=16, DewPtF=46, WndDirCardinal=ESE, WindDirectionDegrees=124, IconCode=21, HeatIndexF=60, date=9/21/2018 4:00:00 AM, HeatIndexC=16, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Friday, SkyShort=Clear, ValidDateLocal=9/21/2018 4:00:00 AM, RelHumidity=61, WindChillC=16, TempF=60, WindChillF=60, WindSpeedKm=3, SnowChance=0, WindSpeedKn=2, VisibilityMiles=10, VisibilityKM=16, SkyLong=Clear, UvIdx=0, SkyCode=97, WndSpdMph=2, PrecipChance=0, CloudCoverage=0, SkyMedium=Clear, FeelsLikeF=60, UvDescr=Low, SkyCodeExtended=3100, GolfCategory=Very Poor, DewPointC=8, GolfIndex=0, UvWarn=0}
+], 10=net.sf.ezmorph.bean.MorphDynaBean@5c3e9648[
+  {ValidDateUtc=9/19/2018 11:00:00 PM, CityId=USCA0967, hour_num=10, TempC=31, DewPtF=44, WndDirCardinal=NW, WindDirectionDegrees=327, IconCode=1, HeatIndexF=87, date=9/19/2018 4:00:00 PM, HeatIndexC=31, report_time_utc=9/19/2018 8:45:58 AM, DayOfWeek=Wednesday, SkyShort=Sunny, ValidDateLocal=9/19/2018 4:00:00 PM, RelHumidity=23, WindChillC=31, TempF=87, WindChillF=87, WindSpeedKm=13, SnowChance=0, WindSpeedKn=7, VisibilityMiles=10, VisibilityKM=16, SkyLong=Sunny, UvIdx=3, SkyCode=85, WndSpdMph=8, PrecipChance=0, CloudCoverage=0, SkyMedium=Sunny, FeelsLikeF=87, UvDescr=Moderate, SkyCodeExtended=3200, GolfCategory=Very Good, DewPointC=7, GolfIndex=8, UvWarn=0}
 ]}
 ]
         </div>
     
         <div class="daily">
-            net.sf.ezmorph.bean.MorphDynaBean@3a2fda4d[
-  {3=net.sf.ezmorph.bean.MorphDynaBean@1ba51313[
-  {CityId=USMI0248, ValidDateUtc=9/17/2018 12:00:00 AM, PhraseNight=, SkyText=Partly Cloudy, HiTempF=84, IconCode=12, GolfConditions=Very Good, WindDirectionCardinal=ENE, day_num=3, PhraseDay=Times of sun and clouds. Highs in the mid 80s and lows in the low 60s., MoonPhase=2, ValidDateLocal=9/17/2018 7:00:00 AM, RelHumidity=73, LoTempF=63, WindDirection=76, Sunset=07:44:28 pm, HiTempC=29, LowTempC=17, IconCodeNight=98, WindSpeedKm=8, SnowChance=0, day_text=Day: Times of sun and clouds. Highs in the mid 80s and lows in the low 60s., WindSpeedKn=4, UvIdx=6, SkyCode=66, Sunrise=07:20:11 am, Moonset=12:18:32 am, SkyTextNight=Partly Cloudy, PrecipChance=20, WindSpeedMph=5, MoonPhaseText=First Quarter, CloudCoverage=38, Moonrise=03:32:16 pm, UvDescr=High, GolfIndex=9, ShortPhrase=Partly cloudy, UvWarn=0}
-], 2=net.sf.ezmorph.bean.MorphDynaBean@72875292[
-  {CityId=USMI0248, ValidDateUtc=9/16/2018 12:00:00 AM, PhraseNight=, SkyText=Mostly Sunny, HiTempF=85, IconCode=10, GolfConditions=Very Good, WindDirectionCardinal=ESE, day_num=2, PhraseDay=A few clouds. Highs in the mid 80s and lows in the low 60s., MoonPhase=1, ValidDateLocal=9/16/2018 7:00:00 AM, RelHumidity=75, LoTempF=63, WindDirection=120, Sunset=07:46:14 pm, HiTempC=29, LowTempC=17, IconCodeNight=102, WindSpeedKm=10, SnowChance=0, day_text=Day: A few clouds. Highs in the mid 80s and lows in the low 60s., WindSpeedKn=5, UvIdx=6, SkyCode=65, Sunrise=07:19:06 am, Moonset=12:01:00 am, SkyTextNight=Mostly Clear, PrecipChance=20, WindSpeedMph=6, MoonPhaseText=Waxing Crescent, CloudCoverage=31, Moonrise=02:37:54 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Plenty of sun, UvWarn=0}
-], 1=net.sf.ezmorph.bean.MorphDynaBean@123e29fc[
-  {CityId=USMI0248, ValidDateUtc=9/15/2018 12:00:00 AM, PhraseNight=A few clouds. Low 64F. Winds light and variable., SkyText=AM Clouds / PM Sun, HiTempF=82, IconCode=12, GolfConditions=Very Good, WindDirectionCardinal=NE, day_num=1, PhraseDay=Cloudy skies early will become partly cloudy later in the day. High 82F. Winds light and variable., MoonPhase=1, ValidDateLocal=9/15/2018 7:00:00 AM, RelHumidity=76, LoTempF=64, WindDirection=46, Sunset=07:48:00 pm, HiTempC=28, LowTempC=18, IconCodeNight=98, WindSpeedKm=8, SnowChance=0, day_text=Day: Cloudy skies early will become partly cloudy later in the day. High 82F. Winds light and variable. Night: A few clouds. Low 64F. Winds light and variable., WindSpeedKn=4, UvIdx=5, SkyCode=66, Sunrise=07:18:01 am, Moonset=11:37:46 pm, SkyTextNight=Partly Cloudy, PrecipChance=20, WindSpeedMph=5, MoonPhaseText=Waxing Crescent, CloudCoverage=65, Moonrise=01:40:00 pm, UvDescr=Moderate, GolfIndex=9, ShortPhrase=Clouds giving way to sun , UvWarn=0}
-], 0=net.sf.ezmorph.bean.MorphDynaBean@2f3668bf[
-  {CityId=USMI0248, ValidDateUtc=9/14/2018 12:00:00 AM, PhraseNight=A few passing clouds. Areas of patchy fog developing. Low around 60F. Winds light and variable., SkyText=Mostly Clear, HiTempF=80, IconCode=10, GolfConditions=Very Poor, WindDirectionCardinal=NNE, day_num=0, PhraseDay=, MoonPhase=1, ValidDateLocal=9/14/2018 7:00:00 AM, RelHumidity=81, LoTempF=60, WindDirection=29, Sunset=07:49:46 pm, HiTempC=27, LowTempC=16, IconCodeNight=102, WindSpeedKm=6, SnowChance=0, day_text=Night: A few passing clouds. Areas of patchy fog developing. Low around 60F. Winds light and variable., WindSpeedKn=3, UvIdx=0, SkyCode=65, Sunrise=07:16:56 am, Moonset=11:00:16 pm, SkyTextNight=Mostly Clear, PrecipChance=20, WindSpeedMph=4, MoonPhaseText=Waxing Crescent, CloudCoverage=15, Moonrise=12:37:32 pm, UvDescr=Low, GolfIndex=0, ShortPhrase=Mainly clear, UvWarn=0}
-], 7=net.sf.ezmorph.bean.MorphDynaBean@1d16ebd0[
-  {CityId=USMI0248, ValidDateUtc=9/21/2018 12:00:00 AM, PhraseNight=, SkyText=AM Thunderstorms, HiTempF=70, IconCode=17, GolfConditions=Good, WindDirectionCardinal=WNW, day_num=7, PhraseDay=Morning thunderstorms. Highs in the low 70s and lows in the mid 40s., MoonPhase=3, ValidDateLocal=9/21/2018 7:00:00 AM, RelHumidity=77, LoTempF=46, WindDirection=282, Sunset=07:37:19 pm, HiTempC=21, LowTempC=8, IconCodeNight=98, WindSpeedKm=26, SnowChance=0, day_text=Day: Morning thunderstorms. Highs in the low 70s and lows in the mid 40s., WindSpeedKn=14, UvIdx=2, SkyCode=96, Sunrise=07:24:33 am, Moonset=03:44:39 am, SkyTextNight=Partly Cloudy, PrecipChance=60, WindSpeedMph=16, MoonPhaseText=Waxing Gibbous, CloudCoverage=88, Moonrise=06:17:49 pm, UvDescr=Low, GolfIndex=6, ShortPhrase=Morning thunderstorms, UvWarn=0}
-], 6=net.sf.ezmorph.bean.MorphDynaBean@4bd3b39b[
-  {CityId=USMI0248, ValidDateUtc=9/20/2018 12:00:00 AM, PhraseNight=, SkyText=Partly Cloudy, HiTempF=80, IconCode=12, GolfConditions=Very Good, WindDirectionCardinal=SSE, day_num=6, PhraseDay=Times of sun and clouds. Highs in the low 80s and lows in the mid 60s., MoonPhase=3, ValidDateLocal=9/20/2018 7:00:00 AM, RelHumidity=74, LoTempF=64, WindDirection=157, Sunset=07:39:07 pm, HiTempC=27, LowTempC=18, IconCodeNight=116, WindSpeedKm=19, SnowChance=0, day_text=Day: Times of sun and clouds. Highs in the low 80s and lows in the mid 60s., WindSpeedKn=10, UvIdx=5, SkyCode=66, Sunrise=07:23:27 am, Moonset=02:47:46 am, SkyTextNight=Thunderstorms Late, PrecipChance=20, WindSpeedMph=12, MoonPhaseText=Waxing Gibbous, CloudCoverage=54, Moonrise=05:43:42 pm, UvDescr=Moderate, GolfIndex=9, ShortPhrase=Mix of sun and clouds, UvWarn=0}
-], 5=net.sf.ezmorph.bean.MorphDynaBean@37b4ac01[
-  {CityId=USMI0248, ValidDateUtc=9/19/2018 12:00:00 AM, PhraseNight=, SkyText=Partly Cloudy, HiTempF=73, IconCode=12, GolfConditions=Excellent, WindDirectionCardinal=NE, day_num=5, PhraseDay=Mix of sun and clouds. Highs in the low 70s and lows in the upper 50s., MoonPhase=3, ValidDateLocal=9/19/2018 7:00:00 AM, RelHumidity=73, LoTempF=57, WindDirection=35, Sunset=07:40:54 pm, HiTempC=23, LowTempC=14, IconCodeNight=98, WindSpeedKm=11, SnowChance=0, day_text=Day: Mix of sun and clouds. Highs in the low 70s and lows in the upper 50s., WindSpeedKn=6, UvIdx=6, SkyCode=66, Sunrise=07:22:22 am, Moonset=01:54:21 am, SkyTextNight=Partly Cloudy, PrecipChance=20, WindSpeedMph=7, MoonPhaseText=Waxing Gibbous, CloudCoverage=62, Moonrise=05:04:42 pm, UvDescr=High, GolfIndex=10, ShortPhrase=Times of sun and clouds, UvWarn=0}
-], 4=net.sf.ezmorph.bean.MorphDynaBean@36889239[
-  {CityId=USMI0248, ValidDateUtc=9/18/2018 12:00:00 AM, PhraseNight=, SkyText=Partly Cloudy, HiTempF=84, IconCode=12, GolfConditions=Very Good, WindDirectionCardinal=WNW, day_num=4, PhraseDay=Partly cloudy. Highs in the mid 80s and lows in the upper 50s., MoonPhase=3, ValidDateLocal=9/18/2018 7:00:00 AM, RelHumidity=73, LoTempF=57, WindDirection=291, Sunset=07:42:41 pm, HiTempC=29, LowTempC=14, IconCodeNight=98, WindSpeedKm=18, SnowChance=0, day_text=Day: Partly cloudy. Highs in the mid 80s and lows in the upper 50s., WindSpeedKn=10, UvIdx=6, SkyCode=66, Sunrise=07:21:17 am, Moonset=01:04:25 am, SkyTextNight=Partly Cloudy, PrecipChance=20, WindSpeedMph=11, MoonPhaseText=Waxing Gibbous, CloudCoverage=28, Moonrise=04:20:42 pm, UvDescr=High, GolfIndex=9, ShortPhrase=Times of sun and clouds, UvWarn=0}
-], 9=net.sf.ezmorph.bean.MorphDynaBean@64157514[
-  {CityId=USMI0248, ValidDateUtc=9/23/2018 12:00:00 AM, PhraseNight=, SkyText=Mostly Sunny, HiTempF=65, IconCode=10, GolfConditions=Very Good, WindDirectionCardinal=E, day_num=9, PhraseDay=More sun than clouds. Highs in the mid 60s and lows in the mid 40s., MoonPhase=3, ValidDateLocal=9/23/2018 7:00:00 AM, RelHumidity=67, LoTempF=46, WindDirection=97, Sunset=07:33:45 pm, HiTempC=18, LowTempC=8, IconCodeNight=98, WindSpeedKm=11, SnowChance=0, day_text=Day: More sun than clouds. Highs in the mid 60s and lows in the mid 40s., WindSpeedKn=6, UvIdx=5, SkyCode=65, Sunrise=07:26:44 am, Moonset=05:43:20 am, SkyTextNight=Partly Cloudy, PrecipChance=20, WindSpeedMph=7, MoonPhaseText=Waxing Gibbous, CloudCoverage=24, Moonrise=07:18:13 pm, UvDescr=Moderate, GolfIndex=9, ShortPhrase=Plenty of sun, UvWarn=0}
-], 8=net.sf.ezmorph.bean.MorphDynaBean@34735177[
-  {CityId=USMI0248, ValidDateUtc=9/22/2018 12:00:00 AM, PhraseNight=, SkyText=Partly Cloudy, HiTempF=62, IconCode=12, GolfConditions=Very Good, WindDirectionCardinal=NNE, day_num=8, PhraseDay=Times of sun and clouds. Highs in the low 60s and lows in the mid 40s., MoonPhase=3, ValidDateLocal=9/22/2018 7:00:00 AM, RelHumidity=64, LoTempF=44, WindDirection=33, Sunset=07:35:32 pm, HiTempC=17, LowTempC=7, IconCodeNight=98, WindSpeedKm=16, SnowChance=0, day_text=Day: Times of sun and clouds. Highs in the low 60s and lows in the mid 40s., WindSpeedKn=9, UvIdx=5, SkyCode=66, Sunrise=07:25:38 am, Moonset=04:42:54 am, SkyTextNight=Partly Cloudy, PrecipChance=20, WindSpeedMph=10, MoonPhaseText=Waxing Gibbous, CloudCoverage=46, Moonrise=06:49:07 pm, UvDescr=Moderate, GolfIndex=8, ShortPhrase=Mix of sun and clouds, UvWarn=0}
-], update_time_utc=9/14/2018 7:28:05 PM}
+            net.sf.ezmorph.bean.MorphDynaBean@10fc8048[
+  {3=net.sf.ezmorph.bean.MorphDynaBean@3149ffae[
+  {CityId=USCA0967, ValidDateUtc=9/22/2018 12:00:00 AM, PhraseNight=, SkyText=Sunny, HiTempF=91, IconCode=1, GolfConditions=Very Good, WindDirectionCardinal=SSW, day_num=3, PhraseDay=Abundant sunshine. Highs in the low 90s and lows in the mid 50s., MoonPhase=3, ValidDateLocal=9/22/2018 7:00:00 AM, RelHumidity=37, LoTempF=54, WindDirection=209, Sunset=07:02:43 pm, HiTempC=33, WindSpeedKm=11, LowTempC=12, IconCodeNight=97, SnowChance=0, day_text=Day: Abundant sunshine. Highs in the low 90s and lows in the mid 50s., WindSpeedKn=6, UvIdx=7, SkyCode=85, Sunrise=06:53:58 am, Moonset=04:25:05 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=7, MoonPhaseText=Waxing Gibbous, CloudCoverage=3, Moonrise=06:14:00 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Abundant sunshine, UvWarn=0}
+], 2=net.sf.ezmorph.bean.MorphDynaBean@713111c9[
+  {CityId=USCA0967, ValidDateUtc=9/21/2018 12:00:00 AM, PhraseNight=, SkyText=Sunny, HiTempF=93, IconCode=1, GolfConditions=Good, WindDirectionCardinal=SSW, day_num=2, PhraseDay=Abundant sunshine. Highs in the low 90s and lows in the mid 50s., MoonPhase=3, ValidDateLocal=9/21/2018 7:00:00 AM, RelHumidity=33, LoTempF=55, WindDirection=209, Sunset=07:04:17 pm, HiTempC=34, WindSpeedKm=11, LowTempC=13, IconCodeNight=97, SnowChance=0, day_text=Day: Abundant sunshine. Highs in the low 90s and lows in the mid 50s., WindSpeedKn=6, UvIdx=7, SkyCode=85, Sunrise=06:53:06 am, Moonset=03:27:46 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=7, MoonPhaseText=Waxing Gibbous, CloudCoverage=0, Moonrise=05:40:43 pm, UvDescr=High, GolfIndex=7, ShortPhrase=Sunny, UvWarn=0}
+], 1=net.sf.ezmorph.bean.MorphDynaBean@4c86dd2d[
+  {CityId=USCA0967, ValidDateUtc=9/20/2018 12:00:00 AM, PhraseNight=Clear skies. Low around 55F. Winds light and variable., SkyText=Sunny, HiTempF=93, IconCode=1, GolfConditions=Good, WindDirectionCardinal=NNW, day_num=1, PhraseDay=A mainly sunny sky. High 93F. Winds NNW at 5 to 10 mph., MoonPhase=3, ValidDateLocal=9/20/2018 7:00:00 AM, RelHumidity=25, LoTempF=55, WindDirection=333, Sunset=07:05:51 pm, HiTempC=34, WindSpeedKm=10, LowTempC=13, IconCodeNight=97, SnowChance=0, day_text=Day: A mainly sunny sky. High 93F. Winds NNW at 5 to 10 mph. Night: Clear skies. Low around 55F. Winds light and variable., WindSpeedKn=5, UvIdx=7, SkyCode=85, Sunrise=06:52:13 am, Moonset=02:32:58 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=6, MoonPhaseText=Waxing Gibbous, CloudCoverage=0, Moonrise=05:04:52 pm, UvDescr=High, GolfIndex=7, ShortPhrase=Abundant sunshine, UvWarn=0}
+], 0=net.sf.ezmorph.bean.MorphDynaBean@2a22dc9b[
+  {CityId=USCA0967, ValidDateUtc=9/19/2018 12:00:00 AM, PhraseNight=A clear sky. Low 58F. Winds NW at 5 to 10 mph., SkyText=Sunny, HiTempF=88, IconCode=1, GolfConditions=Very Good, WindDirectionCardinal=WNW, day_num=0, PhraseDay=Sunny. High 88F. Winds WNW at 5 to 10 mph., MoonPhase=3, ValidDateLocal=9/19/2018 7:00:00 AM, RelHumidity=50, LoTempF=58, WindDirection=291, Sunset=07:07:25 pm, HiTempC=31, WindSpeedKm=13, LowTempC=14, IconCodeNight=97, SnowChance=0, day_text=Day: Sunny. High 88F. Winds WNW at 5 to 10 mph. Night: A clear sky. Low 58F. Winds NW at 5 to 10 mph., WindSpeedKn=7, UvIdx=7, SkyCode=85, Sunrise=06:51:21 am, Moonset=01:39:31 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=8, MoonPhaseText=Waxing Gibbous, CloudCoverage=1, Moonrise=04:25:30 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Abundant sunshine, UvWarn=0}
+], 7=net.sf.ezmorph.bean.MorphDynaBean@56c159b9[
+  {CityId=USCA0967, ValidDateUtc=9/26/2018 12:00:00 AM, PhraseNight=, SkyText=Mostly Sunny, HiTempF=87, IconCode=10, GolfConditions=Very Good, WindDirectionCardinal=SW, day_num=7, PhraseDay=A few clouds. Highs in the upper 80s and lows in the mid 50s., MoonPhase=5, ValidDateLocal=9/26/2018 7:00:00 AM, RelHumidity=39, LoTempF=54, WindDirection=217, Sunset=06:56:31 pm, HiTempC=31, WindSpeedKm=11, LowTempC=12, IconCodeNight=98, SnowChance=0, day_text=Day: A few clouds. Highs in the upper 80s and lows in the mid 50s., WindSpeedKn=6, UvIdx=6, SkyCode=65, Sunrise=06:57:28 am, Moonset=08:22:23 am, SkyTextNight=Partly Cloudy, PrecipChance=0, WindSpeedMph=7, MoonPhaseText=Waning Gibbous, CloudCoverage=23, Moonrise=08:14:43 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Plenty of sun, UvWarn=0}
+], 6=net.sf.ezmorph.bean.MorphDynaBean@2fe9ad2e[
+  {CityId=USCA0967, ValidDateUtc=9/25/2018 12:00:00 AM, PhraseNight=, SkyText=Sunny, HiTempF=89, IconCode=1, GolfConditions=Very Good, WindDirectionCardinal=SW, day_num=6, PhraseDay=Mainly sunny. Highs in the upper 80s and lows in the mid 50s., MoonPhase=5, ValidDateLocal=9/25/2018 7:00:00 AM, RelHumidity=35, LoTempF=55, WindDirection=226, Sunset=06:58:04 pm, HiTempC=32, WindSpeedKm=11, LowTempC=13, IconCodeNight=97, SnowChance=0, day_text=Day: Mainly sunny. Highs in the upper 80s and lows in the mid 50s., WindSpeedKn=6, UvIdx=6, SkyCode=85, Sunrise=06:56:36 am, Moonset=07:21:05 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=7, MoonPhaseText=Waning Gibbous, CloudCoverage=13, Moonrise=07:43:55 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Sunny, UvWarn=0}
+], 5=net.sf.ezmorph.bean.MorphDynaBean@1668bf95[
+  {CityId=USCA0967, ValidDateUtc=9/24/2018 12:00:00 AM, PhraseNight=, SkyText=Sunny, HiTempF=87, IconCode=1, GolfConditions=Very Good, WindDirectionCardinal=W, day_num=5, PhraseDay=Abundant sunshine. Highs in the upper 80s and lows in the mid 50s., MoonPhase=4, ValidDateLocal=9/24/2018 7:00:00 AM, RelHumidity=35, LoTempF=55, WindDirection=277, Sunset=06:59:37 pm, HiTempC=31, WindSpeedKm=10, LowTempC=13, IconCodeNight=97, SnowChance=0, day_text=Day: Abundant sunshine. Highs in the upper 80s and lows in the mid 50s., WindSpeedKn=5, UvIdx=6, SkyCode=85, Sunrise=06:55:43 am, Moonset=06:21:48 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=6, MoonPhaseText=Full, CloudCoverage=0, Moonrise=07:14:17 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Mainly sunny, UvWarn=0}
+], 4=net.sf.ezmorph.bean.MorphDynaBean@36f9dab1[
+  {CityId=USCA0967, ValidDateUtc=9/23/2018 12:00:00 AM, PhraseNight=, SkyText=Sunny, HiTempF=89, IconCode=1, GolfConditions=Very Good, WindDirectionCardinal=SW, day_num=4, PhraseDay=Abundant sunshine. Highs in the upper 80s and lows in the mid 50s., MoonPhase=3, ValidDateLocal=9/23/2018 7:00:00 AM, RelHumidity=39, LoTempF=54, WindDirection=225, Sunset=07:01:10 pm, HiTempC=32, WindSpeedKm=10, LowTempC=12, IconCodeNight=97, SnowChance=0, day_text=Day: Abundant sunshine. Highs in the upper 80s and lows in the mid 50s., WindSpeedKn=5, UvIdx=7, SkyCode=85, Sunrise=06:54:50 am, Moonset=05:22:33 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=6, MoonPhaseText=Waxing Gibbous, CloudCoverage=9, Moonrise=06:44:57 pm, UvDescr=High, GolfIndex=8, ShortPhrase=Sunshine, UvWarn=0}
+], 9=net.sf.ezmorph.bean.MorphDynaBean@4d84b6a9[
+  {CityId=USCA0967, ValidDateUtc=9/28/2018 12:00:00 AM, PhraseNight=, SkyText=Partly Cloudy, HiTempF=84, IconCode=12, GolfConditions=Very Good, WindDirectionCardinal=SSW, day_num=9, PhraseDay=Mix of sun and clouds. Highs in the mid 80s and lows in the mid 50s., MoonPhase=5, ValidDateLocal=9/28/2018 7:00:00 AM, RelHumidity=48, LoTempF=54, WindDirection=209, Sunset=06:53:25 pm, HiTempC=29, WindSpeedKm=13, LowTempC=12, IconCodeNight=102, SnowChance=0, day_text=Day: Mix of sun and clouds. Highs in the mid 80s and lows in the mid 50s., WindSpeedKn=7, UvIdx=6, SkyCode=66, Sunrise=06:59:14 am, Moonset=10:28:08 am, SkyTextNight=Mostly Clear, PrecipChance=0, WindSpeedMph=8, MoonPhaseText=Waning Gibbous, CloudCoverage=38, Moonrise=09:22:44 pm, UvDescr=High, GolfIndex=9, ShortPhrase=Mix of sun and clouds, UvWarn=0}
+], 8=net.sf.ezmorph.bean.MorphDynaBean@43f43901[
+  {CityId=USCA0967, ValidDateUtc=9/27/2018 12:00:00 AM, PhraseNight=, SkyText=Mostly Sunny, HiTempF=84, IconCode=10, GolfConditions=Very Good, WindDirectionCardinal=SSW, day_num=8, PhraseDay=More sun than clouds. Highs in the mid 80s and lows in the mid 50s., MoonPhase=5, ValidDateLocal=9/27/2018 7:00:00 AM, RelHumidity=46, LoTempF=54, WindDirection=210, Sunset=06:54:58 pm, HiTempC=29, WindSpeedKm=11, LowTempC=12, IconCodeNight=97, SnowChance=0, day_text=Day: More sun than clouds. Highs in the mid 80s and lows in the mid 50s., WindSpeedKn=6, UvIdx=6, SkyCode=65, Sunrise=06:58:21 am, Moonset=09:24:07 am, SkyTextNight=Clear, PrecipChance=0, WindSpeedMph=7, MoonPhaseText=Waning Gibbous, CloudCoverage=24, Moonrise=08:47:18 pm, UvDescr=High, GolfIndex=9, ShortPhrase=A few clouds, UvWarn=0}
+], update_time_utc=9/19/2018 1:27:37 PM}
 ]
         </div>
     
         <div class="update_time_utc">
-            9/14/2018 7:32:12 PM
+            9/19/2018 2:11:57 PM
         </div>
     
         <div class="City">
-            net.sf.ezmorph.bean.MorphDynaBean@67596873[
-  {CountryName=United States, ClimateStation=202395, IsDaylightSavings=True, StnIcao=KLAN, update_time_utc=9/14/2018 5:58:17 PM, StateName=Michigan, Name=East Lansing, PreferredZipCode=48826, CountryFips=US, ObservesDaylightSavings=True, CountyFips=26065, SynopticId=72539053, Latitude=42.74, StateAbbreviation=MI, Id=USMI0248, Longitude=-84.48, CountyName=Ingham, TimeZone=-5}
+            net.sf.ezmorph.bean.MorphDynaBean@56ca9381[
+  {CountryName=United States, ClimateStation=47633, IsDaylightSavings=True, StnIcao=KSAC, update_time_utc=9/19/2018 1:46:51 PM, StateName=California, Name=Sacramento, PreferredZipCode=95822, CountryFips=US, ObservesDaylightSavings=True, CountyFips=6067, SynopticId=72483000, Latitude=38.58, StateAbbreviation=CA, Id=USCA0967, Longitude=-121.49, CountyName=Sacramento, TimeZone=-8}
 ]
         </div>
     
         <div class="location_id">
-            USMI0248
+            USCA0967
         </div>
         
 </div>
@@ -2562,341 +2554,18 @@ DDO.socialShare = {
 
 
     
+        
+    
+    
+
+
+
     
         
                 
     
-
-
-
-    
-    
-        
-        
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-        
-        
-		
-                            
-                
-            
-            
-		        
-    
-
-
-
-
-
-    
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
-				
-		
-		
-		
-		
-		
-        
-        
-        
-
-        
-
-        
-	
 
 
 
@@ -2938,6 +2607,328 @@ DDO.socialShare = {
 
 
 
+    
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+				
+		
+		
+		
+		
+		
+        
+        
+        
+
+        
+
+        
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+        
+        
+		
+                            
+                
+            
+            
+		        
+    
+
+
+
+
+
 
 
 
@@ -2991,9 +2982,9 @@ DDO.socialShare = {
 	    
 	    
 	    
+            
 	    
 	    
-                        
 	    
 	    
         
@@ -3245,7 +3236,7 @@ DDO.socialShare = {
 
 					<h1 class="uppercase pull-xs-left">Atlanta Weather</h1>
 						<div class="pull-xs-left">
-						<span class="weather-share"> <!-- currentObject: PortalWebObjectWrapper [+       717#] /Pub/Web/AJC/Pages/weather.dwp [DwxProxy:EOM::WebPage, 2.0.126082419]  -->
+						<span class="weather-share"> <!-- currentObject: PortalWebObjectWrapper [+       715#] /Pub/Web/AJC/Pages/weather.dwp [DwxProxy:EOM::WebPage, 2.0.126082419]  -->
 <!-- cacheScope.message:   -->
 <!-- seoSerpDescription: Atlanta Weather today, Weather Forecast, updates and warnings for Metro Atlanta. In partnership with WSB-TV Severe Weather Team 2  -->
 <!-- seoEditorialDescription:   -->
@@ -3402,7 +3393,45 @@ DDO.socialShare = {
 					<div class="margin-bottom-12 clearfix"></div>
 					<div class="clearfix margin-bottom no-margin-bottom-md-down"></div>
 
-					<ul class="nav nav-tabs special-report-tabs" role="tablist">
+					<div class="county-weather-alerts module clearfix margin-bottom">
+        <div class="county-weather-alerts-header accordian clearfix">
+            
+            <div class="cm-icon-incident pull-xs-left"></div>
+            
+            <h3 class="pull-xs-left">Weather Alert</h3>
+    
+            <div class="alert-time hidden-sm-down pull-xs-left"">
+                <span class="cm-icon-clock"></span>
+                <span class="alert-time-remaining">11m</span>
+            </div>
+            
+            <div class="toggle-accordian"><i class="cm-icon-play"></i></div>
+        </div>
+        
+        <div class="county-weather-alerts-container">
+            <div class="left-pane hidden-sm-down">
+                <div class="county">
+        			
+                        <div data-county="Sacramento" class="county-name county-selected" data-county="Sacramento">Sacramento</div>
+    
+                    </div>
+                </div>
+            <div class="right-pane">
+    			<div class="county">
+        				<div class="accordian">
+                            <h4 class="county-name bold">Sacramento</h4>
+        
+                            <div class="toggle-accordian"><i class="cm-icon-play"></i></div>
+                        </div>
+        				<div class="alert-text alert-text-Sacramento county-selected">
+              				<p class="alert-heading">Fire Weather Watch thru until 12:00 AM (EDT) Friday, September 21, 2018</p>
+                                
+                                <br /> Eastern Portion of Shasta/Trinity NF-<br /> Northern Sacramento Valley to Southern Tehama County Line Below<br /> 1000 Ft-<br /> Central Sacramento Valley in Glenn, Colusa, Yuba, Northern<br /> Sutter, and Butte County Below 1000 Ft-<br /> Southern Sacramento Valley in Yolo-<br /> Sacramento Far Western Placer, southern Sutter and Solano County<br /> Below 1000 Ft-Southeast Edge Shasta-<br /> Trinity NF and Western Portions of Tehama-Glenn Unit-<br /> Lake County Portion of Lake-Napa-Sonoma Unit-<br /> Northern Sierra Foothills from 1000 to 3000 Ft. Includes portions<br /> of Shasta-Trinity and Butte Units-Eastern Mendocino NF-<br /> 409 AM PDT Wed Sep 19 2018<br /><br /> ...FIRE WEATHER WATCH REMAINS IN EFFECT FROM THIS EVENING THROUGH<br /> THURSDAY AFTERNOON FOR GUSTY WIND AND LOW HUMIDITY FOR FIRE<br /> WEATHER ZONES 213, 215, 216, 217, 263, 264, 266, AND 279...<br /><br /> AFFECTED AREA...Fire weather zone 213, 215, extreme northern<br />   and western portion of Zone 216, extreme western portion of<br />   Zone 216, zone 263, 264, 266 and 279.<br /><br /> WIND...North wind 10 to 20 mph with gusts to 30 mph.<br /><br /> HUMIDITY...Overnight humidity recoveries as low as 30 to 40<br />   percent with afternoon minimum humidities of 15 percent or<br />   less.<br /><br /> IMPACTS...any fires that develop will likely spread rapidly.<br />   Outdoor burning is not recommended.<br /><br /> PRECAUTIONARY/PREPAREDNESS ACTIONS...<br /><br /> A Fire Weather Watch means that critical fire weather conditions<br /> are forecast to occur. Listen for later forecasts and possible<br /> Red Flag Warnings.<br /><br /><br /><br /> Interact with us via social media<br /> www.facebook.com/nws.sacramento<br /> www.twitter.com/nwssacramento<br /><br /><br /></div>
+                    </div>
+    			</div>
+        </div>
+    </div>
+<ul class="nav nav-tabs special-report-tabs" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							href="#today_tab"> <span class="special-report-tab-text">Today</span>
 						</a></li>
@@ -3439,33 +3468,34 @@ DDO.socialShare = {
 
 		<section class="today-tomorrow-weather today-weather" id="today_tab">
 					<div class="add-on-heading clearfix">
-    <h2 class="section-heading">Today: &nbsp; <span class="font-nav-light">Fri, Sep 14</span></h2>
+    <h2 class="section-heading">Today: &nbsp; <span class="font-nav-light">Wed, Sep 19</span></h2>
     <div class="pull-xs-right hidden-sm-down">
         <span class="cm-icon-clock cm-icon"></span>
-        <span class="timestamp">33m</span>    
+        <span class="timestamp">14m</span>    
     </div>
 </div>
 
 <div class="module clearfix">
     <div class="pull-xs-left padded left-pane">
-        <div class="location center-text-xs margin-bottom"><strong>East Lansing, MI &nbsp; 48823</strong></div>
+        <div class="location center-text-xs margin-bottom"><strong>Sacramento, CA &nbsp; 95814</strong></div>
         <div class="center-text-xs pull-md-left margin-bottom">
-            <div class="tempurature large-temperature pull-xl-left">79</div>
-            <div class="margin-top large hidden-lg-down pull-xl-left weather weather-12" style="width: 3rem;"></div>
+            <div class="tempurature large-temperature pull-xl-left">53</div>
+            <div class="margin-top large hidden-lg-down pull-xl-left weather weather-1" style="width: 3rem;"></div>
             <div class="clearfix"></div>
-            <div class="font-nav uppercase feels-like">Feels like <span class="temperature">80</span></div>
+            <div class="font-nav uppercase feels-like">Feels like <span class="temperature">53</span></div>
         </div>
         <div class="center-text-xs pull-md-right margin-bottom">
-            <div><strong>High:</strong> <span class="temperature">80</span> | <strong>Low:</strong> <span class="temperature">60</span></div>
-            <div><strong>Chance of rain:</strong> 20%</div>
-            <div><strong>Wind:</strong> 3 mph</div>
+            <div><strong>High:</strong> <span class="temperature">88</span> | <strong>Low:</strong> <span class="temperature">58</span></div>
+            <div><strong>Chance of rain:</strong> 0%</div>
+            <div><strong>Wind:</strong> Calm</div>
         </div>
         <div class="clearfix"></div>
         <p>
-            Night: A few passing clouds. Areas of patchy fog developing. Low around 60F. Winds light and variable.</p>
+            <span><strong>Day:</strong></span>
+            Sunny. High 88F. Winds WNW at 5 to 10 mph.</p>
         <p>
             <span><strong>Tonight:</strong></span>
-            A few passing clouds. Areas of patchy fog developing. Low around 60F. Winds light and variable.</p>
+            A clear sky. Low 58F. Winds NW at 5 to 10 mph.</p>
     </div>
     <div class="pull-xs-right right-pane hidden-sm-down">
         <div class="divider border-left"></div>
@@ -3476,19 +3506,19 @@ DDO.socialShare = {
             <table>
                 <tr>
                     <td>Sunrise</td>
-                    <td>7:16 AM</td>
+                    <td>6:51 AM</td>
                 </tr>
                 <tr>
                     <td>Pressure</td>
-                    <td>30.16 in.</td>
+                    <td>29.87 in.</td>
                 </tr>
                 <tr>
                     <td>Dew Point</td>
-                    <td><span class="temperature">61</span></td>
+                    <td><span class="temperature">51</span></td>
                 </tr>
                 <tr>
                     <td>Visibility</td>
-                    <td>10 mi.</td>
+                    <td>9 mi.</td>
                 </tr>
                 <tr>
                     <td>&nbsp;</td>
@@ -3496,11 +3526,11 @@ DDO.socialShare = {
                 </tr>
                 <tr>
                     <td>Sunset</td>
-                    <td>7:49 PM</td>
+                    <td>7:07 PM</td>
                 </tr>
                 <tr>
                     <td>Humidity</td>
-                    <td>54%</td>
+                    <td>93%</td>
                 </tr>
                 <tr>
                     <td>Precipitation</td>
@@ -3508,7 +3538,7 @@ DDO.socialShare = {
                 </tr>
                 <tr>
                     <td>UV Index</td>
-                    <td>0</td>
+                    <td>7</td>
                 </tr>
             </table>
         </div>
@@ -3517,31 +3547,31 @@ DDO.socialShare = {
 
 <div id="todayData" style="display:none;">
     <!-- TODAY DATA STRUCTURE DEMO -->
-    <!-- HEADER: Fri, Sep 14 -->
-    <!-- TIMESTAMP: 33m -->
-    <div>temp: 79&deg;</div>
+    <!-- HEADER: Wed, Sep 19 -->
+    <!-- TIMESTAMP: 14m -->
+    <div>temp: 53&deg;</div>
     <div>iconCode: 
-        <div class="weather weather-12"></div>
+        <div class="weather weather-1"></div>
     </div>
-    <div>feelsLike: 80&deg;</div>
-    <div>hiTemp: 80&deg;</div>
-    <div>lowTemp: 60&deg;</div>
-    <div>precipChance: 20%</div>
-    <div>wind: 3 mph</div>
-    <div>dayPhrase: Night: A few passing clouds. Areas of patchy fog developing. Low around 60F. Winds light and variable.</div>
-    <div>nightPhrase: A few passing clouds. Areas of patchy fog developing. Low around 60F. Winds light and variable.</div>
-    <div>sunrise: 7:16 AM</div>
-    <div>sunset: 7:49 PM</div>
-    <div>pressure: 30.16 in.</div>
-    <div>dewPoint: 61&deg;</div>
-    <div>visibility: 10 mi.</div>
-    <div>humidity: 54%</div>
+    <div>feelsLike: 53&deg;</div>
+    <div>hiTemp: 88&deg;</div>
+    <div>lowTemp: 58&deg;</div>
+    <div>precipChance: 0%</div>
+    <div>wind: Calm</div>
+    <div>dayPhrase: Sunny. High 88F. Winds WNW at 5 to 10 mph.</div>
+    <div>nightPhrase: A clear sky. Low 58F. Winds NW at 5 to 10 mph.</div>
+    <div>sunrise: 6:51 AM</div>
+    <div>sunset: 7:07 PM</div>
+    <div>pressure: 29.87 in.</div>
+    <div>dewPoint: 51&deg;</div>
+    <div>visibility: 9 mi.</div>
+    <div>humidity: 93%</div>
     <div>precip: 0.0 in.</div>
-    <div>uvIndex: 0</div>
-    <div>uvDescription: Low</div>
+    <div>uvIndex: 7</div>
+    <div>uvDescription: High</div>
 </div>
 <div class="add-on-module margin-bottom clearfix">
-						<span class="weather-share pull-xs-right"> <!-- currentObject: PortalWebObjectWrapper [+       717#] /Pub/Web/AJC/Pages/weather.dwp [DwxProxy:EOM::WebPage, 2.0.126082419]  -->
+						<span class="weather-share pull-xs-right"> <!-- currentObject: PortalWebObjectWrapper [+       715#] /Pub/Web/AJC/Pages/weather.dwp [DwxProxy:EOM::WebPage, 2.0.126082419]  -->
 <!-- cacheScope.message:   -->
 <!-- seoSerpDescription: Atlanta Weather today, Weather Forecast, updates and warnings for Metro Atlanta. In partnership with WSB-TV Severe Weather Team 2  -->
 <!-- seoEditorialDescription:   -->
@@ -3637,35 +3667,35 @@ DDO.socialShare = {
         <tbody>
             <tr>
                     <td>
-                        <strong>Fri&nbsp;9/14</strong>
+                        <strong>Fri&nbsp;9/21</strong>
                     </td>
                     <td>
-                        <span class="weather weather-10"></span>
+                        <span class="weather weather-1"></span>
                     </td>
                     <td>
-                        High: <span class="temperature">80</span> | Low: <span class="temperature">60</span>
-                    </td>
-                </tr>
-            <tr>
-                    <td>
-                        <strong>Sat&nbsp;9/15</strong>
-                    </td>
-                    <td>
-                        <span class="weather weather-12"></span>
-                    </td>
-                    <td>
-                        High: <span class="temperature">82</span> | Low: <span class="temperature">64</span>
+                        High: <span class="temperature">93</span> | Low: <span class="temperature">55</span>
                     </td>
                 </tr>
             <tr>
                     <td>
-                        <strong>Sun&nbsp;9/16</strong>
+                        <strong>Sat&nbsp;9/22</strong>
                     </td>
                     <td>
-                        <span class="weather weather-10"></span>
+                        <span class="weather weather-1"></span>
                     </td>
                     <td>
-                        High: <span class="temperature">85</span> | Low: <span class="temperature">63</span>
+                        High: <span class="temperature">91</span> | Low: <span class="temperature">54</span>
+                    </td>
+                </tr>
+            <tr>
+                    <td>
+                        <strong>Sun&nbsp;9/23</strong>
+                    </td>
+                    <td>
+                        <span class="weather weather-1"></span>
+                    </td>
+                    <td>
+                        High: <span class="temperature">89</span> | Low: <span class="temperature">54</span>
                     </td>
                 </tr>
             </tbody>
@@ -3806,7 +3836,7 @@ DDO.socialShare = {
 	<div id="hour_by_hour_tab" class="col-main-leafpage">
 		<section>
 			<div class="add-on-heading clearfix">
-    <h2 class="section-heading">Hour-By-Hour: &nbsp; <span class="font-nav-light">Fri, Sep 14</span></h2>
+    <h2 class="section-heading">Hour-By-Hour: &nbsp; <span class="font-nav-light">Wed, Sep 19</span></h2>
     <div class="pull-xs-right hidden-sm-down">
         <span class="cm-icon-clock cm-icon"></span>
         <span class="timestamp">6m</span>    
@@ -3817,29 +3847,29 @@ DDO.socialShare = {
     <table>
         <tbody>
             <tr>
-                <td class="center-text">4 PM<div>
-                            <span class="temperature"><strong>77</strong></span>
+                <td class="center-text">8 AM<div>
+                            <span class="temperature"><strong>56</strong></span>
                     	    <span class="weather weather-1"></span>
                         </div>
                     	<div>Rain 0%</div>
                     </td>
         
-                <td class="center-text">5 PM<div>
-                            <span class="temperature"><strong>77</strong></span>
+                <td class="center-text">9 AM<div>
+                            <span class="temperature"><strong>59</strong></span>
                     	    <span class="weather weather-1"></span>
                         </div>
                     	<div>Rain 0%</div>
                     </td>
         
-                <td class="center-text">6 PM<div>
-                            <span class="temperature"><strong>79</strong></span>
+                <td class="center-text">10 AM<div>
+                            <span class="temperature"><strong>64</strong></span>
                     	    <span class="weather weather-1"></span>
                         </div>
                     	<div>Rain 0%</div>
                     </td>
         
-                <td class="center-text">7 PM<div>
-                            <span class="temperature"><strong>77</strong></span>
+                <td class="center-text">11 AM<div>
+                            <span class="temperature"><strong>70</strong></span>
                     	    <span class="weather weather-1"></span>
                         </div>
                     	<div>Rain 0%</div>
@@ -3854,147 +3884,147 @@ DDO.socialShare = {
     <table>
         <tbody>
             <tr>
+                    <td><strong>8 AM</strong></td>
+                    <td><span class="temperature">56</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>9 AM</strong></td>
+                    <td><span class="temperature">59</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>10 AM</strong></td>
+                    <td><span class="temperature">64</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>11 AM</strong></td>
+                    <td><span class="temperature">70</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>12 PM</strong></td>
+                    <td><span class="temperature">76</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>1 PM</strong></td>
+                    <td><span class="temperature">80</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>2 PM</strong></td>
+                    <td><span class="temperature">84</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                    <td><strong>3 PM</strong></td>
+                    <td><span class="temperature">86</span></td>
+                    <td><span class="weather weather-1"></span></td>
+                    <td>Sunny</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
                     <td><strong>4 PM</strong></td>
-                    <td><span class="temperature">77</span></td>
+                    <td><span class="temperature">87</span></td>
                     <td><span class="weather weather-1"></span></td>
                     <td>Sunny</td>
                     <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>5 PM</strong></td>
-                    <td><span class="temperature">77</span></td>
+                    <td><span class="temperature">87</span></td>
                     <td><span class="weather weather-1"></span></td>
                     <td>Sunny</td>
                     <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>6 PM</strong></td>
-                    <td><span class="temperature">79</span></td>
+                    <td><span class="temperature">86</span></td>
                     <td><span class="weather weather-1"></span></td>
                     <td>Sunny</td>
                     <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>7 PM</strong></td>
-                    <td><span class="temperature">77</span></td>
+                    <td><span class="temperature">82</span></td>
                     <td><span class="weather weather-1"></span></td>
                     <td>Sunny</td>
                     <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>8 PM</strong></td>
-                    <td><span class="temperature">73</span></td>
+                    <td><span class="temperature">77</span></td>
                     <td><span class="weather weather-21"></span></td>
                     <td>Clear</td>
                     <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>9 PM</strong></td>
-                    <td><span class="temperature">70</span></td>
+                    <td><span class="temperature">72</span></td>
                     <td><span class="weather weather-21"></span></td>
                     <td>Clear</td>
-                    <td>Chance of rain 10%</td>
+                    <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>10 PM</strong></td>
-                    <td><span class="temperature">68</span></td>
+                    <td><span class="temperature">69</span></td>
                     <td><span class="weather weather-21"></span></td>
                     <td>Clear</td>
-                    <td>Chance of rain 10%</td>
+                    <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>11 PM</strong></td>
-                    <td><span class="temperature">67</span></td>
-                    <td><span class="weather weather-21"></span></td>
-                    <td>Clear</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                        <td colspan="5"><span class="font-nav-light uppercase">Sat, Sep 15</span></td>
-                    </tr>
-                <tr>
-                    <td><strong>12 AM</strong></td>
                     <td><span class="temperature">66</span></td>
                     <td><span class="weather weather-21"></span></td>
                     <td>Clear</td>
-                    <td>Chance of rain 10%</td>
+                    <td>Chance of rain 0%</td>
+                </tr>
+            <tr>
+                        <td colspan="5"><span class="font-nav-light uppercase">Thu, Sep 20</span></td>
+                    </tr>
+                <tr>
+                    <td><strong>12 AM</strong></td>
+                    <td><span class="temperature">65</span></td>
+                    <td><span class="weather weather-21"></span></td>
+                    <td>Clear</td>
+                    <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>1 AM</strong></td>
                     <td><span class="temperature">65</span></td>
                     <td><span class="weather weather-21"></span></td>
                     <td>Clear</td>
-                    <td>Chance of rain 10%</td>
+                    <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>2 AM</strong></td>
                     <td><span class="temperature">64</span></td>
                     <td><span class="weather weather-21"></span></td>
                     <td>Clear</td>
-                    <td>Chance of rain 10%</td>
+                    <td>Chance of rain 0%</td>
                 </tr>
             <tr>
                     <td><strong>3 AM</strong></td>
-                    <td><span class="temperature">62</span></td>
-                    <td><span class="weather weather-30"></span></td>
-                    <td>Mostly Clear</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>4 AM</strong></td>
-                    <td><span class="temperature">62</span></td>
-                    <td><span class="weather weather-32"></span></td>
-                    <td>Partly Cloudy</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>5 AM</strong></td>
-                    <td><span class="temperature">62</span></td>
-                    <td><span class="weather weather-32"></span></td>
-                    <td>Partly Cloudy</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>6 AM</strong></td>
                     <td><span class="temperature">63</span></td>
-                    <td><span class="weather weather-32"></span></td>
-                    <td>Partly Cloudy</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>7 AM</strong></td>
-                    <td><span class="temperature">63</span></td>
-                    <td><span class="weather weather-32"></span></td>
-                    <td>Partly Cloudy</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>8 AM</strong></td>
-                    <td><span class="temperature">63</span></td>
-                    <td><span class="weather weather-11"></span></td>
-                    <td>Mostly Cloudy</td>
-                    <td>Chance of rain 20%</td>
-                </tr>
-            <tr>
-                    <td><strong>9 AM</strong></td>
-                    <td><span class="temperature">66</span></td>
-                    <td><span class="weather weather-2"></span></td>
-                    <td>Cloudy</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>10 AM</strong></td>
-                    <td><span class="temperature">69</span></td>
-                    <td><span class="weather weather-2"></span></td>
-                    <td>Cloudy</td>
-                    <td>Chance of rain 10%</td>
-                </tr>
-            <tr>
-                    <td><strong>11 AM</strong></td>
-                    <td><span class="temperature">73</span></td>
-                    <td><span class="weather weather-2"></span></td>
-                    <td>Cloudy</td>
-                    <td>Chance of rain 20%</td>
+                    <td><span class="weather weather-21"></span></td>
+                    <td>Clear</td>
+                    <td>Chance of rain 0%</td>
                 </tr>
             </tbody>
     </table>
@@ -4003,10 +4033,90 @@ DDO.socialShare = {
 
 <div id="hourlyWeatherData" style="display:none" >
 	<!-- HOURLY DATA STRUCTURE DEMO -->
-	<!-- HEADER: Fri, Sep 14 -->
+	<!-- HEADER: Wed, Sep 19 -->
 	<!-- TIMESTAMP: 6m -->
 	<br />
-	    <div>temp: 77&deg;</div>
+	    <div>temp: 56&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 8</div>
+	    <div>shortHour: 8 AM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 59&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 9</div>
+	    <div>shortHour: 9 AM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 64&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 10</div>
+	    <div>shortHour: 10 AM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 70&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 11</div>
+	    <div>shortHour: 11 AM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 76&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 12</div>
+	    <div>shortHour: 12 PM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 80&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 13</div>
+	    <div>shortHour: 1 PM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 84&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 14</div>
+	    <div>shortHour: 2 PM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 86&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+	    <div>skyLong: Sunny</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 15</div>
+	    <div>shortHour: 3 PM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
+	<br />
+	    <div>temp: 87&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-1"></div>
         </div>
@@ -4014,9 +4124,9 @@ DDO.socialShare = {
 	    <div>precipChance: 0%</div>
 	    <div>hour: 16</div>
 	    <div>shortHour: 4 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
-	    <div>temp: 77&deg;</div>
+	    <div>temp: 87&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-1"></div>
         </div>
@@ -4024,9 +4134,9 @@ DDO.socialShare = {
 	    <div>precipChance: 0%</div>
 	    <div>hour: 17</div>
 	    <div>shortHour: 5 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
-	    <div>temp: 79&deg;</div>
+	    <div>temp: 86&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-1"></div>
         </div>
@@ -4034,9 +4144,9 @@ DDO.socialShare = {
 	    <div>precipChance: 0%</div>
 	    <div>hour: 18</div>
 	    <div>shortHour: 6 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
-	    <div>temp: 77&deg;</div>
+	    <div>temp: 82&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-1"></div>
         </div>
@@ -4044,9 +4154,9 @@ DDO.socialShare = {
 	    <div>precipChance: 0%</div>
 	    <div>hour: 19</div>
 	    <div>shortHour: 7 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
-	    <div>temp: 73&deg;</div>
+	    <div>temp: 77&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-21"></div>
         </div>
@@ -4054,159 +4164,79 @@ DDO.socialShare = {
 	    <div>precipChance: 0%</div>
 	    <div>hour: 20</div>
 	    <div>shortHour: 8 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
-	    <div>temp: 70&deg;</div>
+	    <div>temp: 72&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-21"></div>
         </div>
 	    <div>skyLong: Clear</div>
-	    <div>precipChance: 10%</div>
+	    <div>precipChance: 0%</div>
 	    <div>hour: 21</div>
 	    <div>shortHour: 9 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
-	    <div>temp: 68&deg;</div>
+	    <div>temp: 69&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-21"></div>
         </div>
 	    <div>skyLong: Clear</div>
-	    <div>precipChance: 10%</div>
+	    <div>precipChance: 0%</div>
 	    <div>hour: 22</div>
 	    <div>shortHour: 10 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
-	<br />
-	    <div>temp: 67&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-21"></div>
-        </div>
-	    <div>skyLong: Clear</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 23</div>
-	    <div>shortHour: 11 PM</div>
-	    <div>headerDate: Fri, Sep 14</div>    
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
 	    <div>temp: 66&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-21"></div>
         </div>
 	    <div>skyLong: Clear</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 0</div>
-	    <!-- this is the start of the next day and should have an added row with the next day's date -->
-	       <!-- in addition to the hour's weather info -->
-	    <div>shortHour: 12 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
+	    <div>precipChance: 0%</div>
+	    <div>hour: 23</div>
+	    <div>shortHour: 11 PM</div>
+	    <div>headerDate: Wed, Sep 19</div>    
 	<br />
 	    <div>temp: 65&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-21"></div>
         </div>
 	    <div>skyLong: Clear</div>
-	    <div>precipChance: 10%</div>
+	    <div>precipChance: 0%</div>
+	    <div>hour: 0</div>
+	    <!-- this is the start of the next day and should have an added row with the next day's date -->
+	       <!-- in addition to the hour's weather info -->
+	    <div>shortHour: 12 AM</div>
+	    <div>headerDate: Thu, Sep 20</div>    
+	<br />
+	    <div>temp: 65&deg;</div>
+	    <div>iconCode: 
+            <div class="weather weather-21"></div>
+        </div>
+	    <div>skyLong: Clear</div>
+	    <div>precipChance: 0%</div>
 	    <div>hour: 1</div>
 	    <div>shortHour: 1 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
+	    <div>headerDate: Thu, Sep 20</div>    
 	<br />
 	    <div>temp: 64&deg;</div>
 	    <div>iconCode: 
             <div class="weather weather-21"></div>
         </div>
 	    <div>skyLong: Clear</div>
-	    <div>precipChance: 10%</div>
+	    <div>precipChance: 0%</div>
 	    <div>hour: 2</div>
 	    <div>shortHour: 2 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
+	    <div>headerDate: Thu, Sep 20</div>    
 	<br />
-	    <div>temp: 62&deg;</div>
+	    <div>temp: 63&deg;</div>
 	    <div>iconCode: 
-            <div class="weather weather-30"></div>
+            <div class="weather weather-21"></div>
         </div>
-	    <div>skyLong: Mostly Clear</div>
-	    <div>precipChance: 10%</div>
+	    <div>skyLong: Clear</div>
+	    <div>precipChance: 0%</div>
 	    <div>hour: 3</div>
 	    <div>shortHour: 3 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 62&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-32"></div>
-        </div>
-	    <div>skyLong: Partly Cloudy</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 4</div>
-	    <div>shortHour: 4 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 62&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-32"></div>
-        </div>
-	    <div>skyLong: Partly Cloudy</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 5</div>
-	    <div>shortHour: 5 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 63&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-32"></div>
-        </div>
-	    <div>skyLong: Partly Cloudy</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 6</div>
-	    <div>shortHour: 6 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 63&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-32"></div>
-        </div>
-	    <div>skyLong: Partly Cloudy</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 7</div>
-	    <div>shortHour: 7 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 63&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-11"></div>
-        </div>
-	    <div>skyLong: Mostly Cloudy</div>
-	    <div>precipChance: 20%</div>
-	    <div>hour: 8</div>
-	    <div>shortHour: 8 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 66&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-2"></div>
-        </div>
-	    <div>skyLong: Cloudy</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 9</div>
-	    <div>shortHour: 9 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 69&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-2"></div>
-        </div>
-	    <div>skyLong: Cloudy</div>
-	    <div>precipChance: 10%</div>
-	    <div>hour: 10</div>
-	    <div>shortHour: 10 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
-	<br />
-	    <div>temp: 73&deg;</div>
-	    <div>iconCode: 
-            <div class="weather weather-2"></div>
-        </div>
-	    <div>skyLong: Cloudy</div>
-	    <div>precipChance: 20%</div>
-	    <div>hour: 11</div>
-	    <div>shortHour: 11 AM</div>
-	    <div>headerDate: Sat, Sep 15</div>    
+	    <div>headerDate: Thu, Sep 20</div>    
 	</div></section>
 	</div>
 
@@ -4567,6 +4597,276 @@ DDO.socialShare = {
 	<div class="tile-headline">
 		<a href="/weather/radar/">
 			Atlanta weather radar: Where is the storm now? </a>
+	</div>
+</div>
+            
+		            
+		            
+		        
+            
+        
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+    
+        
+            
+            
+		        
+		            
+		                
+		                    
+
+
+
+
+
+
+
+
+
+	
+
+		                <div class=" small-story-tile module-item clearfix">
+  		<div class="section-bar news-section-bg"></div>
+	<div class="tile-image">
+			<a href="/news/man-who-successfully-rode-out-florence-his-boat-says-napped-lot/C2qT9p18qRbQKByhBKiYTJ/">
+                <div class="cm-img  cm-img-native-landscape cm-img-crop cm-img-fit-width" style="width: 100%; padding-bottom: 56.25%" >
+                <img class="lazyload" data-srcset="/rf/image_compact/Pub/p9/WHIO/2018/09/14/Videos/4483717.vpx 150w"
+                        data-sizes="(min-width: 1230px) 1176px, (min-width: 1005px) 924px, (min-width: 745px) 612px, (min-width: 577px) 576px, 100vw"
+                        data-src="/rf/image_compact/Pub/p9/WHIO/2018/09/14/Videos/4483717.vpx"alt=""title="Man who successfully rode out Florence on his boat says he napped a lot..."/>
+            </div></a>
+		</div>
+	<div class="tile-headline">
+		<a href="/news/man-who-successfully-rode-out-florence-his-boat-says-napped-lot/C2qT9p18qRbQKByhBKiYTJ/">
+			Man who successfully rode out Florence on his boat says he napped a lot...</a>
+	</div>
+</div>
+            
+		            
+		            
+		        
+            
+        
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+        
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+    
+    
+        
+            
+            
+		        
+		            
+		                
+		                    
+
+
+
+
+
+
+
+
+
+	
+
+		                <div class=" small-story-tile module-item clearfix">
+  		<div class="section-bar news-section-bg"></div>
+	<div class="tile-image">
+			<a href="/news/weathermen-ditch-live-broadcast-hurricane-florence-floods-station/yonjVb1RmRpuVosxeLur4I/">
+                <div class="cm-img  cm-img-native-landscape cm-img-crop cm-img-fit-width" style="width: 100%; padding-bottom: 56.25%" >
+                <img class="lazyload" data-srcset="/rf/image_compact/Pub/p9/CmgSharedContent/2018/09/11/Videos/4480879.vpx 150w"
+                        data-sizes="(min-width: 1230px) 1176px, (min-width: 1005px) 924px, (min-width: 745px) 612px, (min-width: 577px) 576px, 100vw"
+                        data-src="/rf/image_compact/Pub/p9/CmgSharedContent/2018/09/11/Videos/4480879.vpx"alt=""title="Weathermen ditch live broadcast as Hurricane Florence floods station "/>
+            </div></a>
+		</div>
+	<div class="tile-headline">
+		<a href="/news/weathermen-ditch-live-broadcast-hurricane-florence-floods-station/yonjVb1RmRpuVosxeLur4I/">
+			Weathermen ditch live broadcast as Hurricane Florence floods station </a>
 	</div>
 </div>
             
@@ -5140,276 +5440,6 @@ DDO.socialShare = {
 
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-        
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
-    
-        
-            
-            
-		        
-		            
-		                
-		                    
-
-
-
-
-
-
-
-
-
-	
-
-		                <div class=" small-story-tile module-item clearfix">
-  		<div class="section-bar neighborhoods-section-bg"></div>
-	<div class="tile-image">
-			<a href="/news/local/atlanta-weekend-weather-events-next-chance-rain/XrgcGNyAlYMocMPpZyANqO/">
-                <div class="cm-img  cm-img-native-landscape cm-img-crop cm-img-fit-width" style="width: 100%; padding-bottom: 56.25%" >
-                <img class="lazyload" data-srcset="/rf/image_compact/Pub/p9/WSBTV/2018/08/27/Videos/4469651.vpx 150w"
-                        data-sizes="(min-width: 1230px) 1176px, (min-width: 1005px) 924px, (min-width: 745px) 612px, (min-width: 577px) 576px, 100vw"
-                        data-src="/rf/image_compact/Pub/p9/WSBTV/2018/08/27/Videos/4469651.vpx"alt=""title="Atlanta weather: Humidity, heat, rain chance on the rise "/>
-            </div></a>
-		</div>
-	<div class="tile-headline">
-		<a href="/news/local/atlanta-weekend-weather-events-next-chance-rain/XrgcGNyAlYMocMPpZyANqO/">
-			Atlanta weather: Humidity, heat, rain chance on the rise </a>
-	</div>
-</div>
-            
-		            
-		            
-		        
-            
-        
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-        
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-    
-    
-        
-            
-            
-		        
-		            
-		                
-		                    
-
-
-
-
-
-
-
-
-
-	
-
-		                <div class=" small-story-tile module-item clearfix">
-  		<div class="section-bar neighborhoods-section-bg"></div>
-	<div class="tile-image">
-			<a href="/news/local/cobb-county-weekend-weather-and-events-find-your-rain-boots/vFbULIYR72ZLiL8jJYRLLI/">
-                <div class="cm-img  cm-img-native-landscape cm-img-crop cm-img-fit-width" style="width: 100%; padding-bottom: 56.25%" >
-                <img class="lazyload" data-srcset="/rf/image_compact/Pub/p9/WSBTV/2018/08/20/Videos/4464580.vpx 150w"
-                        data-sizes="(min-width: 1230px) 1176px, (min-width: 1005px) 924px, (min-width: 745px) 612px, (min-width: 577px) 576px, 100vw"
-                        data-src="/rf/image_compact/Pub/p9/WSBTV/2018/08/20/Videos/4464580.vpx"alt=""title="Cobb County weather: Cloudy start Monday, possible showers later "/>
-            </div></a>
-		</div>
-	<div class="tile-headline">
-		<a href="/news/local/cobb-county-weekend-weather-and-events-find-your-rain-boots/vFbULIYR72ZLiL8jJYRLLI/">
-			Cobb County weather: Cloudy start Monday, possible showers later </a>
-	</div>
-</div>
-            
-		            
-		            
-		        
-            
-        
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
 </div>
 		<!-- Limit: 6, ListItems: 8 -->
 		<div class="see-more-footer show-see-more-footer-3 show-see-more-footer-6 hidden-sm-down">
@@ -5542,10 +5572,10 @@ DDO.socialShare = {
 		<section class="today-tomorrow-weather hidden-sm-down">
 
 			<div class="add-on-heading clearfix">
-    <h2 class="section-heading">Tomorrow: &nbsp; <span class="font-nav-light">Sat, Sep 15</span></h2>
+    <h2 class="section-heading">Tomorrow: &nbsp; <span class="font-nav-light">Thu, Sep 20</span></h2>
     <div class="pull-xs-right hidden-sm-down">
         <span class="cm-icon-clock cm-icon"></span>
-        <span class="timestamp">10m</span>    
+        <span class="timestamp">50m</span>    
     </div>
 </div>
 <div class="module clearfix">
@@ -5554,25 +5584,25 @@ DDO.socialShare = {
             <div class="hi-lo tomorrow-hi-lo pull-md-left">
                 <div class="hi-temp">
                     <span class="tiny">H</span>
-                    <span class="temperature">82</span>
+                    <span class="temperature">93</span>
                 </div>
                 <div class="slash"></div>
                 <div class="lo-temp">
                     <span class="tiny">L</span>
-                    <span class="temperature">64</span>
+                    <span class="temperature">55</span>
                 </div>
             </div>
             <div class="weather weather-"></div>
             <div class="clearfix"></div>
-            <div class="center-text"><strong>Chance of rain:</strong> 20%</div>
+            <div class="center-text"><strong>Chance of rain:</strong> 0%</div>
         </div>
         <div class="clearfix"></div>
         <p class="tomorrow-center-xl">
             <span><strong>Day:</strong></span>
-            Cloudy skies early will become partly cloudy later in the day. High 82F. Winds light and variable.</p>
+            A mainly sunny sky. High 93F. Winds NNW at 5 to 10 mph.</p>
         <p class="tomorrow-center-xl">
             <span><strong>Night:</strong></span>
-            A few clouds. Low 64F. Winds light and variable.</p>
+            Clear skies. Low around 55F. Winds light and variable.</p>
     </div>
     <div class="pull-xs-right right-pane">
         <div class="divider border-left"></div>
@@ -5583,20 +5613,20 @@ DDO.socialShare = {
             <table>
                 <tr>
                     <td>Sunrise</td>
-                    <td>7:18 AM</td>
+                    <td>6:52 AM</td>
                 </tr>
                 <tr>
                 <tr>
                     <td>Sunset</td>
-                    <td>7:48 PM</td>
+                    <td>7:05 PM</td>
                 </tr>
                 <tr>
                     <td>Humidity</td>
-                    <td>76%</td>
+                    <td>25%</td>
                 </tr>
                 <tr>
                     <td>UV Index</td>
-                    <td>5</td>
+                    <td>7</td>
                 </tr>
             </table>
         </div>
@@ -5605,24 +5635,24 @@ DDO.socialShare = {
 
 <div id="tomorrowData" style="display:none">
     <!-- TOMORROW DATA STRUCTURE DEMO -->
-    <!-- HEADER: Sat, Sep 15 -->
-    <!-- TIMESTAMP: 10m -->
-    <div>hiTemp: 82&deg;</div>
-    <div>lowTemp: 64&deg;</div>
+    <!-- HEADER: Thu, Sep 20 -->
+    <!-- TIMESTAMP: 50m -->
+    <div>hiTemp: 93&deg;</div>
+    <div>lowTemp: 55&deg;</div>
     <div>iconCode: 
-        <div class="weather weather-12"></div>
+        <div class="weather weather-1"></div>
     </div>
-    <div>precipChance: 20%</div>
-    <div>humidity: 76</div>
-    <div>dayPhrase: Cloudy skies early will become partly cloudy later in the day. High 82F. Winds light and variable.</div>
-    <div>nightPhrase: A few clouds. Low 64F. Winds light and variable.</div>
-    <div>sunrise: 7:18 AM</div>
-    <div>sunset: 7:48 PM</div>
-    <div>uvIndex: 5</div>
-    <div>uvDescription: Moderate</div>
+    <div>precipChance: 0%</div>
+    <div>humidity: 25</div>
+    <div>dayPhrase: A mainly sunny sky. High 93F. Winds NNW at 5 to 10 mph.</div>
+    <div>nightPhrase: Clear skies. Low around 55F. Winds light and variable.</div>
+    <div>sunrise: 6:52 AM</div>
+    <div>sunset: 7:05 PM</div>
+    <div>uvIndex: 7</div>
+    <div>uvDescription: High</div>
 </div>
 <div class="add-on-module margin-bottom clearfix">
-				<span class="weather-share pull-xs-right"> <!-- currentObject: PortalWebObjectWrapper [+       717#] /Pub/Web/AJC/Pages/weather.dwp [DwxProxy:EOM::WebPage, 2.0.126082419]  -->
+				<span class="weather-share pull-xs-right"> <!-- currentObject: PortalWebObjectWrapper [+       715#] /Pub/Web/AJC/Pages/weather.dwp [DwxProxy:EOM::WebPage, 2.0.126082419]  -->
 <!-- cacheScope.message:   -->
 <!-- seoSerpDescription: Atlanta Weather today, Weather Forecast, updates and warnings for Metro Atlanta. In partnership with WSB-TV Severe Weather Team 2  -->
 <!-- seoEditorialDescription:   -->
@@ -5801,7 +5831,7 @@ DDO.socialShare = {
     <h2 class="section-heading">5-Day Forecast</h2>
     <div class="pull-xs-right hidden-sm-down">
         <span class="cm-icon-clock cm-icon"></span>
-        <span class="timestamp">10m</span>    
+        <span class="timestamp">50m</span>    
     </div>
 </div>
 <div class="module module-table margin-bottom">
@@ -5809,156 +5839,156 @@ DDO.socialShare = {
         <tbody>
             <tr>
                     <td class="hidden-md-down">
-                        <strong>Friday</strong>
-                        <div>September 14</div>
+                        <strong>Wednesday</strong>
+                        <div>September 19</div>
                     </td>
                     <td>
                         <div class="small margin-bottom-8 center-text hidden-lg-up">
-                            <strong>Fri</strong>
-                            <span>September 14</span>
+                            <strong>Wed</strong>
+                            <span>September 19</span>
                         </div>
                         <div class="hi-lo">
                             <div class="hi-temp">
                                 <span class="tiny">H</span>
-                                <span class="temperature">80</span>
+                                <span class="temperature">88</span>
                             </div>
                             <div class="slash"></div>
                             <div class="lo-temp">
                                 <span class="tiny">L</span>
-                                <span class="temperature">60</span>
+                                <span class="temperature">58</span>
                             </div>
                         </div>
                     </td>
                     <td class="center-text">
-                        <span class="move-up weather weather-10"></span>
-                        <div class="move-up">Mostly Clear</div>
+                        <span class="move-up weather weather-1"></span>
+                        <div class="move-up">Sunny</div>
                     </td>
                     <td class="center-text">
-                        <strong>20%</strong>
+                        <strong>0%</strong>
+                        <div>Chance of rain</div>
+                    </td>
+                </tr>
+            <tr>
+                    <td class="hidden-md-down">
+                        <strong>Thursday</strong>
+                        <div>September 20</div>
+                    </td>
+                    <td>
+                        <div class="small margin-bottom-8 center-text hidden-lg-up">
+                            <strong>Thu</strong>
+                            <span>September 20</span>
+                        </div>
+                        <div class="hi-lo">
+                            <div class="hi-temp">
+                                <span class="tiny">H</span>
+                                <span class="temperature">93</span>
+                            </div>
+                            <div class="slash"></div>
+                            <div class="lo-temp">
+                                <span class="tiny">L</span>
+                                <span class="temperature">55</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="center-text">
+                        <span class="move-up weather weather-1"></span>
+                        <div class="move-up">Sunny</div>
+                    </td>
+                    <td class="center-text">
+                        <strong>0%</strong>
+                        <div>Chance of rain</div>
+                    </td>
+                </tr>
+            <tr>
+                    <td class="hidden-md-down">
+                        <strong>Friday</strong>
+                        <div>September 21</div>
+                    </td>
+                    <td>
+                        <div class="small margin-bottom-8 center-text hidden-lg-up">
+                            <strong>Fri</strong>
+                            <span>September 21</span>
+                        </div>
+                        <div class="hi-lo">
+                            <div class="hi-temp">
+                                <span class="tiny">H</span>
+                                <span class="temperature">93</span>
+                            </div>
+                            <div class="slash"></div>
+                            <div class="lo-temp">
+                                <span class="tiny">L</span>
+                                <span class="temperature">55</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="center-text">
+                        <span class="move-up weather weather-1"></span>
+                        <div class="move-up">Sunny</div>
+                    </td>
+                    <td class="center-text">
+                        <strong>0%</strong>
                         <div>Chance of rain</div>
                     </td>
                 </tr>
             <tr>
                     <td class="hidden-md-down">
                         <strong>Saturday</strong>
-                        <div>September 15</div>
+                        <div>September 22</div>
                     </td>
                     <td>
                         <div class="small margin-bottom-8 center-text hidden-lg-up">
                             <strong>Sat</strong>
-                            <span>September 15</span>
+                            <span>September 22</span>
                         </div>
                         <div class="hi-lo">
                             <div class="hi-temp">
                                 <span class="tiny">H</span>
-                                <span class="temperature">82</span>
+                                <span class="temperature">91</span>
                             </div>
                             <div class="slash"></div>
                             <div class="lo-temp">
                                 <span class="tiny">L</span>
-                                <span class="temperature">64</span>
+                                <span class="temperature">54</span>
                             </div>
                         </div>
                     </td>
                     <td class="center-text">
-                        <span class="move-up weather weather-12"></span>
-                        <div class="move-up">AM Clouds / PM Sun</div>
+                        <span class="move-up weather weather-1"></span>
+                        <div class="move-up">Sunny</div>
                     </td>
                     <td class="center-text">
-                        <strong>20%</strong>
+                        <strong>0%</strong>
                         <div>Chance of rain</div>
                     </td>
                 </tr>
             <tr>
                     <td class="hidden-md-down">
                         <strong>Sunday</strong>
-                        <div>September 16</div>
+                        <div>September 23</div>
                     </td>
                     <td>
                         <div class="small margin-bottom-8 center-text hidden-lg-up">
                             <strong>Sun</strong>
-                            <span>September 16</span>
+                            <span>September 23</span>
                         </div>
                         <div class="hi-lo">
                             <div class="hi-temp">
                                 <span class="tiny">H</span>
-                                <span class="temperature">85</span>
+                                <span class="temperature">89</span>
                             </div>
                             <div class="slash"></div>
                             <div class="lo-temp">
                                 <span class="tiny">L</span>
-                                <span class="temperature">63</span>
+                                <span class="temperature">54</span>
                             </div>
                         </div>
                     </td>
                     <td class="center-text">
-                        <span class="move-up weather weather-10"></span>
-                        <div class="move-up">Mostly Sunny</div>
+                        <span class="move-up weather weather-1"></span>
+                        <div class="move-up">Sunny</div>
                     </td>
                     <td class="center-text">
-                        <strong>20%</strong>
-                        <div>Chance of rain</div>
-                    </td>
-                </tr>
-            <tr>
-                    <td class="hidden-md-down">
-                        <strong>Monday</strong>
-                        <div>September 17</div>
-                    </td>
-                    <td>
-                        <div class="small margin-bottom-8 center-text hidden-lg-up">
-                            <strong>Mon</strong>
-                            <span>September 17</span>
-                        </div>
-                        <div class="hi-lo">
-                            <div class="hi-temp">
-                                <span class="tiny">H</span>
-                                <span class="temperature">84</span>
-                            </div>
-                            <div class="slash"></div>
-                            <div class="lo-temp">
-                                <span class="tiny">L</span>
-                                <span class="temperature">63</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="center-text">
-                        <span class="move-up weather weather-12"></span>
-                        <div class="move-up">Partly Cloudy</div>
-                    </td>
-                    <td class="center-text">
-                        <strong>20%</strong>
-                        <div>Chance of rain</div>
-                    </td>
-                </tr>
-            <tr>
-                    <td class="hidden-md-down">
-                        <strong>Tuesday</strong>
-                        <div>September 18</div>
-                    </td>
-                    <td>
-                        <div class="small margin-bottom-8 center-text hidden-lg-up">
-                            <strong>Tue</strong>
-                            <span>September 18</span>
-                        </div>
-                        <div class="hi-lo">
-                            <div class="hi-temp">
-                                <span class="tiny">H</span>
-                                <span class="temperature">84</span>
-                            </div>
-                            <div class="slash"></div>
-                            <div class="lo-temp">
-                                <span class="tiny">L</span>
-                                <span class="temperature">57</span>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="center-text">
-                        <span class="move-up weather weather-12"></span>
-                        <div class="move-up">Partly Cloudy</div>
-                    </td>
-                    <td class="center-text">
-                        <strong>20%</strong>
+                        <strong>0%</strong>
                         <div>Chance of rain</div>
                     </td>
                 </tr>
@@ -5969,52 +5999,52 @@ DDO.socialShare = {
 
 <div id="fiveday" style="display:none">
     <!-- FIVE DAY DATA STRUCTURE DEMO -->
-    <!-- TIMESTAMP: 10m -->
+    <!-- TIMESTAMP: 50m -->
+    <!-- DAY: Wednesday -->
+        <!-- DATE: September 19 -->        
+        <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+        <div>hiTemp: 88&deg;</div>
+        <div>loTemp: 58&deg;</div>
+        <div>skyText: Sunny</div>
+        <div>precipChance: 0%</div>
+    <!-- DAY: Thursday -->
+        <!-- DATE: September 20 -->        
+        <div>iconCode: 
+            <div class="weather weather-1"></div>
+        </div>
+        <div>hiTemp: 93&deg;</div>
+        <div>loTemp: 55&deg;</div>
+        <div>skyText: Sunny</div>
+        <div>precipChance: 0%</div>
     <!-- DAY: Friday -->
-        <!-- DATE: September 14 -->        
+        <!-- DATE: September 21 -->        
         <div>iconCode: 
-            <div class="weather weather-10"></div>
+            <div class="weather weather-1"></div>
         </div>
-        <div>hiTemp: 80&deg;</div>
-        <div>loTemp: 60&deg;</div>
-        <div>skyText: Mostly Clear</div>
-        <div>precipChance: 20%</div>
+        <div>hiTemp: 93&deg;</div>
+        <div>loTemp: 55&deg;</div>
+        <div>skyText: Sunny</div>
+        <div>precipChance: 0%</div>
     <!-- DAY: Saturday -->
-        <!-- DATE: September 15 -->        
+        <!-- DATE: September 22 -->        
         <div>iconCode: 
-            <div class="weather weather-12"></div>
+            <div class="weather weather-1"></div>
         </div>
-        <div>hiTemp: 82&deg;</div>
-        <div>loTemp: 64&deg;</div>
-        <div>skyText: AM Clouds / PM Sun</div>
-        <div>precipChance: 20%</div>
+        <div>hiTemp: 91&deg;</div>
+        <div>loTemp: 54&deg;</div>
+        <div>skyText: Sunny</div>
+        <div>precipChance: 0%</div>
     <!-- DAY: Sunday -->
-        <!-- DATE: September 16 -->        
+        <!-- DATE: September 23 -->        
         <div>iconCode: 
-            <div class="weather weather-10"></div>
+            <div class="weather weather-1"></div>
         </div>
-        <div>hiTemp: 85&deg;</div>
-        <div>loTemp: 63&deg;</div>
-        <div>skyText: Mostly Sunny</div>
-        <div>precipChance: 20%</div>
-    <!-- DAY: Monday -->
-        <!-- DATE: September 17 -->        
-        <div>iconCode: 
-            <div class="weather weather-12"></div>
-        </div>
-        <div>hiTemp: 84&deg;</div>
-        <div>loTemp: 63&deg;</div>
-        <div>skyText: Partly Cloudy</div>
-        <div>precipChance: 20%</div>
-    <!-- DAY: Tuesday -->
-        <!-- DATE: September 18 -->        
-        <div>iconCode: 
-            <div class="weather weather-12"></div>
-        </div>
-        <div>hiTemp: 84&deg;</div>
-        <div>loTemp: 57&deg;</div>
-        <div>skyText: Partly Cloudy</div>
-        <div>precipChance: 20%</div>
+        <div>hiTemp: 89&deg;</div>
+        <div>loTemp: 54&deg;</div>
+        <div>skyText: Sunny</div>
+        <div>precipChance: 0%</div>
     </div>
 </section>
 			</div>
@@ -6329,8 +6359,8 @@ DDO.socialShare = {
 	        <wx-widget type="map" memberId="1168" mapId="0004" 
                 menuItems="0001,0017" templateId="0012"
                 opacity="1" zoomLevel="9"
-                latitude="42.74"
-                longitude="-84.48">
+                latitude="38.58"
+                longitude="-121.49">
                 </wx-widget>
 		</div>
         <script 
@@ -6470,7 +6500,7 @@ DDO.socialShare = {
             <div class="margin-bottom">
                     <div
             class="anvato-player"
-            data-videoid="4483660"
+            data-videoid="4486661"
             data-autoplay="false"
             data-muted="false"
             data-recom="true"
@@ -6932,7 +6962,7 @@ DDO.socialShare = {
 
 
 
-<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"19209563","applicationTime":70,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"aaf23b031f","transactionName":"MQYHNRZYCkZVBxcKVghMLzI0FgFaWUszDEsSAgkiC1cCXFNLDRNmVlNXBQJLAVAbAhECVAMQABU7CVQHUBMMPAlWUQESEFYWTEMBDw9mDBMR","agent":"","errorBeacon":"bam.nr-data.net"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"applicationID":"19209563","applicationTime":22,"beacon":"bam.nr-data.net","queueTime":0,"licenseKey":"aaf23b031f","transactionName":"MQYHNRZYCkZVBxcKVghMLzI0FgFaWUszDEsSAgkiC1cCXFNLDRNmVlNXBQJLAVAbAhECVAMQABU7CVQHUBMMPAlWUQESEFYWTEMBDw9mDBMR","agent":"","errorBeacon":"bam.nr-data.net"}</script>
 
 <!-- version date 08.16.2018.0 --> 
 
