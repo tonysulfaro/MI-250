@@ -261,8 +261,8 @@ class Module3:
 
 def save_url_to_file(url, filename):
 
-    page = requests.get(url).text
-    fp = open(filename, 'w')
+    page = requests.get(url)
+    fp = open(filename, 'wb')
     fp.write(page)
     fp.close()
 
@@ -273,6 +273,7 @@ def main():
 
     print(test.find_lowest_temp_for_zip(95814))
     print(test.find_rain_chance_for_zip(95814))
+    test.save_url_to_csv_file('https://www.google.com', 'google.html')
 
     # print(test.csv_column_count('data.csv'))
 
