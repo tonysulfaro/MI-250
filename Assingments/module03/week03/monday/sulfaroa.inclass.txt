@@ -1,0 +1,48 @@
+===================================
+= Tony Sulfaro
+= A52995491
+= In-Class exercise monday 9/17/18
+===================================
+
+Restful APIs
+
+Compare 3 different ones:
+
+developer.github.com/v3/
+developer.twitter.com/en/docs/api-reference-index
+instagram.com/developer/ (old API)
+
+which is the most RESTful? and which is the least?
+why and why not provide examples
+
+
+GitHub RESTful characteristics:
+
++ has similar URL/URI? patterns to restful (at least from what I know anyway)
+
++ uses URL patterns for navigating item structure then parameters to filter it
+
++ less private information (stars, repositories etc so can do a get on their ID specifically)
+
+
+
+
+Twitter RESTful characteristics:
+
++ invokes operations with /item/method
+    GET friendships/show
+
+- not restful in that doing a GET on friends/lists is going to be different depending on who is logged in
+
++ authenticates using similar URL pattern, only pass token in as a parameter whereas Instagram sends in client id etc.
+    https://api.twitter.com/oauth/authenticate?oauth_token=Z6eEdO8MOmk394WozF5oKyuAv855l4Mlqo7hhlSLik
+
+
+
+Instagram RESTful characteristics:
+
++ has similar uri paths to twitter (RESTful) for fetching data e.g.
+    https://api.instagram.com/v1/media/657988443280050001_25025320/likes
+
+- Not restful it seems for authentication in that it is passing parameters directly in the URL to authenticate
+    https://api.instagram.com/oauth/authorize/?client_id=CLIENT-ID&redirect_uri=REDIRECT-URI&response_type=code
