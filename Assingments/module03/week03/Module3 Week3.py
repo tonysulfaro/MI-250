@@ -41,7 +41,17 @@ class Module3:
 
     @staticmethod
     def find_days_high(filename):
-        return filename
+
+        with open(filename, 'r') as file:
+
+            data = file.read()
+            file.close()
+
+            start = data.find('hiTemp:')
+            end = data.find('&deg;', start)
+
+            return int(data[start+len('hiTemp:'):end])
+
 
     '''
         21. Define a function which extracts the sunset time out of an HTML file.
@@ -78,7 +88,15 @@ class Module3:
 
     @staticmethod
     def find_sunset(filename):
-        return filename
+
+        with open(filename, 'r') as file:
+            data = file.read()
+            file.close()
+
+            start = data.find('sunset:')
+            end = data.find('</div>', start)
+
+            return data[start+len('sunset: '):end]
 
     '''
         46. Given a ZIP code, pull the current weather from https://www.ajc.com/weather/ZIPCODE/ 
@@ -91,7 +109,16 @@ class Module3:
     '''
     @staticmethod
     def find_highest_temp_for_zip(zipcode):
-        return zipcode
+        # The save_url_to_file wasn't in my problemset so I made one.
+
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+        filename = 'low_temp.html'
+        save_url_to_file(url, filename)
+
+        # it couldn't see the find_days_low function within the same class so i
+        # made an instance of it and used it that way. Kinda Effective
+        test = Module3()
+        return test.find_days_high(filename)
 
     '''
         29. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -102,7 +129,22 @@ class Module3:
 
     @staticmethod
     def smallest_state(filename):
-        return filename
+
+        with open(filename) as file:
+            file.readline()
+
+            # find lowest population
+
+            lowest = file.readline().split(',')
+
+            for line in file:
+
+                line = line.strip().split(',')
+
+                if int(line[1]) <= int(lowest[1]):
+                    lowest = line
+
+            return lowest[0]
 
     '''
         31. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -114,7 +156,22 @@ class Module3:
 
     @staticmethod
     def states_under_three_million(openfile, savefile):
-        return None
+
+        open_file = open(openfile, 'r')
+        header = open_file.readline()
+
+        save_file = open(savefile, 'w')
+        save_file.write(header)
+
+        for line in open_file:
+            line = line.strip().split(',')
+
+            if int(line[1]) <= 3000000:
+                temp = line[0]+','+line[1]+'\n'
+                save_file.write(temp)
+
+        open_file.close()
+        save_file.close()
 
     '''
         14. Using file and string functions, write your own function to open a file.
@@ -126,6 +183,21 @@ class Module3:
 
     @staticmethod
     def modify_text_file_lines(openfile, savefile, name):
+        # assumes that REPLACE ME is actually in there
+
+        # here is my method
+        readfile = open(openfile, 'r')
+        file_data = readfile.read()
+
+        file_data = file_data.replace('REPLACE ME', name)
+
+        readfile.close()
+
+        # write string to file
+        outfile = open(savefile, 'w')
+        outfile.write(file_data)
+        outfile.close()
+
         return None
 
     '''
@@ -137,7 +209,22 @@ class Module3:
 
     @staticmethod
     def largest_state(filename):
-        return filename
+
+        with open(filename) as file:
+            file.readline()
+
+            # find lowest population
+
+            highest = file.readline().split(',')
+
+            for line in file:
+
+                line = line.strip().split(',')
+
+                if int(line[1]) >= int(highest[1]):
+                    highest = line
+
+            return highest[0]
 
     '''
         43. Given a ZIP code, pull the current weather from https://www.ajc.com/weather/ZIPCODE
@@ -175,7 +262,18 @@ class Module3:
     '''
     @staticmethod
     def find_humidity_for_zip(zipcode):
-        return zipcode
+
+        # The save_url_to_file wasn't in my problemset so I made one.
+
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+
+        page = requests.get(url).text
+
+        start = page.find('humidity: ')
+        end = page.find('%', start)
+
+        humid = page[start+len('humidity: '):end]+'%'
+        return humid
 
     '''
         23. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -186,7 +284,20 @@ class Module3:
 
     @staticmethod
     def get_state_population(filename, state):
-        return None
+
+        fp = open(filename, 'r')
+        fp.readline()
+
+        total = 0
+
+        for line in fp:
+            line = line.strip().split(',')
+
+            if state.lower() == line[0].lower():
+                total += int(line[1])
+
+        return total
+
 
     '''
         37. Given a URL, use string functions to extract and return the domain component
@@ -196,6 +307,13 @@ class Module3:
 
     @staticmethod
     def extract_url_domain(url):
-        return url
 
-    
+        start = url.find('://')
+        end = url.find('/', start+3)
+
+        print(start, end)
+
+        if end == -1:
+            return url[start+3:]
+
+        return url[start+3:end]
