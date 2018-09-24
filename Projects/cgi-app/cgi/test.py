@@ -33,6 +33,16 @@ def on_POST(request, form):
     # Get data from fields
     artist = form.getvalue('artist_name')
     song = form.getvalue('song_name')
+    result = 'ok'
+
+    sys.stderr.write(artist)
+    sys.stderr.write(song)
+
+    #html = open("calc.html".read())
+    #header = "Content-Type: text/html; charset=UTF-8\n\n"
+
+    #output = header + html.format(result=result)
+    #print(output)
 
 
 def on_DELETE(request):
