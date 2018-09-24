@@ -38,6 +38,11 @@ def on_POST(request, form):
     sys.stderr.write(artist)
     sys.stderr.write(song)
 
+    fp = open('database.csv', 'a')
+
+    request_body = artist+","+song
+    fp.writelines(request_body)
+
     #html = open("calc.html".read())
     #header = "Content-Type: text/html; charset=UTF-8\n\n"
 
