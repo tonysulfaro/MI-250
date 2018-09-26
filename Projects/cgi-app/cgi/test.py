@@ -40,8 +40,18 @@ def on_POST(request, form):
 
     fp = open('database.csv', 'a')
 
-    request_body = artist+","+song
+    request_body = artist+','+song+'\n'
     fp.writelines(request_body)
+    fp.close()
+
+    print("Content-type: text/html")
+    print()
+    print("<html>")
+    print("<center>Post of</center>")
+    print("<p>%s</p>" % artist)
+    print("<p>%s</p>" % song)
+    print("<p>was successful</p>")
+    print("</html>")
 
     #html = open("calc.html".read())
     #header = "Content-Type: text/html; charset=UTF-8\n\n"
