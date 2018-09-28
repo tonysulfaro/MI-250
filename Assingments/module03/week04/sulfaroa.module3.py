@@ -26,7 +26,15 @@ class Module3:
 
     @staticmethod
     def file_word_count(filepath):
-        return -1
+
+        fp = open(filepath, 'r', encoding="utf-8-sig")
+
+        data = fp.read()
+        fp.close()
+
+        data = data.split()
+
+        return len(data)
 
     '''
         9. Using file and string functions, write your own function to determine the last position of a
@@ -36,7 +44,20 @@ class Module3:
 
     @staticmethod
     def last_index_in_file(filepath, character):
-        return -1
+
+        fp = open(filepath, 'r', encoding="utf-8-sig")
+
+        last = -1
+        position = 0
+
+        for line in fp:
+            for char in line:
+                if char == character:
+                    last = position
+                position += 1
+
+        fp.close()
+        return last
 
     '''
         3. Refresher Question: Return the number of characters in a text file given the filepath as a parameter
@@ -44,7 +65,15 @@ class Module3:
 
     @staticmethod
     def file_character_count(filepath):
-        return -1
+
+        fp = open(filepath, 'r', encoding="utf-8-sig")
+
+        count = 0
+
+        for line in fp:
+            for char in line:
+                count += 1
+        return count
 
     '''
         25. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -55,7 +84,20 @@ class Module3:
 
     @staticmethod
     def populations_reported(filename):
-        return -1
+
+        fp = open(filename, 'r')
+
+        fp.readline() # get past header
+
+        count = 0
+
+        for line in fp:
+            line = line.strip().split(',')
+
+            if line[1] is not '':
+                count += 1
+
+        return count
 
     '''
         1. Refresher Question: Return the contents of a text file given the filepath as a parameter
@@ -63,7 +105,12 @@ class Module3:
 
     @staticmethod
     def file_contents(filepath):
-        return filepath
+
+        fp = open(filepath, 'r', encoding='utf-8-sig')
+        data = fp.read()
+        fp.close()
+
+        return data
 
     '''
         26. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -74,7 +121,20 @@ class Module3:
 
     @staticmethod
     def total_population(filename):
-        return -1
+
+        fp = open(filename, 'r')
+
+        fp.readline()
+
+        total = 0
+
+        for line in fp:
+            line = line.strip().split(',')
+
+            if line[1] is not '':
+                total += int(line[1])
+
+        return total
 
     '''
         16. Define a function which extracts the 'feels like' temperature out of an HTML file.
@@ -111,7 +171,17 @@ class Module3:
 
     @staticmethod
     def find_feels_like_temperature(filename):
-        return filename
+
+        fp = open(filename, 'r', encoding='utf-8')
+
+        data = fp.read()
+
+        start = data.find('feelsLike:')
+        end = data.find('</', start)
+
+        return int(data[start+len('feelsLike:'):end-1])
+
+
 
     '''
         30. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -123,7 +193,25 @@ class Module3:
 
     @staticmethod
     def states_over_two_million(openfile, savefile):
-        return None
+
+        fp_read = open(openfile, 'r')
+        fp_write = open(savefile, 'w')
+
+        header = fp_read.readline()
+        fp_write.write(header)
+
+        for line in fp_read:
+
+            data = line.strip().split(',')
+
+            if data[1] is not '':
+                population = int(data[1])
+
+                if population >= 2000000:
+                    fp_write.write(line)
+
+        fp_read.close()
+        fp_write.close()
 
     '''
         20. Define a function which extracts the sunrise time out of an HTML file.
@@ -160,6 +248,24 @@ class Module3:
 
     @staticmethod
     def find_sunrise(filename):
-        return filename
 
-    
+        fp = open(filename, 'r', encoding='utf-8')
+
+        data = fp.read()
+
+        start = data.find('sunrise:')
+        end = data.find('</', start)
+
+        return data[start + len('sunrise: '):end]
+
+
+def main():
+    test = Module3()
+    #print(test.file_character_count('sample_text.txt'))
+    #print(test.total_population('census-state-populations.csv'))
+    #print(test.states_over_two_million('census-state-populations.csv','census-state-populations-filtered.csv'))
+    print(test.find_sunrise('ELweather.html'))
+
+
+if __name__ == '__main__':
+    main()
