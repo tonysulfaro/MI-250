@@ -18,7 +18,18 @@ class Module3:
 
     @staticmethod
     def extract_url_img_src(url):
-        return url
+
+        page = requests.get(url).text
+
+        start = page.find('<img src="')+len('<img src="')
+        end = page.find('"', start)
+
+        image_url = page[start:end]
+
+        if image_url is '':
+            return None
+
+        return image_url
 
     '''
         5. Refresher Question: Return the number of words in a text file given the filepath as a parameter
@@ -258,14 +269,3 @@ class Module3:
 
         return data[start + len('sunrise: '):end]
 
-
-def main():
-    test = Module3()
-    #print(test.file_character_count('sample_text.txt'))
-    #print(test.total_population('census-state-populations.csv'))
-    #print(test.states_over_two_million('census-state-populations.csv','census-state-populations-filtered.csv'))
-    print(test.find_sunrise('ELweather.html'))
-
-
-if __name__ == '__main__':
-    main()
