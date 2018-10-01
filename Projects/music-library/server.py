@@ -13,7 +13,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         path_list = self.path.split('/')
-        print(path_list)
 
         if self.path == '/':
             self.send_response(200)
@@ -85,11 +84,15 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         elif self.path == '/albums':
 
-            fp = open('./data/albums.csv', 'r')
-            fp.readline()
-            data = []
-            for line in fp:
-                data.append(line)
+            fp = open('./data/albums.json', 'r')
+            data = json.load(fp)
+
+            print(data[0])
+
+            for key, value in data[0].items():
+                print(key)
+                print(value)
+
             json_string = json.dumps(data)
 
             self.send_response(200)
