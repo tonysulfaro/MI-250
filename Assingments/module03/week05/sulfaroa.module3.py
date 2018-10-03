@@ -22,7 +22,28 @@ class Module3:
 
     @staticmethod
     def sort_states_descending(openfile, savefile):
-        return None
+
+        open_fp = open(openfile, 'r')
+        save_fp = open(savefile, 'w')
+
+        header = open_fp.readline()
+        save_fp.write(header)
+
+        data = []
+
+        for line in open_fp:
+            line = line.strip().split(',')
+            data_tup = (line[0], int(line[1]))
+            data.append(data_tup)
+
+        data = sorted(data, key=lambda x: x[1])
+
+        for item in data:
+            line = item[0]+','+str(item[1])+'\n'
+            save_fp.write(line)
+
+        open_fp.close()
+        save_fp.close()
 
     '''
         48. Given a ZIP code, pull the current weather from https://www.ajc.com/weather/ZIPCODE/ 
@@ -69,7 +90,13 @@ class Module3:
 
     @staticmethod
     def file_line_count(filepath):
-        return -1
+
+        fp = open(filepath, 'r')
+
+        count = 0
+        for line in fp:
+            count += 1
+        return count
 
     '''
         50. Given a ZIP code, pull the current weather from XXXX 
@@ -95,7 +122,21 @@ class Module3:
 
     @staticmethod
     def extract_m_states(openfile, savefile):
-        return None
+
+        open_fp = open(openfile, 'r')
+        save_fp = open(savefile, 'w')
+
+        header = open_fp.readline()
+        save_fp.write(header)
+
+        for line in open_fp:
+            data = line.strip().split(',')
+
+            if data[0].lower() == 'm':
+                save_fp.writeline(line)
+
+        open_fp.close()
+        save_fp.close()
 
     '''
         24. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -116,7 +157,9 @@ class Module3:
 
     @staticmethod
     def extract_url_protocol(url):
-        return url
+
+        found = url.find(':')
+        return url[:found]
 
     '''
         41. HARD: Given a URL, open the webpage and return the first anchor link url (a href).
@@ -133,4 +176,13 @@ class Module3:
     def extract_url_link(url):
         return url
 
-    
+
+def main():
+
+    test = Module3()
+    test.sort_states_descending('data.csv','data_sorted.csv')
+    print(test.extract_url_protocol('https://ww.google.com'))
+
+
+if __name__ == '__main__':
+    main()

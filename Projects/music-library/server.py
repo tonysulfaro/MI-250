@@ -13,6 +13,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
 
         path_list = self.path.split('/')
+        print(path_list)
 
         if self.path == '/':
             self.send_response(200)
@@ -82,22 +83,34 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     -   GET /users/{id}/albums      # As above
 ''')
 
-        elif self.path == '/albums':
+        elif path_list[1] == 'albums':
 
             fp = open('./data/albums.json', 'r')
             data = json.load(fp)
 
-            print(data[0])
+            if len(path_list) == 3:  # getting album by id
+                if path_list[2].isdigit():  # id
+                    self.send_response(200)
+                    self.end_headers()
+                    position = int(path_list[2])
+                    slice = data[position-1]
 
-            for key, value in data[0].items():
-                print(key)
-                print(value)
+                    for item in data:
+                        for key, value in item.items():
+                            if key == 'id' and value == position:
+                                print(slice)
+                                json_resp = json.dumps(slice)
+                                self.wfile.write(json_resp.encode())
 
-            json_string = json.dumps(data)
-
-            self.send_response(200)
-            self.end_headers()
-            self.wfile.write(json_string.encode())
+            # for key, value in data[0].items():
+            #     print(key)
+            #     print(value)
+            #
+            # json_string = json.dumps(data)
+            #
+            # self.send_response(200)
+            # self.end_headers()
+            # self.wfile.write(json_string.encode())
 
         elif path_list[1] == 'users':
             if path_list[3] == 'albums':
