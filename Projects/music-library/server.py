@@ -93,13 +93,12 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    slice = data[position-1]
 
                     for item in data:
                         for key, value in item.items():
                             if key == 'id' and value == position:
                                 print(slice)
-                                json_resp = json.dumps(slice)
+                                json_resp = json.dumps(item)
                                 self.wfile.write(json_resp.encode())
 
             # for key, value in data[0].items():
