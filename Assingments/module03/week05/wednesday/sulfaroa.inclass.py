@@ -32,28 +32,27 @@ def generate_page(directory):
             Picture Library
         </h1>
         <p>
-            Pictures from -> '''+os.getcwd()+'''
+            Pictures from -> ''' + os.getcwd() + '''
         </p>
     </div>
 </div>'''
     fp.writelines(content)
 
     # generate image containers now
-    image_dir = '/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week05/wednesday/inclass_images/'
+    # image_dir = '/Users/tonysulfaro/Documents/GitHub/MI-250/Assingments/module03/week05/wednesday/inclass_images/'
     fp.writelines('<div class="row">')
     count = 0
     for filename in os.listdir(directory):
         if filename.endswith(".jpeg") or filename.endswith(".png") or filename.endswith(".jpg"):
 
-
-            im = Image.open(image_dir + '/' + filename)
+            im = Image.open(directory + '/' + filename)
             width, height = im.size
             info_header = '<p>' + directory + '/' + filename + ' ' + str(width) + 'x' + str(height) + '</p>'
 
             if count < 4:
                 fp.writelines('''<div class="col-md-3">''' + info_header + '''
-            <a href="''' + './' + directory + '/' + filename + '''">
-                <img src="''' + './' + directory + '/' + filename + '''" width="200px">
+            <a href="''' + '' + os.path.join(directory, filename) + '''">
+                <img src="''' + os.path.join(directory, filename) + '''" width="200px">
             </a>
         </div>''')
                 count += 1

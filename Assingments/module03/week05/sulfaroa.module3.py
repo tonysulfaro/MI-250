@@ -39,7 +39,7 @@ class Module3:
         data = sorted(data, key=lambda x: x[1])
 
         for item in data:
-            line = item[0]+','+str(item[1])+'\n'
+            line = item[0] + ',' + str(item[1]) + '\n'
             save_fp.write(line)
 
         open_fp.close()
@@ -54,9 +54,14 @@ class Module3:
         
         Dependencies: Module3.save_url_to_file, Module3.find_sunrise
     '''
+
     @staticmethod
     def find_sunrise_for_zip(zipcode):
-        return zipcode
+
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+        save_url_to_file(url, 'weather.html')
+
+        return find_sunrise('weather.html')
 
     '''
         49. Given a ZIP code, pull the current weather from XXXX 
@@ -67,9 +72,13 @@ class Module3:
         
         Dependencies: Module3.save_url_to_file, Module3.find_geography
     '''
+
     @staticmethod
     def find_geography_for_zip(zipcode):
-        return zipcode
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+        save_url_to_file(url, 'geography.html')
+
+        return find_geography('geography.html')
 
     '''
         45. Given a ZIP code, pull the current weather from https://www.ajc.com/weather/ZIPCODE/ 
@@ -80,9 +89,13 @@ class Module3:
         
         Dependencies: Module3.save_url_to_file, Module3.find_current_temperature
     '''
+
     @staticmethod
     def find_current_temp_for_zip(zipcode):
-        return zipcode
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+        save_url_to_file(url, 'weather.html')
+
+        return find_current_temperature('weather.html')
 
     '''
         2. Refresher Question: Return the number of lines in a text file given the filepath as a parameter
@@ -107,10 +120,13 @@ class Module3:
         
         Dependencies: Module3.save_url_to_file, Module3.find_feels_like_temperature
     '''
+
     @staticmethod
     def find_feels_like_temp_for_zip(zipcode):
-        return zipcode
+        url = 'https://www.ajc.com/weather/' + str(zipcode) + '/'
+        save_url_to_file(url, 'weather.html')
 
+        return find_feels_like_temperature('weather.html')
 
     '''
         32. Given a file (structured the same as census-state-populations.csv but not necessarily real states) 
@@ -147,7 +163,14 @@ class Module3:
 
     @staticmethod
     def get_state_name(filename, population):
-        return None
+
+        fp = open(filename, 'r')
+
+        for line in fp:
+            data = line.strip().split(',')
+
+            if int(data[1]) == population:
+                return data[1]
 
     '''
         39. Given a URL, use string functions to extract and return the protocol component
@@ -174,14 +197,81 @@ class Module3:
 
     @staticmethod
     def extract_url_link(url):
-        return url
+
+        pass
+
+
+def save_url_to_file(url, filename):
+    page = requests.get(url).text
+    fp = open(filename, 'wb')
+    fp.write(page.encode())
+    fp.close()
+
+
+def find_sunrise(filename):
+    fp = open(filename, 'r', encoding='utf-8')
+
+    data = fp.read()
+
+    start = data.find('sunrise:')
+    end = data.find('</', start)
+
+    return data[start + len('sunrise: '):end]
+
+
+def find_geography(filename):
+    fp = open(filename)
+    fp = fp.read()
+
+    start_tag = 'class="location center-text-xs margin-bottom"'
+    content_index_start = fp.find(start_tag)  # find inner container start
+    content_index_end = fp.find('</strong>', content_index_start)  # inner container end
+    zip_code = fp[content_index_end - 5:content_index_end]  # get zip through slicing
+    city = fp[content_index_start + len(start_tag) + len(
+        '<strong> '):content_index_end - 12]  # get location through more slicing
+
+    location = zip_code + ': ' + city[:-1]
+
+    return location
+
+
+def find_current_temperature(filename):
+    fp = open(filename, 'r', encoding='UTF-8')
+    fp = fp.read()
+
+    start_tag = 'temp: '
+    # find start of content and end of container
+    content_index_start = fp.find(start_tag)
+    content_index_end = fp.find('</div>', content_index_start)
+
+    # slice out temp and return it
+    temperature = fp[content_index_start + len(start_tag):content_index_end - 5]
+
+    return temperature
+
+
+def find_feels_like_temperature(filename):
+    fp = open(filename, 'r', encoding='UTF-8')
+
+    data = fp.read()
+
+    start = data.find('feelsLike:')
+    end = data.find('</', start)
+
+    return int(data[start + len('feelsLike:'):end - 5])
 
 
 def main():
-
     test = Module3()
-    test.sort_states_descending('data.csv','data_sorted.csv')
+
+    zipp = 48734
+
+    test.sort_states_descending('data.csv', 'data_sorted.csv')
     print(test.extract_url_protocol('https://ww.google.com'))
+    print(test.find_sunrise_for_zip(zipp))
+    print(test.find_geography_for_zip(zipp))
+    print(test.find_current_temp_for_zip(zipp))
+    print(test.find_feels_like_temp_for_zip(zipp))
 
 
 if __name__ == '__main__':
