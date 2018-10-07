@@ -102,7 +102,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_by_key(data, position))
+                    self.wfile.write(get_item_from_json(data, position))
 
         elif path_list[1] == 'users':
 
@@ -122,7 +122,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_by_key(data, position))
+                    self.wfile.write(get_item_from_json(data, position))
 
             elif len(path_list) == 4:
 
@@ -130,13 +130,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_by_key(data, position, 'albums'))
+                    self.wfile.write(get_item_from_json(data, position, 'albums'))
 
                 elif path_list[3] == 'playlists':
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_by_key(data, position, 'playlists'))
+                    self.wfile.write(get_item_from_json(data, position, 'playlists'))
 
         elif path_list[1] == 'playlists':
 
@@ -153,13 +153,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.end_headers()
                 position = int(path_list[2])
-                self.wfile.write(get_item_by_key(data, position))
+                self.wfile.write(get_item_from_json(data, position))
 
             elif len(path_list) == 4:
                 self.send_response(200)
                 self.end_headers()
                 position = int(path_list[2])
-                self.wfile.write(get_item_by_key(data, position))  # GET /playlists/query/{id}
+                self.wfile.write(get_item_from_json(data, position))  # GET /playlists/query/{id}
 
         else:
             json_string = json.dumps(path_list)
@@ -179,7 +179,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(response.getvalue())
 
 
-def get_item_by_key(data, item_id, json_key=-1):
+def get_item_from_json(data, item_id, json_key=-1):
 
     for item in data:
         for key, value in item.items():
