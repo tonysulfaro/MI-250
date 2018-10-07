@@ -88,44 +88,78 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             fp = open('./data/albums.json', 'r')
             data = json.load(fp)
 
+            if len(path_list) == 2:  # getting all album data
+
+                self.send_response(200)
+                self.end_headers()
+                send = json.dumps(data)
+                self.wfile.write(send.encode())
+
             if len(path_list) == 3:  # getting album by id
+
                 if path_list[2].isdigit():  # id
+
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-
-                    for item in data:
-                        for key, value in item.items():
-                            if key == 'id' and value == position:
-                                print(slice)
-                                json_resp = json.dumps(item)
-                                self.wfile.write(json_resp.encode())
-
-            # for key, value in data[0].items():
-            #     print(key)
-            #     print(value)
-            #
-            # json_string = json.dumps(data)
-            #
-            # self.send_response(200)
-            # self.end_headers()
-            # self.wfile.write(json_string.encode())
+                    self.wfile.write(get_item_by_key(data, position))
 
         elif path_list[1] == 'users':
-            if path_list[3] == 'albums':
+
+            fp = open('./data/users.json', 'r')
+            data = json.load(fp)
+
+            if len(path_list) == 2:  # get all user data /users
+
                 self.send_response(200)
                 self.end_headers()
-                self.wfile.write(b'hmmm')
-            elif path_list[3] == 'playlists':
-                pass
-            elif 'playlists' in self.path:
-                self.send_response(200)
-                self.end_headers()
-                self.wfile.write(b'')
+                send = json.dumps(data)
+                self.wfile.write(send.encode())
+
+            elif len(path_list) == 3:  # get user data by user id /users/{id}
+
+                if path_list[2].isdigit():  # only getting data by id /users/{id}
+                    self.send_response(200)
+                    self.end_headers()
+                    position = int(path_list[2])
+                    self.wfile.write(get_item_by_key(data, position))
+
+            elif len(path_list) == 4:
+
+                if path_list[3] == 'albums':
+                    self.send_response(200)
+                    self.end_headers()
+                    position = int(path_list[2])
+                    self.wfile.write(get_item_by_key(data, position, 'albums'))
+
+                elif path_list[3] == 'playlists':
+                    self.send_response(200)
+                    self.end_headers()
+                    position = int(path_list[2])
+                    self.wfile.write(get_item_by_key(data, position, 'playlists'))
 
         elif path_list[1] == 'playlists':
-            pass
 
+            fp = open('./data/albums.json', 'r')
+            data = json.load(fp)
+
+            if len(path_list) == 2:  # get all playlist data
+                self.send_response(200)
+                self.end_headers()
+                send = json.dumps(data)
+                self.wfile.write(send.encode())
+
+            elif len(path_list) == 3:  # get playlist by id
+                self.send_response(200)
+                self.end_headers()
+                position = int(path_list[2])
+                self.wfile.write(get_item_by_key(data, position))
+
+            elif len(path_list) == 4:
+                self.send_response(200)
+                self.end_headers()
+                position = int(path_list[2])
+                self.wfile.write(get_item_by_key(data, position))  # GET /playlists/query/{id}
 
         else:
             json_string = json.dumps(path_list)
@@ -145,5 +179,19 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(response.getvalue())
 
 
-httpd = HTTPServer(('localhost', 8000), SimpleHTTPRequestHandler)
+def get_item_by_key(data, item_id, json_key=-1):
+
+    for item in data:
+        for key, value in item.items():
+            if key == 'id' and value == item_id:
+                if json_key == -1:
+                    json_resp = json.dumps(item)
+                else:
+                    json_resp = json.dumps(item[json_key])
+                return json_resp.encode()
+
+
+listen_port = 8000
+httpd = HTTPServer(('localhost', listen_port), SimpleHTTPRequestHandler)
+print('now listening on port:' + str(listen_port))
 httpd.serve_forever()
