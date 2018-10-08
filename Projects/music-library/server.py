@@ -104,7 +104,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position))
+                    self.wfile.write(get_item_from_json(data, position, 'id'))
 
         elif path_list[1] == 'users':
 
@@ -124,7 +124,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position))
+                    self.wfile.write(get_item_from_json(data, position, 'id'))
 
             elif len(path_list) == 4:
 
@@ -132,13 +132,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position, 'albums'))
+                    self.wfile.write(get_item_from_json(data, position, 'id', 'albums'))
 
                 elif path_list[3] == 'playlists':
                     self.send_response(200)
                     self.end_headers()
                     position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position, 'playlists'))
+                    self.wfile.write(get_item_from_json(data, position, 'id', 'playlists'))
 
         elif path_list[1] == 'playlists':
 
@@ -155,13 +155,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.send_response(200)
                 self.end_headers()
                 position = int(path_list[2])
-                self.wfile.write(get_item_from_json(data, position))
+                self.wfile.write(get_item_from_json(data, position, 'id'))
 
             elif len(path_list) == 4:
                 self.send_response(200)
                 self.end_headers()
                 position = int(path_list[2])
-                self.wfile.write(get_item_from_json(data, position))  # GET /playlists/query/{id}
+                self.wfile.write(get_item_from_json(data, position, 'id'))  # GET /playlists/query/{id}
 
         else:
             json_string = json.dumps(path_list)
@@ -222,15 +222,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(response.getvalue())
 
 
-def get_item_from_json(data, item_id, json_key=-1):
+def get_item_from_json(data, item_id, json_obj, json_key=-1):
     for item in data:
-        for key, value in item.items():
-            if key == 'id' and value == item_id:
-                if json_key == -1:
-                    json_resp = json.dumps(item)
-                else:
-                    json_resp = json.dumps(item[json_key])
-                return json_resp.encode()
+        if item[json_obj] == item_id:
+            if json_key == -1:
+                json_resp = json.dumps(item)
+            else:
+                json_resp = json.dumps(item[json_key])
+            return json_resp.encode()
 
 
 def delete_item_from_json(operation, item_id):
