@@ -167,6 +167,17 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(json_string.encode())
 
+    def do_DELETE(self):
+        path_list = self.path.split('/')
+        print(path_list)
+
+        self.send_response(200)
+        self.end_headers()
+
+        data_type = path_list[1]
+        json_id = path_list[2]
+        delete_item_from_json(data_type, json_id)
+
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
@@ -180,7 +191,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 def get_item_from_json(data, item_id, json_key=-1):
-
     for item in data:
         for key, value in item.items():
             if key == 'id' and value == item_id:
@@ -189,6 +199,47 @@ def get_item_from_json(data, item_id, json_key=-1):
                 else:
                     json_resp = json.dumps(item[json_key])
                 return json_resp.encode()
+
+
+def delete_item_from_json(operation, item_id):
+    if operation == 'users':
+        fp = open('./data/users.json', 'r')
+        data = json.load(fp)
+        new_data = []
+
+        for item in data:
+            if item['id'] != int(item_id):
+                new_data.append(item)
+
+        new_json = json.dumps(new_data)
+        fp_new = open('./data/users.json', 'w', encoding='UTF-8')
+        fp_new.write(new_json)
+
+    elif operation == 'playlists':
+        fp = open('./data/playlists.json', 'r')
+        data = json.load(fp)
+        new_data = []
+
+        for item in data:
+            if item['id'] != int(item_id):
+                new_data.append(item)
+
+        new_json = json.dumps(new_data)
+        fp_new = open('./data/users.json', 'w', encoding='UTF-8')
+        fp_new.write(new_json)
+
+    elif operation == 'albums':
+        fp = open('./data/albums.json', 'r')
+        data = json.load(fp)
+        new_data = []
+
+        for item in data:
+            if item['id'] != int(item_id):
+                new_data.append(item)
+
+        new_json = json.dumps(new_data)
+        fp_new = open('./data/users.json', 'w', encoding='UTF-8')
+        fp_new.write(new_json)
 
 
 listen_port = 8000

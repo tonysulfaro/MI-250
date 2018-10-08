@@ -1,20 +1,162 @@
-[{"id":1,"album_title":"Oxygen","artist_name":"Coraline Bloan","label_name":"CECO Environmental Corp.","release_date":"11/24/2017","other_id":"6df4141f-b820-487b-b6e9-0c0d95873aec"},
-{"id":2,"album_title":"White Sweet Clover","artist_name":"Alika Saenz","label_name":"DSP Group, Inc.","release_date":"10/28/2017","other_id":"cfafce5d-faf5-4b4a-becf-77076d0bdf6f"},
-{"id":3,"album_title":"tussin cough","artist_name":"Megen Rowet","label_name":"City Office REIT, Inc.","release_date":"5/7/2018","other_id":"c3912443-d179-4a51-b37c-07818a4bb663"},
-{"id":4,"album_title":"K-TAB","artist_name":"Obie Goodship","label_name":"Sucampo Pharmaceuticals, Inc.","release_date":"3/6/2018","other_id":"23ba13a2-400c-473f-af92-641ed694cfce"},
-{"id":5,"album_title":"allergy relief","artist_name":"Byrann Gooday","label_name":"Chembio Diagnostics, Inc.","release_date":"5/24/2018","other_id":"a39cce0f-07bb-4275-a697-35f639494c75"},
-{"id":6,"album_title":"SALIX NIGRA POLLEN","artist_name":"Merna Bernon","label_name":"Dynegy Inc.","release_date":"6/10/2018","other_id":"1e35f501-cfa6-4d7b-ae41-b9c0a0c7c0bf"},
-{"id":7,"album_title":"Adrenal Tincture","artist_name":"Connie Chorlton","label_name":"Sanmina Corporation","release_date":"12/7/2017","other_id":"2fcbf154-e64e-4d3a-a3a9-1d26ddcdd2e6"},
-{"id":8,"album_title":"Verapamil","artist_name":"Webb Gladeche","label_name":"Digimarc Corporation","release_date":"7/24/2018","other_id":"c14bd71a-b4dd-4146-bd07-d2bfbf7b0b96"},
-{"id":9,"album_title":"Haloperidol","artist_name":"Beatrix Halle","label_name":"AG Mortgage Investment Trust, Inc.","release_date":"5/18/2018","other_id":"a86b8a7d-2ad0-4749-8636-8ed82563830e"},
-{"id":10,"album_title":"Mirtazapine","artist_name":"Robinetta Veryard","label_name":"AeroVironment, Inc.","release_date":"5/28/2018","other_id":"c894218a-7fc6-4437-8e34-6d3a921ba751"},
-{"id":11,"album_title":"Pro Advantage Fast Absorbing Perineal with Dimethicone Skin Protectant","artist_name":"Randolf Skase","label_name":"AirMedia Group Inc","release_date":"10/26/2017","other_id":"ea17b358-d948-4196-91de-6cda4cf040a5"},
-{"id":12,"album_title":"Bladder - Kidney","artist_name":"Philippine Elsmere","label_name":"Pacific Coast Oil Trust","release_date":"8/13/2018","other_id":"6377b1bd-276c-4265-9644-315efdb9b2fc"},
-{"id":13,"album_title":"PrednisoLONE","artist_name":"Joan Jozefiak","label_name":"AmeriServ Financial Inc.","release_date":"2/28/2018","other_id":"ca7a92a4-967d-4fd6-9b51-dddd0dac5a1a"},
-{"id":14,"album_title":"Constipation Relief","artist_name":"Gracia Raisbeck","label_name":"REX American Resources Corporation","release_date":"9/29/2018","other_id":"37dd084e-157b-458a-981f-7b68aad0da83"},
-{"id":15,"album_title":"Artificial Tears","artist_name":"Tracy Leale","label_name":"Blackrock Global","release_date":"7/13/2018","other_id":"9963c1ce-e87f-4b4e-8d05-60a6e8905db2"},
-{"id":16,"album_title":"Idole Intense","artist_name":"Darline Densie","label_name":"General Motors Company","release_date":"9/26/2018","other_id":"a58d891b-9c97-437a-b3c7-81de29e8c9d5"},
-{"id":17,"album_title":"Weight Gloss","artist_name":"Margaux d'Escoffier","label_name":"First Trust International IPO ETF","release_date":"6/30/2018","other_id":"58058fbe-38dc-4d0c-a239-6fbab0514fb1"},
-{"id":18,"album_title":"Morphine Sulfate","artist_name":"Risa Fishlock","label_name":"Kinsale Capital Group, Inc.","release_date":"1/24/2018","other_id":"820d7cba-eb1f-4204-a1d1-fa0cee64854e"},
-{"id":19,"album_title":"NICODERM","artist_name":"Darby Bedburrow","label_name":"Turquoise Hill Resources Ltd.","release_date":"10/28/2017","other_id":"937b4d0e-f23d-43b0-ad26-ce7d1cc78e19"},
-{"id":20,"album_title":"StriVectin-SH NIA-114 UVA UVB Shields SPF 30","artist_name":"Kippar Ofen","label_name":"Popular, Inc.","release_date":"12/19/2017","other_id":"662f5fba-ef60-4dc5-9fd8-326a6b50e765"}]
+[
+  {
+    "id": 1,
+    "album_title": "Oxygen",
+    "artist_name": "Coraline Bloan",
+    "label_name": "CECO Environmental Corp.",
+    "release_date": "11/24/2017",
+    "other_id": "6df4141f-b820-487b-b6e9-0c0d95873aec"
+  },
+  {
+    "id": 2,
+    "album_title": "White Sweet Clover",
+    "artist_name": "Alika Saenz",
+    "label_name": "DSP Group, Inc.",
+    "release_date": "10/28/2017",
+    "other_id": "cfafce5d-faf5-4b4a-becf-77076d0bdf6f"
+  },
+  {
+    "id": 3,
+    "album_title": "tussin cough",
+    "artist_name": "Megen Rowet",
+    "label_name": "City Office REIT, Inc.",
+    "release_date": "5/7/2018",
+    "other_id": "c3912443-d179-4a51-b37c-07818a4bb663"
+  },
+  {
+    "id": 4,
+    "album_title": "K-TAB",
+    "artist_name": "Obie Goodship",
+    "label_name": "Sucampo Pharmaceuticals, Inc.",
+    "release_date": "3/6/2018",
+    "other_id": "23ba13a2-400c-473f-af92-641ed694cfce"
+  },
+  {
+    "id": 5,
+    "album_title": "allergy relief",
+    "artist_name": "Byrann Gooday",
+    "label_name": "Chembio Diagnostics, Inc.",
+    "release_date": "5/24/2018",
+    "other_id": "a39cce0f-07bb-4275-a697-35f639494c75"
+  },
+  {
+    "id": 6,
+    "album_title": "SALIX NIGRA POLLEN",
+    "artist_name": "Merna Bernon",
+    "label_name": "Dynegy Inc.",
+    "release_date": "6/10/2018",
+    "other_id": "1e35f501-cfa6-4d7b-ae41-b9c0a0c7c0bf"
+  },
+  {
+    "id": 7,
+    "album_title": "Adrenal Tincture",
+    "artist_name": "Connie Chorlton",
+    "label_name": "Sanmina Corporation",
+    "release_date": "12/7/2017",
+    "other_id": "2fcbf154-e64e-4d3a-a3a9-1d26ddcdd2e6"
+  },
+  {
+    "id": 8,
+    "album_title": "Verapamil",
+    "artist_name": "Webb Gladeche",
+    "label_name": "Digimarc Corporation",
+    "release_date": "7/24/2018",
+    "other_id": "c14bd71a-b4dd-4146-bd07-d2bfbf7b0b96"
+  },
+  {
+    "id": 9,
+    "album_title": "Haloperidol",
+    "artist_name": "Beatrix Halle",
+    "label_name": "AG Mortgage Investment Trust, Inc.",
+    "release_date": "5/18/2018",
+    "other_id": "a86b8a7d-2ad0-4749-8636-8ed82563830e"
+  },
+  {
+    "id": 10,
+    "album_title": "Mirtazapine",
+    "artist_name": "Robinetta Veryard",
+    "label_name": "AeroVironment, Inc.",
+    "release_date": "5/28/2018",
+    "other_id": "c894218a-7fc6-4437-8e34-6d3a921ba751"
+  },
+  {
+    "id": 11,
+    "album_title": "Pro Advantage Fast Absorbing Perineal with Dimethicone Skin Protectant",
+    "artist_name": "Randolf Skase",
+    "label_name": "AirMedia Group Inc",
+    "release_date": "10/26/2017",
+    "other_id": "ea17b358-d948-4196-91de-6cda4cf040a5"
+  },
+  {
+    "id": 12,
+    "album_title": "Bladder - Kidney",
+    "artist_name": "Philippine Elsmere",
+    "label_name": "Pacific Coast Oil Trust",
+    "release_date": "8/13/2018",
+    "other_id": "6377b1bd-276c-4265-9644-315efdb9b2fc"
+  },
+  {
+    "id": 13,
+    "album_title": "PrednisoLONE",
+    "artist_name": "Joan Jozefiak",
+    "label_name": "AmeriServ Financial Inc.",
+    "release_date": "2/28/2018",
+    "other_id": "ca7a92a4-967d-4fd6-9b51-dddd0dac5a1a"
+  },
+  {
+    "id": 14,
+    "album_title": "Constipation Relief",
+    "artist_name": "Gracia Raisbeck",
+    "label_name": "REX American Resources Corporation",
+    "release_date": "9/29/2018",
+    "other_id": "37dd084e-157b-458a-981f-7b68aad0da83"
+  },
+  {
+    "id": 15,
+    "album_title": "Artificial Tears",
+    "artist_name": "Tracy Leale",
+    "label_name": "Blackrock Global",
+    "release_date": "7/13/2018",
+    "other_id": "9963c1ce-e87f-4b4e-8d05-60a6e8905db2"
+  },
+  {
+    "id": 16,
+    "album_title": "Idole Intense",
+    "artist_name": "Darline Densie",
+    "label_name": "General Motors Company",
+    "release_date": "9/26/2018",
+    "other_id": "a58d891b-9c97-437a-b3c7-81de29e8c9d5"
+  },
+  {
+    "id": 17,
+    "album_title": "Weight Gloss",
+    "artist_name": "Margaux d'Escoffier",
+    "label_name": "First Trust International IPO ETF",
+    "release_date": "6/30/2018",
+    "other_id": "58058fbe-38dc-4d0c-a239-6fbab0514fb1"
+  },
+  {
+    "id": 18,
+    "album_title": "Morphine Sulfate",
+    "artist_name": "Risa Fishlock",
+    "label_name": "Kinsale Capital Group, Inc.",
+    "release_date": "1/24/2018",
+    "other_id": "820d7cba-eb1f-4204-a1d1-fa0cee64854e"
+  },
+  {
+    "id": 19,
+    "album_title": "NICODERM",
+    "artist_name": "Darby Bedburrow",
+    "label_name": "Turquoise Hill Resources Ltd.",
+    "release_date": "10/28/2017",
+    "other_id": "937b4d0e-f23d-43b0-ad26-ce7d1cc78e19"
+  },
+  {
+    "id": 20,
+    "album_title": "StriVectin-SH NIA-114 UVA UVB Shields SPF 30",
+    "artist_name": "Kippar Ofen",
+    "label_name": "Popular, Inc.",
+    "release_date": "12/19/2017",
+    "other_id": "662f5fba-ef60-4dc5-9fd8-326a6b50e765"
+  }
+]

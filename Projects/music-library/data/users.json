@@ -1,10 +1,122 @@
-[{"id":1,"user_name":"eabramovici0","albums":[26,42,31,46],"playlists":[45,23,38]},
-{"id":2,"user_name":"bkershaw1","albums":[1,24,9,45],"playlists":[10,11,5]},
-{"id":3,"user_name":"pbullar2","albums":[42,9,26,15],"playlists":[11,22,36]},
-{"id":4,"user_name":"jnewell3","albums":[28,1,13,20],"playlists":[16,39,14]},
-{"id":5,"user_name":"mstoate4","albums":[19,4,18,49],"playlists":[27,21,3]},
-{"id":6,"user_name":"ndoumic5","albums":[14,17,41,35],"playlists":[33,19,20]},
-{"id":7,"user_name":"ebrisley6","albums":[2,31,5,34],"playlists":[31,32,6]},
-{"id":8,"user_name":"vtansly7","albums":[16,8,24,7],"playlists":[13,45,18]},
-{"id":9,"user_name":"otwallin8","albums":[20,28,35,9],"playlists":[21,41,13]},
-{"id":10,"user_name":"astiggers9","albums":[21,28,1,6],"playlists":[47,44,12]}]
+[
+  {
+    "id": 1,
+    "user_name": "eabramovici0",
+    "albums": [
+      26,
+      42,
+      31,
+      46
+    ],
+    "playlists": [
+      45,
+      23,
+      38
+    ]
+  },
+  {
+    "id": 2,
+    "user_name": "bkershaw1",
+    "albums": [
+      1,
+      24,
+      9,
+      45
+    ],
+    "playlists": [
+      10,
+      11,
+      5
+    ]
+  },
+  {
+    "id": 4,
+    "user_name": "jnewell3",
+    "albums": [
+      28,
+      1,
+      13,
+      20
+    ],
+    "playlists": [
+      16,
+      39,
+      14
+    ]
+  },
+  {
+    "id": 5,
+    "user_name": "mstoate4",
+    "albums": [
+      19,
+      4,
+      18,
+      49
+    ],
+    "playlists": [
+      27,
+      21,
+      3
+    ]
+  },
+  {
+    "id": 6,
+    "user_name": "ndoumic5",
+    "albums": [
+      14,
+      17,
+      41,
+      35
+    ],
+    "playlists": [
+      33,
+      19,
+      20
+    ]
+  },
+  {
+    "id": 7,
+    "user_name": "ebrisley6",
+    "albums": [
+      2,
+      31,
+      5,
+      34
+    ],
+    "playlists": [
+      31,
+      32,
+      6
+    ]
+  },
+  {
+    "id": 8,
+    "user_name": "vtansly7",
+    "albums": [
+      16,
+      8,
+      24,
+      7
+    ],
+    "playlists": [
+      13,
+      45,
+      18
+    ]
+  },
+  {
+    "id": 9,
+    "user_name": "otwallin8",
+    "albums": [
+      20,
+      28,
+      35,
+      9
+    ],
+    "playlists": [
+      21,
+      41,
+      13
+    ]
+  }
+]
