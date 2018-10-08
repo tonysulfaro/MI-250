@@ -6,6 +6,8 @@ MI 250.001
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 from io import BytesIO
+import secrets
+from datetime import *
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -178,16 +180,46 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         json_id = path_list[2]
         delete_item_from_json(data_type, json_id)
 
+    def do_PUT(self):
+        pass
+
     def do_POST(self):
-        content_length = int(self.headers['Content-Length'])
-        body = self.rfile.read(content_length)
-        self.send_response(200)
-        self.end_headers()
-        response = BytesIO()
-        response.write(b'This is POST request. ')
-        response.write(b'Received: ')
-        response.write(body)
-        self.wfile.write(response.getvalue())
+        path_list = self.path.split('/')
+        print(path_list)
+
+        if len(path_list) == 2:
+            pass
+        elif len(path_list) == 3:
+            pass
+        elif len(path_list) == 4:
+            if path_list[1] == 'users' and 'token' in path_list[3]:
+                user_name_index = path_list[3].find('user_name=') + len('user_name=')
+                and_index = path_list[3].find('&', user_name_index)
+                password_index = path_list[3].find('password=', and_index) + len('password=')
+
+                user_name = path_list[3][user_name_index:and_index]
+                password = path_list[3][password_index:]
+
+                if validate_credentials(user_name, password):
+                    token = generate_token(user_name)
+
+                    self.send_response(200)
+                    self.end_headers()
+                    self.wfile.write(token.encode())
+                else:
+                    self.send_response(401)
+                    self.end_headers()
+
+        else:
+            content_length = int(self.headers['Content-Length'])
+            body = self.rfile.read(content_length)
+            self.send_response(404)
+            self.end_headers()
+            response = BytesIO()
+            response.write(b'This is POST request. ')
+            response.write(b'Received: ')
+            response.write(body)
+            self.wfile.write(response.getvalue())
 
 
 def get_item_from_json(data, item_id, json_key=-1):
@@ -240,6 +272,39 @@ def delete_item_from_json(operation, item_id):
         new_json = json.dumps(new_data)
         fp_new = open('./data/users.json', 'w', encoding='UTF-8')
         fp_new.write(new_json)
+
+
+def validate_credentials(username, password):
+    fp = open('./data/logins.csv', 'r')
+
+    for line in fp:
+        line = line.split(',')
+        if line[0] == username and line[1] == password:
+            return True
+    return False
+
+
+def generate_token(user_name):
+    token = secrets.token_urlsafe()
+
+    fp = open('./data/tokens.csv', 'a')
+    exp_time = datetime.now() + timedelta(minutes=10)
+
+    fp.write(user_name + ',' + token + ',' + str(exp_time) + '\n')
+
+    return token
+
+
+def validate_token(username, token):
+    fp = open('./data/tokens.csv', 'r')
+
+    for line in fp:
+        line = line.split(',')
+
+        if line[0] == username and line[1] == token:
+            if datetime.datetime.now() <= line[2]:
+                return True
+    return False
 
 
 listen_port = 8000
