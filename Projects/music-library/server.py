@@ -194,19 +194,23 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         path_list = self.path.split('/')
         print(path_list)
 
-        if len(path_list) == 2:
-            pass
+        if len(path_list) == 2:  # create a new user
+            user_id = create_user(path_list)
+            if user_id != -1:
+                self.send_response(301)
+                self.send_header('New User', 'http://localhost:8000/users/'+str(user_id))
+                self.end_headers()
+            else:
+                self.send_response(405)
+                self.end_headers()
+
         elif len(path_list) == 3:
             pass
         elif len(path_list) == 4:  # get token by posting to users
 
             if path_list[1] == 'users' and 'token' in path_list[3]:
-                user_name_index = path_list[3].find('user_name=') + len('user_name=')
-                and_index = path_list[3].find('&', user_name_index)
-                password_index = path_list[3].find('password=', and_index) + len('password=')
 
-                user_name = path_list[3][user_name_index:and_index]
-                password = path_list[3][password_index:]
+                user_name, password = get_user_pass(path_list)
 
                 if validate_credentials(user_name, password):
                     token = generate_token(user_name)
@@ -279,6 +283,60 @@ def delete_item_from_json(operation, item_id):
         new_json = json.dumps(new_data)
         fp_new = open('./data/albums.json', 'w', encoding='UTF-8')
         fp_new.write(new_json)
+
+
+def create_user(path_list):
+    user_name, password = get_user_pass(path_list)
+    print('create user')
+    print(user_name)
+    fp = open('./data/users.json', 'r')
+    data = json.load(fp)
+    new_data = []
+
+    max_id = 0
+    for item in data:
+        if item['id'] > max_id:
+            max_id = item['id']
+        if item['user_name'] == user_name:
+            print(item['user_name'])
+            return -1
+
+    for item in data:
+        new_data.append(item)
+
+    new_data.append({
+        "id": max_id + 1,
+        "user_name": user_name,
+        "albums": [],
+        "playlists": []})
+
+    new_json = json.dumps(new_data)
+    fp_new = open('./data/users.json', 'w', encoding='UTF-8')
+    fp_new.write(new_json)
+    return max_id + 1
+
+
+def get_user_pass(path_list):
+    user_name = ''
+    password = ''
+
+    if len(path_list) == 2:
+        user_name_index = path_list[1].find('user_name=') + len('user_name=')
+        and_index = path_list[1].find('&', user_name_index)
+        password_index = path_list[1].find('password=', and_index) + len('password=')
+
+        user_name = path_list[1][user_name_index:and_index]
+        password = path_list[1][password_index:]
+
+    elif len(path_list) == 4:
+        user_name_index = path_list[3].find('user_name=') + len('user_name=')
+        and_index = path_list[3].find('&', user_name_index)
+        password_index = path_list[3].find('password=', and_index) + len('password=')
+
+        user_name = path_list[3][user_name_index:and_index]
+        password = path_list[3][password_index:]
+
+    return user_name, password
 
 
 def validate_credentials(username, password):

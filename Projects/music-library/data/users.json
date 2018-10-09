@@ -1,1 +1,125 @@
-[{"id": 1, "playlist_title": "Aluin", "track_list": {"album_id": "African porcupine", "track_id": "Hystrix cristata"}}, {"id": 2, "playlist_title": "Simmonds", "track_list": {"album_id": "Squirrel, antelope ground", "track_id": "Ammospermophilus nelsoni"}}, {"id": 4, "playlist_title": "Ninette", "track_list": {"album_id": "Civet (unidentified)", "track_id": "unavailable"}}, {"id": 5, "playlist_title": "Rickey", "track_list": {"album_id": "Wallaby, tammar", "track_id": "Macropus eugenii"}}, {"id": 6, "playlist_title": "Justinian", "track_list": {"album_id": "Cheetah", "track_id": "Acinynox jubatus"}}, {"id": 7, "playlist_title": "Kirstin", "track_list": {"album_id": "Snake, tiger", "track_id": "Notechis semmiannulatus"}}, {"id": 8, "playlist_title": "Nikos", "track_list": {"album_id": "Canadian tiger swallowtail butterfly", "track_id": "Papilio canadensis"}}, {"id": 9, "playlist_title": "Lissa", "track_list": {"album_id": "Richardson's ground squirrel", "track_id": "Spermophilus richardsonii"}}, {"id": 10, "playlist_title": "Phyllis", "track_list": {"album_id": "North American river otter", "track_id": "Lutra canadensis"}}]
+[
+  {
+    "id": 1,
+    "user_name": "eabramovici0",
+    "albums": [
+      26,
+      42,
+      31,
+      46
+    ],
+    "playlists": [
+      45,
+      23,
+      38
+    ]
+  },
+  {
+    "id": 2,
+    "user_name": "admin",
+    "albums": [
+      1,
+      24,
+      9,
+      45
+    ],
+    "playlists": [
+      10,
+      11,
+      5
+    ]
+  },
+  {
+    "id": 4,
+    "user_name": "jnewell3",
+    "albums": [
+      28,
+      1,
+      13,
+      20
+    ],
+    "playlists": [
+      16,
+      39,
+      14
+    ]
+  },
+  {
+    "id": 6,
+    "user_name": "ndoumic5",
+    "albums": [
+      14,
+      17,
+      41,
+      35
+    ],
+    "playlists": [
+      33,
+      19,
+      20
+    ]
+  },
+  {
+    "id": 7,
+    "user_name": "ebrisley6",
+    "albums": [
+      2,
+      31,
+      5,
+      34
+    ],
+    "playlists": [
+      31,
+      32,
+      6
+    ]
+  },
+  {
+    "id": 8,
+    "user_name": "vtansly7",
+    "albums": [
+      16,
+      8,
+      24,
+      7
+    ],
+    "playlists": [
+      13,
+      45,
+      18
+    ]
+  },
+  {
+    "id": 9,
+    "user_name": "otwallin8",
+    "albums": [
+      20,
+      28,
+      35,
+      9
+    ],
+    "playlists": [
+      21,
+      41,
+      13
+    ]
+  },
+  {
+    "id": 10,
+    "user_name": "admin_new",
+    "albums": [],
+    "playlists": []
+  },
+  {
+    "id": 11,
+    "user_name": "admin_new_another",
+    "albums": [],
+    "playlists": []
+  },
+  {
+    "id": 12,
+    "user_name": "new_user_thing",
+    "albums": [],
+    "playlists": []
+  }
+]
