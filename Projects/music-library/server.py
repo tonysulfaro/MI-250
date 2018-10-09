@@ -173,12 +173,19 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         path_list = self.path.split('/')
         print(path_list)
 
-        self.send_response(200)
-        self.end_headers()
+        token_begin = path_list[2].find('token=')
+        token = path_list[2][token_begin + len('token='):]
 
         data_type = path_list[1]
-        json_id = path_list[2]
-        delete_item_from_json(data_type, json_id)
+        json_id = path_list[2][:token_begin - 1]
+
+        if validate_token(token):
+            self.send_response(200)
+            self.end_headers()
+            delete_item_from_json(data_type, int(json_id))
+        else:
+            self.send_response(401)
+            self.end_headers()
 
     def do_PUT(self):
         pass
@@ -191,7 +198,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             pass
         elif len(path_list) == 3:
             pass
-        elif len(path_list) == 4:
+        elif len(path_list) == 4:  # get token by posting to users
+
             if path_list[1] == 'users' and 'token' in path_list[3]:
                 user_name_index = path_list[3].find('user_name=') + len('user_name=')
                 and_index = path_list[3].find('&', user_name_index)
@@ -256,7 +264,7 @@ def delete_item_from_json(operation, item_id):
                 new_data.append(item)
 
         new_json = json.dumps(new_data)
-        fp_new = open('./data/users.json', 'w', encoding='UTF-8')
+        fp_new = open('./data/playlists.json', 'w', encoding='UTF-8')
         fp_new.write(new_json)
 
     elif operation == 'albums':
@@ -269,7 +277,7 @@ def delete_item_from_json(operation, item_id):
                 new_data.append(item)
 
         new_json = json.dumps(new_data)
-        fp_new = open('./data/users.json', 'w', encoding='UTF-8')
+        fp_new = open('./data/albums.json', 'w', encoding='UTF-8')
         fp_new.write(new_json)
 
 
@@ -294,14 +302,14 @@ def generate_token(user_name):
     return token
 
 
-def validate_token(username, token):
+def validate_token(token):
     fp = open('./data/tokens.csv', 'r')
 
     for line in fp:
-        line = line.split(',')
+        line = line.strip().split(',')
 
-        if line[0] == username and line[1] == token:
-            if datetime.datetime.now() <= line[2]:
+        if line[1] == token:
+            if str(datetime.now()) <= line[2]:
                 return True
     return False
 
