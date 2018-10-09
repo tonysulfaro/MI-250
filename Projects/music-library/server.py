@@ -310,8 +310,21 @@ def validate_token(token):
 
         if line[1] == token:
             if str(datetime.now()) <= line[2]:
+                update_token_time(line[2])
                 return True
     return False
+
+
+def update_token_time(timestamp):
+    fp = open('./data/tokens.csv', 'r')
+    data = fp.read()
+    fp.close()
+
+    exp_time = datetime.now() + timedelta(minutes=10)
+    data.replace(timestamp, str(exp_time))
+
+    fp_write = open('./data/tokens.csv', 'w')
+    fp_write.write(data)
 
 
 listen_port = 8000
