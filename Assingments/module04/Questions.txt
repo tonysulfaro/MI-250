@@ -36,20 +36,20 @@ Note that track information is not stored locally
                       #HTML page renders as a table in a browser
                       #Should support the use of query parameters to search for any fields in the album
 
-    -   GET /albums/{id}            #Gets the album, with complete track listing
+    +   GET /albums/{id}            #Gets the album, with complete track listing
 
     -   GET /albums/query/{id}      #Gets a list of albums returned by a query (see the POST below)
                                     #This url will timeout after 1 hour
 
-    -   GET /users/{id}/            #Gets all user info, including id's of albums, playlists
-    -   GET /users/{id}/albums      #Just lists the user's albums
-    -   GET /users/{id}/playlists   #Just lists the user's playlists
+    +   GET /users/{id}/            #Gets all user info, including id's of albums, playlists
+    +   GET /users/{id}/albums      #Just lists the user's albums
+    +   GET /users/{id}/playlists   #Just lists the user's playlists
 
 
-    -   GET /users                  #Gets all users
+    +   GET /users                  #Gets all users
 
-    -   GET /playlists              #Gets all playlists
-    -   GET /playlists/{id}         #Gets specific playlist, with list of track names / length
+    +   GET /playlists              #Gets all playlists
+    +   GET /playlists/{id}         #Gets specific playlist, with list of track names / length
     -   GET /playlists/query/{id}   #Gets a list of playlists returned by a query (see the POST below)
                                     #This url will timeout after 1 hour
 
@@ -77,11 +77,11 @@ Note that track information is not stored locally
                             #Unauthenticated posts requre a body
                             #In all cases, redirects the user to a unique query url
 
-    -   POST /users/{id}/token      #Returns a token (nonce) that the user can use to access the service
+    +   POST /users/{id}/token      #Returns a token (nonce) that the user can use to access the service
                                     #Requires username & password parameters
                                     #Token should expire after 10 minutes of inactivity
 
-    -   POST /users         #Create a new user.  Requires a username and password as form parameters
+    +   POST /users         #Create a new user.  Requires a username and password as form parameters
                             #Fails is username is taken & password does not match
                             #Success redirects to the pre-existing or newly created /users/{id}
 

@@ -92,19 +92,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
             if len(path_list) == 2:  # getting all album data
 
-                self.send_response(200)
-                self.end_headers()
-                send = json.dumps(data)
-                self.wfile.write(send.encode())
+                send_resp_GET(self, data)
 
             if len(path_list) == 3:  # getting album by id
 
                 if path_list[2].isdigit():  # id
-
-                    self.send_response(200)
-                    self.end_headers()
-                    position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position, 'id'))
+                    album_id = int(path_list[2])
+                    send_resp_GET(self, data, album_id, 'id')
 
         elif path_list[1] == 'users':
 
@@ -113,32 +107,24 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
             if len(path_list) == 2:  # get all user data /users
 
-                self.send_response(200)
-                self.end_headers()
-                send = json.dumps(data)
-                self.wfile.write(send.encode())
+                send_resp_GET(self, data)
 
             elif len(path_list) == 3:  # get user data by user id /users/{id}
 
                 if path_list[2].isdigit():  # only getting data by id /users/{id}
-                    self.send_response(200)
-                    self.end_headers()
-                    position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position, 'id'))
 
-            elif len(path_list) == 4:
+                    user_id = int(path_list[2])
+                    send_resp_GET(self, data, user_id, 'id')
 
-                if path_list[3] == 'albums':
-                    self.send_response(200)
-                    self.end_headers()
-                    position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position, 'id', 'albums'))
+            elif len(path_list) == 4:  # get user albums
 
-                elif path_list[3] == 'playlists':
-                    self.send_response(200)
-                    self.end_headers()
-                    position = int(path_list[2])
-                    self.wfile.write(get_item_from_json(data, position, 'id', 'playlists'))
+                user_id = int(path_list[2])
+
+                if path_list[3] == 'albums':  # get user albums
+                    send_resp_GET(self, data, user_id, 'id', 'albums')
+
+                elif path_list[3] == 'playlists':  # get user playlists
+                    send_resp_GET(self, data, user_id, 'id', 'playlists')
 
         elif path_list[1] == 'playlists':
 
@@ -146,16 +132,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             data = json.load(fp)
 
             if len(path_list) == 2:  # get all playlist data
-                self.send_response(200)
-                self.end_headers()
-                send = json.dumps(data)
-                self.wfile.write(send.encode())
+                send_resp_GET(self, data)
 
             elif len(path_list) == 3:  # get playlist by id
-                self.send_response(200)
-                self.end_headers()
-                position = int(path_list[2])
-                self.wfile.write(get_item_from_json(data, position, 'id'))
+                playlist_id = int(path_list[2])
+                send_resp_GET(self, data, playlist_id, 'id')
 
             elif len(path_list) == 4:
                 self.send_response(200)
@@ -164,10 +145,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(get_item_from_json(data, position, 'id'))  # GET /playlists/query/{id}
 
         else:
-            json_string = json.dumps(path_list)
             self.send_response(404)
             self.end_headers()
-            self.wfile.write(json_string.encode())
 
     def do_DELETE(self):
         path_list = self.path.split('/')
@@ -198,7 +177,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             user_id = create_user(path_list)
             if user_id != -1:
                 self.send_response(301)
-                self.send_header('New User', 'http://localhost:8000/users/'+str(user_id))
+                self.send_header('New User', 'http://localhost:8000/users/' + str(user_id))
                 self.end_headers()
             else:
                 self.send_response(405)
@@ -234,9 +213,31 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(response.getvalue())
 
 
-def get_item_from_json(data, item_id, json_obj, json_key=-1):
+def send_resp_GET(self, data, item_id=-1, json_key=-1, json_data_type=''):
+
+    if json_key == -1 and item_id == -1:
+        self.send_response(200)
+        self.end_headers()
+        send = json.dumps(data)
+        self.wfile.write(send.encode())
+        return
+
+    if json_data_type != '':
+        send = get_item_from_json(data, item_id, json_key, json_data_type)
+    else:
+        send = get_item_from_json(data, item_id, json_key)
+    if send is None:
+        self.send_response(404)
+        self.end_headers()
+    else:
+        self.send_response(200)
+        self.end_headers()
+        self.wfile.write(send)
+
+
+def get_item_from_json(data, item_id, json_obj_key, json_key=-1):
     for item in data:
-        if item[json_obj] == item_id:
+        if item[json_obj_key] == item_id:
             if json_key == -1:
                 json_resp = json.dumps(item)
             else:
