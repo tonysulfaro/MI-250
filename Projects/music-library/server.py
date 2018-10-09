@@ -316,15 +316,18 @@ def validate_token(token):
 
 
 def update_token_time(timestamp):
-    fp = open('./data/tokens.csv', 'r')
-    data = fp.read()
-    fp.close()
+    readfile = open('./data/tokens.csv', 'r')
+    file_data = readfile.read()
 
     exp_time = datetime.now() + timedelta(minutes=10)
-    data.replace(timestamp, str(exp_time))
+    file_data = file_data.replace(str(timestamp), str(exp_time))
 
-    fp_write = open('./data/tokens.csv', 'w')
-    fp_write.write(data)
+    readfile.close()
+
+    # write string to file
+    outfile = open('./data/tokens.csv', 'w')
+    outfile.write(file_data)
+    outfile.close()
 
 
 listen_port = 8000
