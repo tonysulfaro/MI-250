@@ -15,21 +15,6 @@
     ]
   },
   {
-    "id": 2,
-    "user_name": "admin",
-    "albums": [
-      1,
-      24,
-      9,
-      45
-    ],
-    "playlists": [
-      10,
-      11,
-      5
-    ]
-  },
-  {
     "id": 4,
     "user_name": "jnewell3",
     "albums": [

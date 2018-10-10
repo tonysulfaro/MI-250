@@ -150,6 +150,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
 
     def do_DELETE(self):
+
+        user_fp = open('./data/users.json', 'r', encoding='UTF-8')
+        user_data = user_fp.read()
+        user_data = json.loads(user_data)
+
         path_list = self.path.split('/')
         print(path_list)
 
@@ -157,13 +162,24 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         token = path_list[2][token_begin + len('token='):]
 
         data_type = path_list[1]
-        json_id = path_list[2][:token_begin - 1]
+        json_id = int(path_list[2][:token_begin - 1])
+
+        print(json_id)
 
         if validate_token(token):
 
+            # check if user is only doing operation on themselves
+            user_name = get_item_from_json(user_data, json_id, 'id')
+            token_file = open('./data/tokens.csv', 'r')
+
+            for token_entry in token_file:
+                if token in token_entry:
+                    if token_entry[0] != user_name:
+                        pass
+
             self.send_response(200)
             self.end_headers()
-            delete_item_from_json(data_type, int(json_id))
+            delete_item_from_json(data_type, int(json_id), token)
         else:
             self.send_response(401)
             self.end_headers()
@@ -246,7 +262,7 @@ def get_item_from_json(data, item_id, json_obj_key, json_key=-1):
             return json_resp.encode()
 
 
-def delete_item_from_json(operation, item_id):
+def delete_item_from_json(operation, item_id, token):
     if operation == 'users':
         fp = open('./data/users.json', 'r')
         data = json.load(fp)
