@@ -169,20 +169,22 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         if validate_token(token):
 
             # check if user is only doing operation on themselves
-            user_name = get_item_from_json(user_data, json_id, 'id')
+            user_name = json.loads(get_item_from_json(user_data, json_id, 'id'))['user_name']
             token_file = open('./data/tokens.csv', 'r')
 
             for token_entry in token_file:
+                token_data_string = token_entry.strip().split(',')
                 if token in token_entry:
-                    if token_entry[0] != user_name:
-                        pass
-
-            self.send_response(200)
-            self.end_headers()
-            delete_item_from_json(data_type, int(json_id), token)
-        else:
-            self.send_response(401)
-            self.end_headers()
+                    print(token_data_string)
+                    print(token_data_string[0])
+                    print(user_name)
+                    if token_data_string[0] != user_name:
+                        self.send_response(401)
+                        self.end_headers()
+                    else:
+                        self.send_response(200)
+                        self.end_headers()
+                        delete_item_from_json(data_type, int(json_id), token)
 
     def do_PUT(self):
         pass

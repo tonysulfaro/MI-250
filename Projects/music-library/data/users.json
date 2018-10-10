@@ -90,12 +90,6 @@
     ]
   },
   {
-    "id": 10,
-    "user_name": "admin_new",
-    "albums": [],
-    "playlists": []
-  },
-  {
     "id": 11,
     "user_name": "admin_new_another",
     "albums": [],
