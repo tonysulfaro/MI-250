@@ -8,6 +8,7 @@ import json
 from io import BytesIO
 import secrets
 from datetime import *
+import requests
 
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -159,6 +160,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         json_id = path_list[2][:token_begin - 1]
 
         if validate_token(token):
+
             self.send_response(200)
             self.end_headers()
             delete_item_from_json(data_type, int(json_id))
@@ -214,7 +216,6 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
 
 def send_resp_GET(self, data, item_id=-1, json_key=-1, json_data_type=''):
-
     if json_key == -1 and item_id == -1:
         self.send_response(200)
         self.end_headers()
@@ -318,24 +319,13 @@ def create_user(path_list):
 
 
 def get_user_pass(path_list):
-    user_name = ''
-    password = ''
+    index = len(path_list) - 1
+    user_name_index = path_list[index].find('user_name=') + len('user_name=')
+    and_index = path_list[index].find('&', user_name_index)
+    password_index = path_list[index].find('password=', and_index) + len('password=')
 
-    if len(path_list) == 2:
-        user_name_index = path_list[1].find('user_name=') + len('user_name=')
-        and_index = path_list[1].find('&', user_name_index)
-        password_index = path_list[1].find('password=', and_index) + len('password=')
-
-        user_name = path_list[1][user_name_index:and_index]
-        password = path_list[1][password_index:]
-
-    elif len(path_list) == 4:
-        user_name_index = path_list[3].find('user_name=') + len('user_name=')
-        and_index = path_list[3].find('&', user_name_index)
-        password_index = path_list[3].find('password=', and_index) + len('password=')
-
-        user_name = path_list[3][user_name_index:and_index]
-        password = path_list[3][password_index:]
+    user_name = path_list[index][user_name_index:and_index]
+    password = path_list[index][password_index:]
 
     return user_name, password
 
@@ -387,6 +377,37 @@ def update_token_time(timestamp):
     outfile = open('./data/tokens.csv', 'w')
     outfile.write(file_data)
     outfile.close()
+
+
+def get_spotify_token():
+    client_id = '5012223408634ccb90deea3f0cf85718'
+    client_secret = 'bc1d37409b8046c6986c054ec3d4b4f6'
+
+    url = 'https://accounts.spotify.com/api/token'
+    payload = {'client_id': client_id, 'client_secret': client_secret, 'grant_type': 'client_credentials'}
+    headers = {'content-type': 'application/x-www-form-urlencoded'}
+
+    token = requests.post(url, data=payload, headers=headers)
+    json_resp = json.loads(token.content)
+    return json_resp['access_token']
+
+
+def search_spotify(token, query):
+    url = 'https://api.spotify.com/v1/search'
+
+    # query = [type, name to filter type]
+
+    if query[0] == 'artist':
+        query = 'artist:' + query[1] + ' album:' + query
+        payload = {'q': query, 'type': 'album'}
+        headers = {'Authorization': 'Bearer ' + get_spotify_token()}
+        response = requests.get('https://api.spotify.com/v1/search', params=payload, headers=headers)
+        response_json = json.loads(response.content)
+
+    elif query[0] == 'album':
+        pass
+
+    return response_json
 
 
 listen_port = 8000
