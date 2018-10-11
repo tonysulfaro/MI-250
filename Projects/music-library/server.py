@@ -152,8 +152,13 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_DELETE(self):
 
         user_fp = open('./data/users.json', 'r', encoding='UTF-8')
-        user_data = user_fp.read()
-        user_data = json.loads(user_data)
+        user_data = json.loads(user_fp.read())
+
+        album_fp = open('./data/albums.json', 'r', encoding='UTF-8')
+        album_data = json.loads(album_fp.read())
+
+        playlists_fp = open('./data/playlists.json', 'r', encoding='UTF-8')
+        playlists_data = json.loads(playlists_fp.read())
 
         path_list = self.path.split('/')
         print(path_list)
@@ -168,23 +173,45 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         if validate_token(token):
 
-            # check if user is only doing operation on themselves
-            user_name = json.loads(get_item_from_json(user_data, json_id, 'id'))['user_name']
-            token_file = open('./data/tokens.csv', 'r')
+            if path_list[1] == 'users':
+                # check if user is only doing operation on themselves
+                user_name = json.loads(get_item_from_json(user_data, json_id, 'id'))['user_name']
+                token_file = open('./data/tokens.csv', 'r')
 
-            for token_entry in token_file:
-                token_data_string = token_entry.strip().split(',')
-                if token in token_entry:
-                    print(token_data_string)
-                    print(token_data_string[0])
-                    print(user_name)
-                    if token_data_string[0] != user_name:
-                        self.send_response(401)
-                        self.end_headers()
-                    else:
-                        self.send_response(200)
-                        self.end_headers()
-                        delete_item_from_json(data_type, int(json_id), token)
+                for token_entry in token_file:
+                    token_data_string = token_entry.strip().split(',')
+                    if token in token_entry:
+                        print(token_data_string)
+                        print(token_data_string[0])
+                        print(user_name)
+                        if token_data_string[0] != user_name:
+                            self.send_response(401)
+                            self.end_headers()
+                        else:
+                            self.send_response(200)
+                            self.end_headers()
+                            delete_item_from_json(data_type, int(json_id), token)
+
+            elif path_list[1] == 'albums':
+                user_name = json.loads(get_item_from_json(user_data, json_id, 'id'))['user_name']
+                token_file = open('./data/tokens.csv', 'r')
+
+                for token_entry in token_file:
+                    token_data_string = token_entry.strip().split(',')
+                    if token in token_entry:
+                        print(token_data_string)
+                        print(token_data_string[0])
+                        print(user_name)
+                        if token_data_string[0] != user_name:
+                            self.send_response(401)
+                            self.end_headers()
+                        else:
+                            self.send_response(200)
+                            self.end_headers()
+                            delete_item_from_json(data_type, int(json_id), token)
+
+            elif path_list[1] == 'playlists':
+                pass
 
     def do_PUT(self):
         pass
@@ -428,7 +455,32 @@ def search_spotify(token, query):
     return response_json
 
 
-listen_port = 8000
-httpd = HTTPServer(('localhost', listen_port), SimpleHTTPRequestHandler)
-print('now listening on port:' + str(listen_port))
-httpd.serve_forever()
+def clean_tokens():
+    fp = open('./data/tokens.csv', 'r', encoding='UTF-8')
+    new_data = ''
+    new_data += fp.readline()
+
+    for line in fp:
+        data = line.strip().split(',')
+        if data[2] < str(datetime.now()):
+            pass
+        else:
+            new_data += line
+
+    fp.close()
+    fp = open('./data/tokens.csv', 'w', encoding='UTF-8')
+    fp.write(new_data)
+    fp.close()
+
+
+def main():
+    listen_port = 8000
+    httpd = HTTPServer(('localhost', listen_port), SimpleHTTPRequestHandler)
+    print('cleaning local data..')
+    clean_tokens()
+    print('now listening on port:' + str(listen_port))
+    httpd.serve_forever()
+
+
+if __name__ == '__main__':
+    main()

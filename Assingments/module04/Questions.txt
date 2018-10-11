@@ -53,9 +53,9 @@ Note that track information is not stored locally
     -   GET /playlists/query/{id}   #Gets a list of playlists returned by a query (see the POST below)
                                     #This url will timeout after 1 hour
 
-    -   DELETE /users/{id}      #Only successful if a user deletes themselves
-    -   DELETE /playlists/{id}  #Only successful if no users "own" the playlist
-    -   DELETE /albums/{id}     #Only successful if no users "own" the id
+    +   DELETE /users/{id}      #Only successful if a user deletes themselves
+    +   DELETE /playlists/{id}  #Only successful if no users "own" the playlist
+    +   DELETE /albums/{id}     #Only successful if no users "own" the id
 
     -   PUT|DELETE /playlists/{id}          #Adds/Deletes a favorite album to the user's list of fav
                                             #Authenticated
