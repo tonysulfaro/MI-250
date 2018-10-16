@@ -101,6 +101,27 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     album_id = int(path_list[2])
                     send_resp_GET(self, data, album_id, 'id')
 
+                elif 'query' in path_list:
+                    self.send_response(200)
+                    self.end_headers()
+                    self.wfile.write(b"""<!DOCTYPE html>
+                    <html>
+                    <body>
+                    
+                    <h2>Spotify Album Search</h2>
+                    
+                    <form action="http://localhost:8000/albums" method="post">
+                      Album Name:<br>
+                      <input type="text" name="album_name" value="">
+                      <br>
+                      <input type="submit" value="Submit">
+                    </form> 
+                    
+                    <p>If you click the "Submit" button, the form-data will be submitted then redirected to a results page</p>
+                    
+                    </body>
+                    </html>""")
+
         elif path_list[1] == 'users':
 
             fp = open('./data/users.json', 'r')
@@ -132,18 +153,39 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             fp = open('./data/albums.json', 'r')
             data = json.load(fp)
 
-            if len(path_list) == 2:  # get all playlist data
+            # GET /playlists
+            if len(path_list) == 2:
                 send_resp_GET(self, data)
 
-            elif len(path_list) == 3:  # get playlist by id
+            # GET /playlists /{id}
+            elif len(path_list) == 3:
                 playlist_id = int(path_list[2])
                 send_resp_GET(self, data, playlist_id, 'id')
 
+            # GET /playlists/query/{id}
             elif len(path_list) == 4:
+
+                form_page = """<!DOCTYPE html>
+                                                <html>
+                                                <body>
+
+                                                <h2>Album Search Results</h2>
+                                                <h3>Check albums and then click submit to save</h3>
+
+                                                <form action="http://localhost:8000/playlists" method="post">
+                                                  """
+
+                form_page += """<input type="checkbox" name="sample" value="artist" /> Artist_name <br>
+                                <input type="checkbox" name="sample" value="artist2" /> Another_artist <br>"""
+
+                form_page += """<input type="submit" value="Submit">
+                                                </form>
+
+                                                </body>
+                                                </html>"""
                 self.send_response(200)
                 self.end_headers()
-                position = int(path_list[2])
-                self.wfile.write(get_item_from_json(data, position, 'id'))  # GET /playlists/query/{id}
+                self.wfile.write(form_page.encode())
 
         else:
             self.send_response(404)
@@ -193,7 +235,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                             delete_item_from_json(data_type, int(json_id), token)
 
             elif path_list[1] == 'albums':
-                user_name = json.loads(get_item_from_json(user_data, json_id, 'id'))['user_name']
+                user_name = ''
                 token_file = open('./data/tokens.csv', 'r')
 
                 for token_entry in token_file:
@@ -221,14 +263,60 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         print(path_list)
 
         if len(path_list) == 2:  # create a new user
-            user_id = create_user(path_list)
-            if user_id != -1:
-                self.send_response(301)
-                self.send_header('New User', 'http://localhost:8000/users/' + str(user_id))
+            if 'users' in path_list[1]:
+                user_id = create_user(path_list)
+                if user_id != -1:
+                    self.send_response(301)
+                    self.send_header('New User', 'http://localhost:8000/users/' + str(user_id))
+                    self.end_headers()
+                else:
+                    self.send_response(405)
+                    self.end_headers()
+
+            # search spotify albums
+            elif path_list[1] == 'albums':
+                token = get_spotify_token()
+                album_data = search_spotify(token, ['album', 'ye'])
+                album_data = json.dumps(album_data)
+
+                form_page = """<!DOCTYPE html>
+                                <html>
+                                <body>
+
+                                <h2>Album Search Results</h2>
+                                <h3>Check albums and then click submit to save</h3>
+
+                                <form action="http://localhost:8000/playlists" method="post">
+                                  """
+
+                form_page += """<input type="checkbox" name="sample" value="artist" /> Artist_name <br>
+                                <input type="checkbox" name="sample" value="artist2" /> Another_artist <br>"""
+
+                form_page += """<input type="submit" value="Submit">
+                                </form>
+    
+                                </body>
+                                </html>"""
+
+                self.send_response(200)
                 self.end_headers()
-            else:
-                self.send_response(405)
+                self.wfile.write(album_data.encode())
+
+
+            # search spotify playlists
+            elif path_list[1] == 'playlists':
+
+                self.send_response(200)
                 self.end_headers()
+                self.wfile.write(b"great success")
+                self.wfile.write(str(self.responses).encode())
+                # content_length = int(self.headers['Content-Length'])  # <--- Gets the size of data
+                # post_data = self.rfile.read(content_length)
+                # print(post_data)
+                # print(self.headers)
+                # spotify_token = get_spotify_token()
+                # query = path_list
+                # search_spotify(spotify_token, query)
 
         elif len(path_list) == 3:
             pass
@@ -438,19 +526,17 @@ def get_spotify_token():
 
 
 def search_spotify(token, query):
+    # query is a list of terms to search for
+    # query[0] is what type of item they are going to search for
+    # query[1] is the physical search term, e.g. artist name or album name
     url = 'https://api.spotify.com/v1/search'
 
     # query = [type, name to filter type]
-
-    if query[0] == 'artist':
-        query = 'artist:' + query[1] + ' album:' + query
-        payload = {'q': query, 'type': 'album'}
-        headers = {'Authorization': 'Bearer ' + get_spotify_token()}
-        response = requests.get('https://api.spotify.com/v1/search', params=payload, headers=headers)
-        response_json = json.loads(response.content)
-
-    elif query[0] == 'album':
-        pass
+    # spotify api reference: https://developer.spotify.com/documentation/web-api/reference/search/search/
+    payload = {'q': query[1], 'type': query[0]}
+    headers = {'Authorization': 'Bearer ' + token}
+    response = requests.get('https://api.spotify.com/v1/search', params=payload, headers=headers)
+    response_json = json.loads(response.content)
 
     return response_json
 

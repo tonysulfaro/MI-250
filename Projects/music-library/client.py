@@ -34,8 +34,12 @@ def main():
     assert no_user.status_code == 404
 
     # check if token request working
-    # token = requests.post('localhost:8000/users/{id}/token ?user_name=admin&password=admin')
-    # assert token.status_code == 200
+    payload = {'user_name': 'new_admin', 'password': 'admin'}
+    token = requests.post('localhost:8000/users/{id}/token', data=payload)
+    assert token.status_code == 200
+
+    album_search = requests.post('localhost:8000/')
+    print(album_search)
 
     print('Server functional, tests passed.')
     print()
@@ -52,25 +56,6 @@ def main():
     # print(json_resp['access_token'])
 
     token = 'BQDkDzdvEhWOO2aqllHvL1LuZf5iX3455Bo0NSYr36V1D1a2fpIjNZSvumqaDfDCPAElOcrOjXfVUUaXyEE'
-
-
-
-#     instructions = """
-#  Enter a command:
-#  L: Login to the service
-#  A: Display ll albums stored
-#  P: Display all playlists stored
-#  U: Display all users
-#
-#  Q: Exit the program
-# """
-#
-#     user_input = ''
-#     while user_input != 'q':
-#         user_input = input(instructions).lower()
-#
-#         if user_input == 'u':
-#             get_users()
 
 
 if __name__ == '__main__':
