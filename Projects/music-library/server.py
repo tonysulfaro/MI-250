@@ -86,6 +86,28 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     -   GET /users/{id}/albums      # As above
 ''')
 
+        # GET /query
+        if 'query' in path_list[1]:
+
+            start_query_type = path_list[1].find('query_type=')
+            end_query_type = path_list[1].find('&', start_query_type)
+            query_type = path_list[1][start_query_type + len('query_type='):end_query_type]
+
+            start_search = path_list[1].find('search_term=')
+            search = path_list[1][start_search + len('search_term='):]
+
+            spotify_token = get_spotify_token()
+            query = [query_type, search]
+
+            data = search_spotify(spotify_token, query)
+            # data = json.dumps(data)
+
+            page = generate_spotify_page(query_type, data)
+
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(page.encode())
+
         elif path_list[1] == 'albums':
 
             fp = open('./data/albums.json', 'r')
@@ -93,7 +115,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
             if len(path_list) == 2:  # getting all album data
 
-                send_resp_GET(self, data)
+                if path_list[1] == 'albums':
+                    # GET /albums
+                    send_resp_GET(self, data)
 
             if len(path_list) == 3:  # getting album by id
 
@@ -106,15 +130,26 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                     self.end_headers()
                     self.wfile.write(b"""<!DOCTYPE html>
                     <html>
+                    <head>
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                    </head>
                     <body>
                     
-                    <h2>Spotify Album Search</h2>
+                    <h2>Spotify Search</h2>
                     
-                    <form action="http://localhost:8000/albums" method="post">
-                      Album Name:<br>
-                      <input type="text" name="album_name" value="">
-                      <br>
-                      <input type="submit" value="Submit">
+                    <form action="http://localhost:8000/query" method="get">
+                        Search Type: 
+                        <br>
+                        <select name="query_type">
+                          <option value="artist">Artist</option>
+                          <option value="album">Album</option>
+                          <option value="playlist">Playlist</option>
+                        </select>
+                        <br>
+                          Search Term:<br>
+                          <input type="text" name="search_term" value="">
+                          <br>
+                          <input type="submit" value="Submit">
                     </form> 
                     
                     <p>If you click the "Submit" button, the form-data will be submitted then redirected to a results page</p>
@@ -167,6 +202,9 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
                 form_page = """<!DOCTYPE html>
                                                 <html>
+                                                <head>
+                                                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                                                </head>
                                                 <body>
 
                                                 <h2>Album Search Results</h2>
@@ -276,27 +314,31 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             # search spotify albums
             elif path_list[1] == 'albums':
                 token = get_spotify_token()
+                print(path_list)
                 album_data = search_spotify(token, ['album', 'ye'])
                 album_data = json.dumps(album_data)
 
-                form_page = """<!DOCTYPE html>
-                                <html>
-                                <body>
-
-                                <h2>Album Search Results</h2>
-                                <h3>Check albums and then click submit to save</h3>
-
-                                <form action="http://localhost:8000/playlists" method="post">
-                                  """
-
-                form_page += """<input type="checkbox" name="sample" value="artist" /> Artist_name <br>
-                                <input type="checkbox" name="sample" value="artist2" /> Another_artist <br>"""
-
-                form_page += """<input type="submit" value="Submit">
-                                </form>
-    
-                                </body>
-                                </html>"""
+                # form_page = """<!DOCTYPE html>
+                #                 <html>
+                #                 <body>
+                #
+                #                 <h2>Album Search Results</h2>
+                #                 <h3>Check albums and then click submit to save</h3>
+                #
+                #                 <form action="http://localhost:8000/playlists" method="post">
+                #                   """
+                #
+                # for key, value in album_data.items():
+                #     print(key)
+                #
+                # form_page += """<input type="checkbox" name="sample" value="artist" /> Artist_name <br>
+                #                 <input type="checkbox" name="sample" value="artist2" /> Another_artist <br>"""
+                #
+                # form_page += """<input type="submit" value="Submit">
+                #                 </form>
+                #
+                #                 </body>
+                #                 </html>"""
 
                 self.send_response(200)
                 self.end_headers()
@@ -539,6 +581,93 @@ def search_spotify(token, query):
     response_json = json.loads(response.content)
 
     return response_json
+
+
+def generate_spotify_page(query_type, data):
+    page = """ <!DOCTYPE html>
+                <html>
+                <head>
+                    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                </head>
+                <body>
+                <div class="container">
+                """
+
+    if query_type == 'artist':
+        page += "<h2>Artist Search Results</h2>"
+
+        data = data['artists']['items']
+
+        for item in data:
+            page += '<div>'
+            page += str(item['name'])
+            page += '<br>'
+            if len(item['images']) > 0:
+                page += '<img src="' + item['images'][2]['url'] + '" alt="Italian Trulli">'
+            page += '</div>'
+
+    elif query_type == 'album':
+        page += "<h1>Album Search Results</h1>"
+        page += '<h3>Check albums to save them. Then click the submit button.</h3>'
+        page += '<input type="submit" value="Submit">'
+
+        # form start
+        page += '<form action="http://localhost:8000/query" method="post">'
+
+        data = data['albums']['items']
+
+        for item in data:
+            print(item)
+            page += '<input type="checkbox" value="' + item['id'] + '">'
+            page += '<div>'
+
+            # add album Name
+            page += '<h3>'+str(item['name'])+'</h3>'
+
+            # print out artist names on album
+            for artist in item['artists']:
+                page += '<p>' + str(artist['name']) + '</p>'
+                print(artist['name'])
+
+            page += '<br>'
+            if len(item['images']) > 0:
+                page += '<img src="' + item['images'][1]['url'] + '" alt="Italian Trulli">'
+
+            page += '</div>'
+            page += '<br>'
+            page += '<br>'
+
+    elif query_type == 'playlist':
+        page += "<h1>Playlist Search Results</h1>"
+        page += '<h3>Check playlists to save them. Then click the submit button.</h3>'
+        page += '<input type="submit" value="Submit">'
+
+        # form start
+        page += '<form action="http://localhost:8000/query" method="post">'
+
+        data = data['playlists']['items']
+
+        for item in data:
+
+            page += '<input type="checkbox" value="'+item['id']+'">'
+
+            # add playlist Name
+            page += '<h3>' + str(item['name']) + '</h3>'
+
+            # add images
+            page += '<br>'
+            if len(item['images']) > 0:
+                page += '<div id="'+str(item['id'])+'">'
+                page += '<img src="' + item['images'][0]['url'] + '" alt="Italian Trulli">'
+                page += '<br>'
+                page += '</div>'
+
+    page += '<br>'
+
+    page += '</form></div></body></html>'
+    return page
 
 
 def clean_tokens():
