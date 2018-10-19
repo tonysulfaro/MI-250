@@ -117,13 +117,33 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
                 if path_list[1] == 'albums':
                     # GET /albums
-                    send_resp_GET(self, data)
+                    print(self.headers)
+
+                    if 'Content-Type' in self.headers:
+                        print('yes')
+
+                        if 'json' in self.headers['Content-Type']:
+                            send_resp_GET(self, data)
+                    else:
+                        self.send_response(200)
+                        self.end_headers()
+                        self.wfile.write(generate_page_from_json('albums', data).encode())
 
             if len(path_list) == 3:  # getting album by id
 
                 if path_list[2].isdigit():  # id
                     album_id = int(path_list[2])
-                    send_resp_GET(self, data, album_id, 'id')
+                    if 'Content-Type' in self.headers:
+                        print('yes')
+
+                        if 'json' in self.headers['Content-Type']:
+
+                            send_resp_GET(self, data, album_id, 'id')
+                    else:
+                        self.send_response(200)
+                        self.end_headers()
+                        data = json.loads(get_item_from_json(data, album_id, 'id').decode())
+                        self.wfile.write(generate_page_from_json('album', data).encode())
 
                 elif 'query' in path_list:
                     self.send_response(200)
@@ -185,17 +205,38 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         elif path_list[1] == 'playlists':
 
-            fp = open('./data/albums.json', 'r')
+            fp = open('./data/playlists.json', 'r')
             data = json.load(fp)
 
             # GET /playlists
             if len(path_list) == 2:
-                send_resp_GET(self, data)
+
+                if 'Content-Type' in self.headers:
+
+                    if 'json' in self.headers['Content-Type']:
+                        send_resp_GET(self, data)
+                else:
+                    self.send_response(200)
+                    self.end_headers()
+                    self.wfile.write(generate_page_from_json('playlists', data).encode())
 
             # GET /playlists /{id}
             elif len(path_list) == 3:
+
                 playlist_id = int(path_list[2])
-                send_resp_GET(self, data, playlist_id, 'id')
+                if 'Content-Type' in self.headers:
+
+                    if 'json' in self.headers['Content-Type']:
+
+                        send_resp_GET(self, data, playlist_id, 'id')
+                else:
+                    self.send_response(200)
+                    self.end_headers()
+                    data = json.loads(get_item_from_json(data, playlist_id, 'id').decode())
+                    print(type(data))
+                    self.wfile.write(generate_page_from_json('playlist', data).encode())
+
+
 
             # GET /playlists/query/{id}
             elif len(path_list) == 4:
@@ -493,6 +534,16 @@ def create_user(path_list):
     return max_id + 1
 
 
+def add_user_playlist(userdata, userid, playlistid, token):
+    if validate_token(token):
+        for user in userdata:
+            if user['id'] == userid:
+                user['playlists'].append(playlistid)
+                return userdata
+
+    return None
+
+
 def get_user_pass(path_list):
     index = len(path_list) - 1
     user_name_index = path_list[index].find('user_name=') + len('user_name=')
@@ -583,6 +634,48 @@ def search_spotify(token, query):
     return response_json
 
 
+def generate_page_from_json(type, data):
+    page = """ <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                        <meta charset="utf-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1">
+                    </head>
+                    <body>
+                    <div class="container">
+                    """
+
+    if type == 'albums':
+        page += '<h1>Album Data</h1><br>'
+        for album in data:
+            page += '<h3>' + album['album_title'] + '</h3>'
+            page += '<p>' + album['artist_name'] + '</p>'
+            page += '<p>' + album['label_name'] + '</p>'
+            page += '<p>' + album['release_date'] + '</p>'
+    if type == 'album':
+        page += '<h1>Album Data</h1><br>'
+        page += '<h3>' + data['album_title'] + '</h3>'
+        page += '<p>' + data['artist_name'] + '</p>'
+        page += '<p>' + data['label_name'] + '</p>'
+        page += '<p>' + data['release_date'] + '</p>'
+    elif type == 'playlists':
+        page += '<h1>Playlist Data</h1><br>'
+        for playlist in data:
+            page += '<h3>' + playlist['playlist_title'] + '</h3>'
+            page += '<p>' + str(playlist['track_list']) + '</p>'
+
+    elif type == 'playlist':
+        page += '<h1>Playlist Data</h1><br>'
+        page += '<h3>' + data['playlist_title'] + '</h3>'
+        page += '<p>' + str(data['track_list']) + '</p>'
+    elif type == 'artists':
+        pass
+
+    page += '</div></body></html>'
+    return page
+
+
 def generate_spotify_page(query_type, data):
     page = """ <!DOCTYPE html>
                 <html>
@@ -624,7 +717,7 @@ def generate_spotify_page(query_type, data):
             page += '<div>'
 
             # add album Name
-            page += '<h3>'+str(item['name'])+'</h3>'
+            page += '<h3>' + str(item['name']) + '</h3>'
 
             # print out artist names on album
             for artist in item['artists']:
@@ -651,7 +744,7 @@ def generate_spotify_page(query_type, data):
 
         for item in data:
 
-            page += '<input type="checkbox" value="'+item['id']+'">'
+            page += '<input type="checkbox" value="' + item['id'] + '">'
 
             # add playlist Name
             page += '<h3>' + str(item['name']) + '</h3>'
@@ -659,7 +752,7 @@ def generate_spotify_page(query_type, data):
             # add images
             page += '<br>'
             if len(item['images']) > 0:
-                page += '<div id="'+str(item['id'])+'">'
+                page += '<div id="' + str(item['id']) + '">'
                 page += '<img src="' + item['images'][0]['url'] + '" alt="Italian Trulli">'
                 page += '<br>'
                 page += '</div>'

@@ -66,11 +66,11 @@ Note that track information is not stored locally
                                         #Authenticated
     -   PUT /
 
-    -   POST /albums    #Post a body as a form with fields corresponding to the fields in an album
+    +   POST /albums    #Post a body as a form with fields corresponding to the fields in an album
                         #You will search your backend service (spotify / discogs) and redirect the user
                         #To a unique query url with all of the matching albums
 
-    -   POST /playlists     #Authenticated post with an empty body creates a playlist based on the user's
+    +   POST /playlists     #Authenticated post with an empty body creates a playlist based on the user's
                             #favorite albums
                             #Post with a body containing an album id creates a playlist based on that album
                             #Must be an id that the system knows about, or return an error
