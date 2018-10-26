@@ -25,7 +25,7 @@ class Person(Base):
     pets = relationship("Pet", back_populates='owner', cascade="all, delete, delete-orphan")
 
     def __repr__(self):
-        return "<User(name='%s', age='%s', occupation='%s')>" % (self.name, self.age, self.occupation)
+        return "<Person(name='%s', age='%s', occupation='%s')>" % (self.name, self.age, self.occupation)
 
 
 class Pet(Base):
@@ -40,7 +40,7 @@ class Pet(Base):
     owner = relationship("Person", back_populates='pets')
 
     def __repr__(self):
-        return "<User(name='%s', age='%s', type='%s', owner_id='%s')>" % (self.name, self.age, self.type, self.owner)
+        return "<Pet(name='%s', age='%s', type='%s', owner_id='%s')>" % (self.name, self.age, self.type, self.owner)
 
 
 people = Table('people', metadata,
@@ -181,12 +181,18 @@ def main():
     # people.create()
     # pets.create()
 
-    # createPerson(name='jim bob', age=55, occupation='clerk')
-    jim_bob = findPeople(2)
-    pet = jim_bob.pets[0]
-    print(pet)
-    deletePet(pet)
-    # createPet(jim_bob, 'suagr', 2, 'cat')
+    #createPerson(name='toby mcschmozeby', age=20, occupation='student')
+    #jim_bob = findPeople(2)
+    #pet = jim_bob.pets[0]
+    #print(pet)
+    #deletePet(pet)
+
+    people = findPeople(name='toby')
+    pets = findPets()
+    print(people)
+    print(pets)
+
+    # createPet(jim_bob, 'sugar', 2, 'cat')
     # session.delete(jim_bob)
 
     session.commit()
