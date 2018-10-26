@@ -24,6 +24,11 @@ class Person(Base):
 
     pets = relationship("Pet", back_populates='owner', cascade="all, delete, delete-orphan")
 
+    relationships = relationship('Person',
+                                 secondary=relationship,
+                                 primaryjoin=id == people_relationships.person_1_id,
+                                 secondaryjoin=id == people_relationships.person_2_id)
+
     def __repr__(self):
         return "<Person(name='%s', age='%s', occupation='%s')>" % (self.name, self.age, self.occupation)
 
@@ -39,8 +44,31 @@ class Pet(Base):
 
     owner = relationship("Person", back_populates='pets')
 
+    friends = relationships = relationship('Pet',
+                                           secondary=relationship,
+                                           primaryjoin=id == pet_friends.pet_1_id,
+                                           secondaryjoin=id == pet_friends.pet_2_id)
+
     def __repr__(self):
         return "<Pet(name='%s', age='%s', type='%s', owner_id='%s')>" % (self.name, self.age, self.type, self.owner)
+
+
+class Relationship(Base):
+    __tablename__ = 'people_relationships'
+
+    id = Column(Integer, primary_key=True)
+    person_1_id = Column(Integer)
+    person_2_id = Column(Integer)
+    type = Column(String)
+
+
+class Friendship(Base):
+    __tablename__ = 'pet_friends'
+
+    id = Column(Integer, primary_key=True)
+    pet_1_id = Column(Integer)
+    pet_2_id = Column(Integer)
+    type = Column(String)
 
 
 people = Table('people', metadata,
@@ -55,6 +83,20 @@ pets = Table('pets', metadata,
              Column('age', Integer()),
              Column('type', String()),
              Column('owner_id', Integer, ForeignKey('people.id')), schema=None)
+
+people_relationships = Table('people_relationships', Base.metadata,
+                             Column('id', Integer(), primary_key=True, nullable=False),
+                             Column('person_1_id', Integer, ForeignKey('people.id'), primary_key=True),
+                             Column('person_2_id', Integer, ForeignKey('people.id'), primary_key=True),
+                             Column('type', String)
+                             )
+
+pet_friends = Table('pet_friends', Base.metadata,
+                    Column('id', Integer(), primary_key=True, nullable=False),
+                    Column('pet_1_id', Integer, ForeignKey('pets.id'), primary_key=True),
+                    Column('pet_2_id', Integer, ForeignKey('pets.id'), primary_key=True),
+                    Column('type', String)
+                    )
 
 
 def createPerson(name=None, age=None, occupation=None):
@@ -177,15 +219,31 @@ def deletePet(pet):
     return 0
 
 
+def show_friends(person):
+    pass
+
+
+def befriend(self, friend):
+    if friend not in self.friends:
+        self.friends.append(friend)
+        friend.friends.append(self)
+
+
+def unfriend(self, friend):
+    if friend in self.friends:
+        self.friends.remove(friend)
+        friend.friends.remove(self)
+
+
 def main():
     # people.create()
     # pets.create()
 
-    #createPerson(name='toby mcschmozeby', age=20, occupation='student')
-    #jim_bob = findPeople(2)
-    #pet = jim_bob.pets[0]
-    #print(pet)
-    #deletePet(pet)
+    # createPerson(name='toby mcschmozeby', age=20, occupation='student')
+    # jim_bob = findPeople(2)
+    # pet = jim_bob.pets[0]
+    # print(pet)
+    # deletePet(pet)
 
     people = findPeople(name='toby')
     pets = findPets()
