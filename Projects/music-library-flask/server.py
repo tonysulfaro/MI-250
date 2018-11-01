@@ -1,5 +1,21 @@
 from flask import Flask, session, redirect, url_for, escape, request
 
+#database stuff
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
+from sqlalchemy import *
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.sql import text
+
+engine = create_engine('sqlite:///music-data.db', echo=True)
+Base = declarative_base()
+metadata = MetaData(engine)
+Session = sessionmaker(bind=engine)
+session = Session()
+
 app = Flask(__name__)
 
 # Set the secret key to some random bytes. Keep this really secret!
