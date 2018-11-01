@@ -54,15 +54,6 @@ song_association_playlist = Table('song_association_playlist', metadata,
                                   )
 
 
-class User(Base):
-    __tablename__ = 'users'
-    id = Column(Integer, primary_key=True)
-    user_name = Column(String)
-    password = Column(String)
-    albums = relationship("Album", secondary=album_association_user)
-    playlists = relationship("Playlist", secondary=playlist_association_user)
-
-
 class Album(Base):
     __tablename__ = 'albums'
     id = Column(Integer, primary_key=True)
@@ -71,8 +62,14 @@ class Album(Base):
     label = Column(String)
     release_date = Column(DateTime)
     other_id = Column(String)
-    owners = relationship("User", secondary=album_association_user)
     songs = relationship("Song", back_populates='album', cascade="all, delete, delete-orphan")
+
+
+class Song(Base):
+    __tablename__ = 'songs'
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    album = relationship("Album", back_populates='songs')
 
 
 class Playlist(Base):
@@ -83,11 +80,13 @@ class Playlist(Base):
     songs = relationship("Songs", secondary=song_association_playlist)
 
 
-class Song(Base):
-    __tablename__ = 'songs'
+class User(Base):
+    __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    title = Column(String)
-    album = relationship("Album", back_populates='songs')
+    user_name = Column(String)
+    password = Column(String)
+    albums = relationship("Album", secondary=album_association_user)
+    playlists = relationship("Playlist", secondary=playlist_association_user)
 
 
 def main():
