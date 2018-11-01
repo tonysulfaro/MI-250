@@ -13,90 +13,56 @@ metadata = MetaData(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 
-
-class Person(Base):
-    __tablename__ = 'people'
-
-    id = Column(Integer, Sequence('person_id_seq'), primary_key=True)
-    name = Column(String)
-    age = Column(Integer)
-    occupation = Column(String)
-
-    pets = relationship("Pet", back_populates='owner', cascade="all, delete, delete-orphan")
-
-    # relationships = relationship('Person',
-    #                              secondary=relationship,
-    #                              primaryjoin=id == people_relationships.person_1_id,
-    #                              secondaryjoin=id == people_relationships.person_2_id)
-
-    def __repr__(self):
-        return "<Person(name='%s', age='%s', occupation='%s')>" % (self.name, self.age, self.occupation)
-
-
-class Pet(Base):
-    __tablename__ = 'pets'
-
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    age = Column(Integer)
-    type = Column(String)
-    owner_id = Column(Integer, ForeignKey('people.id'))
-
-    owner = relationship("Person", back_populates='pets')
-
-    # friends = relationships = relationship('Pet',
-    #                                        secondary=relationship,
-    #                                        primaryjoin=id == pet_friends.pet_1_id,
-    #                                        secondaryjoin=id == pet_friends.pet_2_id)
-
-    def __repr__(self):
-        return "<Pet(name='%s', age='%s', type='%s', owner_id='%s')>" % (self.name, self.age, self.type, self.owner)
-
-
-class Relationship(Base):
-    __tablename__ = 'people_relationships'
-
-    id = Column(Integer, primary_key=True)
-    person_1_id = Column(Integer)
-    person_2_id = Column(Integer)
-    type = Column(String)
-
-
-class Friendship(Base):
-    __tablename__ = 'pet_friends'
-
-    id = Column(Integer, primary_key=True)
-    pet_1_id = Column(Integer)
-    pet_2_id = Column(Integer)
-    type = Column(String)
-
-
-people = Table('people', metadata,
-               Column('id', Integer(), primary_key=True, nullable=False),
-               Column('name', String()),
-               Column('age', Integer()),
-               Column('occupation', String()), schema=None)
-
-pets = Table('pets', metadata,
+user = Table('users', metadata,
              Column('id', Integer(), primary_key=True, nullable=False),
-             Column('name', String()),
-             Column('age', Integer()),
-             Column('type', String()),
+             Column('user_name', String()),
+             Column('password'), String())
+
+album = Table('albums', metadata,
+             Column('id', Integer(), primary_key=True, nullable=False),
+             Column('album_title', String()),
+             Column('artist_name', String()),
+             Column('label', String()),
              Column('owner_id', Integer, ForeignKey('people.id')), schema=None)
 
-people_relationships = Table('people_relationships', Base.metadata,
-                             Column('id', Integer(), primary_key=True, nullable=False),
-                             Column('person_1_id', Integer, ForeignKey('people.id'), primary_key=True),
-                             Column('person_2_id', Integer, ForeignKey('people.id'), primary_key=True),
-                             Column('type', String)
-                             )
+album_association = Table('album_association', Base.metadata,
+                          Column('left_id', Integer, ForeignKey('users.id')),
+                          Column('right_id', Integer, ForeignKey('albums.id'))
+                          )
 
-pet_friends = Table('pet_friends', Base.metadata,
-                    Column('id', Integer(), primary_key=True, nullable=False),
-                    Column('pet_1_id', Integer, ForeignKey('pets.id'), primary_key=True),
-                    Column('pet_2_id', Integer, ForeignKey('pets.id'), primary_key=True),
-                    Column('type', String)
-                    )
+
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    user_name = Column(String)
+    password = Column(String)
+    albums = relationship("Album",
+                          secondary=album_association)
+
+
+class Album(Base):
+    __tablename__ = 'albums'
+    id = Column(Integer, primary_key=True)
+    album_title = Column(String)
+    artist_name = Column(String)
+    label = Column(String)
+    release_date = Column(DateTime)
+    other_id = Column(String)
+    songs = relationship("Song", back_populates='album', cascade="all, delete, delete-orphan")
+
+
+class Playlist(Base):
+    __tablename__ = 'playlists'
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    artist_name = Column(String)
+
+
+class Song(Base):
+    __tablename__ = 'songs'
+    id = Column(Integer, primary_key=True)
+    title = Column(String)
+    album = relationship("Album", back_populates='songs')
 
 
 def createPerson(name=None, age=None, occupation=None):

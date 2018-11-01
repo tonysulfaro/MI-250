@@ -1,0 +1,24 @@
+Module 4. Homework 3, Advanced.
+
+Due Fri 11/2
+
+- Convert the music service application to a Flask app
+- Use SQLAlchemy as the backend
+- Use Jinja2 to handle differences between logged in and non-logged in users
+
+Add the following:
+
+- A home page / login screen; a logged in user should be stored in a session (web client only)
+- When logged in, there should be a "Welcome, <user>" printed at the top of every web page on the site, and a logout button
+- A non-logged in user will be able to view all the information for non-logged in users; i.e. albums, playlists
+- Logged in users will also have additional links for viewing there own albums / playlists
+
+How you choose to organize this is up to you!
+
+Rubric
+******
+
+- [20 points] Routing used properly to handle all of the API end-points
+- [10 points] Persistence integrated properly
+- [10 points] Log-in and session management
+- [20 points] Overall HTML and web front end
