@@ -90,13 +90,7 @@ class User(Base):
 
 
 def main():
-    # user.create()
-    # album.create()
-    # playlist.create()
-    # song.create()
-    # album_association_user.create()
-    # playlist_association_user.create()
-    # song_association_playlist.create()
+
 
     jim_bob = session.query(User).get(1)
     print(jim_bob)
