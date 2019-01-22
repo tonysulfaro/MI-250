@@ -6,6 +6,8 @@ import numpy as np
 from flask import Flask
 from flask import request
 from flask import jsonify
+from flask import Response
+from sklearn import linear_model
 
 
 def collect_data(filename, subreddit):
@@ -99,7 +101,13 @@ def clean_data(filename):
         file.write(json.dumps(json_data))
 
 
-def train_model(filename, outfile):
+def load_from_csv(filename):
+    data = pd.read_csv(filename, error_bad_lines=False)
+    print(data)
+    return data
+
+
+def load_to_csv(filename, outfile):
     # load flat file into data structure
     user_fp = open(filename, 'r', encoding='UTF-8')
     json_data = json.loads(user_fp.read())
@@ -142,15 +150,74 @@ def train_model(filename, outfile):
         print(post['author'])
 
         author = post['author']
-        author_patreon_flair = post['author_patreon_flair']
+        # author_patreon_flair = post['author_patreon_flair']
         can_mod_post = post['can_mod_post']
+        contest_mode = post['contest_mode']
 
-        tup = tuple()
+        created_utc = post['created_utc']
+
+        gildings1 = post['gildings']['gid_1']
+        gildings2 = post['gildings']['gid_2']
+        gildings3 = post['gildings']['gid_3']
+
+        post_id = post['id']
+        is_crosspostable = post['is_crosspostable']
+        is_meta = post['is_meta']
+        is_original_content = post['is_original_content']
+        is_robot_indexable = post['is_robot_indexable']
+        is_self = post['is_self']
+        locked = post['locked']
+        num_comments = post['num_comments']
+        num_crossposts = post['num_crossposts']
+        over_18 = post['over_18']
+        score = post['score']
+        # hidden = post['hidden']
+        spoiler = post['spoiler']
+        pinned = post['pinned']
+        stickied = post['stickied']
+        title = post['title']
+        whitelist_status = post['whitelist_status']
+
+        tup = author, can_mod_post, contest_mode, created_utc, gildings1, gildings2, gildings3, post_id, is_crosspostable, is_meta, is_original_content, is_robot_indexable, is_self, locked, num_comments, num_crossposts, over_18, score, spoiler, pinned, stickied, title, whitelist_status
+        out_fp.writelines(str(tup)[1:-1] + '\n')
+
     print(len(json_data['data']))
 
 
-def predict_score(post):
-    pass
+def predict_score(post, filename):
+    # pandas dataframe
+    df = load_from_csv(filename)
+
+    # use ElasticNet Lasso to predict score because it is predicting a quantity, has < 100k samples
+    # should probably take all the entries from the csv as dimensions and reduce them to make predictions
+    print(df.head())
+
+
+def post_stats(filename):
+    max_comments = 0
+    max_post = ''
+
+    min_comments = float('inf')
+    min_post = ''
+
+    with open(filename, 'r', encoding='UTF-8') as file:
+        for line in file:
+            line = line.split(',')
+
+            num_comments = int(line[14])
+            score = int(line[17])
+            print(score, num_comments)
+
+            if num_comments > max_comments:
+                max_comments = score
+                max_post = line
+
+            if num_comments < min_comments:
+                min_comments = score
+                min_post = line
+
+        print(max_comments, max_post)
+        print(min_comments, min_post)
 
 
 app = Flask(__name__)
@@ -167,20 +234,24 @@ def show_user_profile():
     subreddit = request.args.get('subreddit')
     # show the user profile for that user
     data = collect_data(file, subreddit)
+
     return (data)
 
 
 def main():
-    app.run(host='0.0.0.0', port=9999)
+    # app.run(host='0.0.0.0', port=9999)
 
-    # file = 'askreddit-initial.json'
-    # outfile = 'askreddit-initial.csv'
+    file = 'askreddit-initial.json'
+    outfile = 'askreddit-initial.csv'
     # collect_data('askreddit-initial.json', 'askreddit')
-    # collect_updated_post_data('writingprompts-initial.json', 'writingprompts-final.json')
+    # collect_updated_post_data('askreddit-initial.json', 'askreddit-final.json')
     # time.sleep()
     # load_json_to_dict('writingprompts-initial.json')
     # clean_data('showerthoughts-initial.json')
-    # train_model(file, outfile)
+    # load_to_csv(file, outfile)
+    #load_from_csv(outfile)
+    predict_score('3kjlj3j4', outfile)
+    #post_stats(outfile)
 
 
 if __name__ == '__main__':
